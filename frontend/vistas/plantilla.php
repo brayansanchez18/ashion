@@ -33,10 +33,10 @@
 
   <?php
     include_once 'modulos/header.php';
-    include_once 'modulos/banner1.php';
-    include_once 'modulos/productos.php';
+    // include_once 'modulos/banner1.php';
+    // include_once 'modulos/productos.php';
     // include_once 'modulos/tienda.php';
-    // include_once 'modulos/detalles-producto.php';
+    include_once 'modulos/detalles-producto.php';
     include_once 'modulos/footer.php';
   ?>
 
