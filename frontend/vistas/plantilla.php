@@ -29,14 +29,14 @@
 </head>
 <body>
   <!-- Page Preloder -->
-  <div id="preloder"><div class="loader"></div></div>
+  <!-- <div id="preloder"><div class="loader"></div></div> -->
 
   <?php
     include_once 'modulos/header.php';
     // include_once 'modulos/banner1.php';
     // include_once 'modulos/productos.php';
-    // include_once 'modulos/tienda.php';
-    include_once 'modulos/detalles-producto.php';
+    include_once 'modulos/tienda.php';
+    // include_once 'modulos/detalles-producto.php';
     include_once 'modulos/footer.php';
   ?>
 

@@ -24,102 +24,41 @@
                 <h4>CATEGORIAS</h4>
               </div>
 
+              <?php
+              $item = null;
+              $valor = null;
+              $categorias = ControladorProductos::ctrMostrarCategorias($item, $valor);
+              ?>
+
               <div class="categories__accordion">
                 <div class="accordion" id="accordionExample">
-                  <div class="card">
-                    <div class="card-heading active">
-                      <a data-toggle="collapse" data-target="#collapseOne">Women</a>
-                    </div>
 
-                    <div id="collapseOne" class="collapse show" data-parent="#accordionExample">
-                      <div class="card-body">
-                        <ul>
-                          <li><a href="#">Coats</a></li>
-                          <li><a href="#">Jackets</a></li>
-                          <li><a href="#">Dresses</a></li>
-                          <li><a href="#">Shirts</a></li>
-                          <li><a href="#">T-shirts</a></li>
-                          <li><a href="#">Jeans</a></li>
-                        </ul>
+                  <?php foreach ($categorias as $key => $value): ?>
+                    <?php if($value['estado'] != 0): ?>
+                      <div class="card">
+                        <div class="card-heading">
+                          <a data-toggle="collapse" data-target="#collapse<?=$key?>"><?=$value['categoria']?></a>
+                        </div>
+
+                        <?php
+                        $item = "id_categoria";
+                        $valor = $value['id'];
+                        $subCategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+                        ?>
+
+                        <div id="collapse<?=$key?>" class="collapse" data-parent="#accordionExample">
+                          <div class="card-body">
+                            <ul>
+                              <?php foreach ($subCategorias as $key => $value): ?>
+                                <li><a href="<?=$frontend.$value['ruta']?>"><?=$value['subcategoria']?></a></li>
+                              <?php endforeach ?>
+                            </ul>
+                          </div>
+                        </div>
                       </div>
-                    </div>
-                  </div>
+                    <?php endif ?>
+                  <?php endforeach ?>
 
-                  <div class="card">
-                    <div class="card-heading">
-                      <a data-toggle="collapse" data-target="#collapseTwo">Men</a>
-                    </div>
-
-                    <div id="collapseTwo" class="collapse" data-parent="#accordionExample">
-                      <div class="card-body">
-                        <ul>
-                          <li><a href="#">Coats</a></li>
-                          <li><a href="#">Jackets</a></li>
-                          <li><a href="#">Dresses</a></li>
-                          <li><a href="#">Shirts</a></li>
-                          <li><a href="#">T-shirts</a></li>
-                          <li><a href="#">Jeans</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="card">
-                    <div class="card-heading">
-                      <a data-toggle="collapse" data-target="#collapseThree">Kids</a>
-                    </div>
-
-                    <div id="collapseThree" class="collapse" data-parent="#accordionExample">
-                      <div class="card-body">
-                        <ul>
-                          <li><a href="#">Coats</a></li>
-                          <li><a href="#">Jackets</a></li>
-                          <li><a href="#">Dresses</a></li>
-                          <li><a href="#">Shirts</a></li>
-                          <li><a href="#">T-shirts</a></li>
-                          <li><a href="#">Jeans</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="card">
-                    <div class="card-heading">
-                      <a data-toggle="collapse" data-target="#collapseFour">Accessories</a>
-                    </div>
-
-                    <div id="collapseFour" class="collapse" data-parent="#accordionExample">
-                      <div class="card-body">
-                        <ul>
-                          <li><a href="#">Coats</a></li>
-                          <li><a href="#">Jackets</a></li>
-                          <li><a href="#">Dresses</a></li>
-                          <li><a href="#">Shirts</a></li>
-                          <li><a href="#">T-shirts</a></li>
-                          <li><a href="#">Jeans</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
-
-                  <div class="card">
-                    <div class="card-heading">
-                      <a data-toggle="collapse" data-target="#collapseFive">Cosmetic</a>
-                    </div>
-
-                    <div id="collapseFive" class="collapse" data-parent="#accordionExample">
-                      <div class="card-body">
-                        <ul>
-                          <li><a href="#">Coats</a></li>
-                          <li><a href="#">Jackets</a></li>
-                          <li><a href="#">Dresses</a></li>
-                          <li><a href="#">Shirts</a></li>
-                          <li><a href="#">T-shirts</a></li>
-                          <li><a href="#">Jeans</a></li>
-                        </ul>
-                      </div>
-                    </div>
-                  </div>
                 </div>
               </div>
             </div>
