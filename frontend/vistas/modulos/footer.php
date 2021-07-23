@@ -1,3 +1,4 @@
+<?php $social = ControladorPlantilla::ctrEstiloPlantilla(); $jsonRedesSociales = json_decode($social['redesSociales'], true); ?>
 <footer class="footer">
   <div class="container">
     <div class="row">
@@ -15,7 +16,10 @@
         <div class="footer__newslatter">
           <h6>SIGUENOS EN NUESTRAS REDES SOCIALES</h6>
           <div class="footer__social">
-            <a href="#"><i class="fa fa-facebook"></i></a>
+
+            <?php foreach ($jsonRedesSociales as $key => $value): ?>
+              <a href="<?=$value['url']?>" target="_blank"><i class="fa <?=$value['red']?>"></i></a>
+            <?php endforeach ?>
             <a href="#"><i class="fa fa-twitter"></i></a>
             <a href="#"><i class="fa fa-youtube-play"></i></a>
             <a href="#"><i class="fa fa-instagram"></i></a>

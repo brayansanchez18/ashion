@@ -1,7 +1,26 @@
 <?php
 
 class ControladorPlantilla {
+
+  /* -------------------------------------------------------------------------- */
+  /*                            LLAMAMOS LA PLANTILLA                           */
+  /* -------------------------------------------------------------------------- */
+
   static public function plantilla() {
     include_once 'vistas/plantilla.php';
   }
+
+  /* ---------------------- End of LLAMAMOS LA PLANTILLA ---------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                TRAEMOS LOS ESTILOS DINAMICOS DE LA PLANTILLA               */
+  /* -------------------------------------------------------------------------- */
+
+	static public function ctrEstiloPlantilla() {
+		$tabla = 'plantilla';
+		$respuesta = ModeloPlantilla::mdlEstiloPlantilla($tabla);
+		return $respuesta;
+	}
+
+	/* ---------- End of TRAEMOS LOS ESTILOS DINAMICOS DE LA PLANTILLA ---------- */
 }
