@@ -1,16 +1,22 @@
+<?php $slide = ControladorSlide::ctrMostrarSlide(); var_dump($slide);?>
 <section class="categories">
   <div class="container-fluid">
     <div class="row">
-      <div class="col-lg-12 p-0">
-        <div class="categories__item categories__large__item set-bg" data-setbg="<?=$frontend?>vistas/img/categories/category-1.jpg">
-          <div class="categories__text">
-            <h1>Women’s fashion</h1>
-            <p>Sitamet, consectetur adipiscing elit, sed do eiusmod tempor incidid-unt labore
-            edolore magna aliquapendisse ultrices gravida.</p>
-            <a href="#">Shop now</a>
+
+      <?php foreach($slide as $key => $value): ?>
+        <div class="col-lg-12 p-0">
+          <div class="categories__item categories__large__item set-bg" data-setbg="<?=$backend.$value["imgFondo"]?>">
+            <div class="categories__text">
+              <h1><?=$value['titulo']?></h1>
+              <p><?=$value['texto']?></p>
+
+              <?php if ($value['boton'] != ''): ?>
+                <a href="<?=$value["url"]?>"><?=$value["boton"]?></a>
+              <?php endif ?>
+            </div>
           </div>
         </div>
-      </div>
+      <?php endforeach ?>
     </div>
   </div>
 </section>
