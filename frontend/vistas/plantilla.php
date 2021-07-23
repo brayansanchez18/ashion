@@ -33,10 +33,60 @@
 
   <?php
     include_once 'modulos/header.php';
-    include_once 'modulos/banner1.php';
-    include_once 'modulos/productos.php';
-    // include_once 'modulos/tienda.php';
-    // include_once 'modulos/detalles-producto.php';
+
+    $rutas = array();
+    $ruta = null;
+    $infoProductos = null;
+
+    if (isset($_GET['ruta'])) {
+
+      $rutas = explode('/', $_GET['ruta']);
+
+      $item = "ruta";
+      $valor = $rutas[0];
+
+      $rutaCategorias = ControladorProductos::ctrMostrarCategorias($item, $valor);
+
+      if (is_array($rutaCategorias) && $valor == $rutaCategorias['ruta'] && $rutaCategorias['estado'] == 1) {
+        $ruta = $valor;
+      }
+
+      $rutaSubCategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+
+      foreach ($rutaSubCategorias as $key => $value) {
+        if (is_array($value) && $valor == $value['ruta'] && $value['estado'] == 1) {
+          $ruta = $valor;
+        }
+      }
+
+      $rutaProductos = ControladorProductos::ctrMostrarInfoproducto($item, $valor);
+
+      if (is_array($rutaProductos) && $rutas[0] == $rutaProductos['ruta'] && $rutaProductos['estado'] == 1) {
+        $infoProductos = $valor;
+      }
+
+      if ($ruta != null || $rutas[0] == 'articulos-recientes' || $rutas[0] == 'lo-mas-vendido' || $rutas[0] == 'lo-mas-visto') {
+        include 'modulos/productos2.php';
+      }
+      else if ($infoProductos != null) {
+        include_once 'modulos/detalles-producto.php';
+      }
+      else if ($rutas[0] == 'buscador' || $rutas[0] == 'verificar' || $rutas[0] == 'salir' || $rutas[0] == 'perfil' || $rutas[0] == 'carrito-de-compras' || $rutas[0] == 'error' || $rutas[0] == 'finalizar-compra' || $rutas[0] == 'ofertas' || $rutas[0] == 'cancelado' || $rutas[0] == 'tienda') {
+        include 'modulos/'.$rutas[0].'.php';
+      }
+      else if ($rutas[0] == 'inicio') {
+        include_once 'modulos/banner1.php';
+        include_once 'modulos/productos.php';
+      }
+      else {
+        include 'modulos/error404.php';
+      }
+
+    } else {
+      include_once 'modulos/banner1.php';
+      include_once 'modulos/productos.php';
+    }
+
     include_once 'modulos/footer.php';
   ?>
 

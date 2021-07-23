@@ -47,9 +47,9 @@
       <div class="col-xl-6 col-lg-7">
         <nav class="header__menu">
           <ul class="text-center">
-            <li class="active"><a href="./index.html">Inicio</a></li>
-            <li><a href="./shop.html">Tienda</a></li>
-            <li><a href="./shop.html">Contacto</a></li>
+            <li class="active"><a href="<?=$frontend?>">Inicio</a></li>
+            <li><a href="<?=$frontend?>tienda">Tienda</a></li>
+            <li><a href="<?=$frontend?>contacto">Contacto</a></li>
             <!-- <li><a href="#">Men’s</a></li>
             <li><a href="./shop.html">Shop</a></li>
             <li><a href="#">Pages</a>
