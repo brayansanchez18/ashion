@@ -3688,3 +3688,10 @@ ol {
     margin-right: auto;
     margin-left: auto;
 }
+
+.linkdestacados {
+	color:#000;
+}
+.linkdestacados:hover{
+	color:gray;
+}
