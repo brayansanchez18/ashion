@@ -1,4 +1,4 @@
-<?php $slide = ControladorSlide::ctrMostrarSlide(); var_dump($slide);?>
+<?php $slide = ControladorSlide::ctrMostrarSlide();?>
 <section class="categories">
   <div class="container-fluid">
     <div class="row">
