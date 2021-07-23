@@ -1,3 +1,16 @@
+<?php
+
+$base = 0;
+$tope = 12;
+
+$ordenar = "id";
+$item = 'estado';
+$valor = 1;
+$modo = 'DESC';
+$productos_tienda = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
+
+?>
+
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
   <div class="container">
@@ -14,190 +27,106 @@
 <!-- Breadcrumb End -->
 
 <!-- Shop Section Begin -->
-  <section class="shop spad">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-3 col-md-3">
-          <div class="shop__sidebar">
-            <div class="sidebar__categories">
-              <div class="section-title">
-                <h4>CATEGORIAS</h4>
-              </div>
+<section class="shop spad">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-3 col-md-3">
+        <div class="shop__sidebar">
+          <div class="sidebar__categories">
+            <div class="section-title">
+              <h4>CATEGORIAS</h4>
+            </div>
 
-              <?php
-              $item = null;
-              $valor = null;
-              $categorias = ControladorProductos::ctrMostrarCategorias($item, $valor);
-              ?>
+            <?php
+            $item = null;
+            $valor = null;
+            $categorias = ControladorProductos::ctrMostrarCategorias($item, $valor);
+            ?>
 
-              <div class="categories__accordion">
-                <div class="accordion" id="accordionExample">
+            <div class="categories__accordion">
+              <div class="accordion" id="accordionExample">
 
-                  <?php foreach ($categorias as $key => $value): ?>
-                    <?php if($value['estado'] != 0): ?>
-                      <div class="card">
-                        <div class="card-heading">
-                          <a data-toggle="collapse" data-target="#collapse<?=$key?>"><?=$value['categoria']?></a>
-                        </div>
+                <?php foreach ($categorias as $key => $value): ?>
+                  <?php if($value['estado'] != 0): ?>
+                    <div class="card">
+                      <div class="card-heading">
+                        <a data-toggle="collapse" data-target="#collapse<?=$key?>"><?=$value['categoria']?></a>
+                      </div>
 
-                        <?php
-                        $item = "id_categoria";
-                        $valor = $value['id'];
-                        $subCategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
-                        ?>
+                      <?php
+                      $item = "id_categoria";
+                      $valor = $value['id'];
+                      $subCategorias = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+                      ?>
 
-                        <div id="collapse<?=$key?>" class="collapse" data-parent="#accordionExample">
-                          <div class="card-body">
-                            <ul>
-                              <?php foreach ($subCategorias as $key => $value): ?>
-                                <li><a href="<?=$frontend.$value['ruta']?>"><?=$value['subcategoria']?></a></li>
-                              <?php endforeach ?>
-                            </ul>
-                          </div>
+                      <div id="collapse<?=$key?>" class="collapse" data-parent="#accordionExample">
+                        <div class="card-body">
+                          <ul>
+                            <?php foreach ($subCategorias as $key => $value): ?>
+                              <li><a href="<?=$frontend.$value['ruta']?>"><?=$value['subcategoria']?></a></li>
+                            <?php endforeach ?>
+                          </ul>
                         </div>
                       </div>
-                    <?php endif ?>
-                  <?php endforeach ?>
+                    </div>
+                  <?php endif ?>
+                <?php endforeach ?>
 
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-lg-9 col-md-9">
-          <div class="row">
-            <div class="col-lg-4 col-md-6">
-              <div class="product__item">
-                <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/shop/shop-1.jpg">
-                  <div class="label new">New</div>
-                </div>
-
-                <div class="product__item__text">
-                  <h6><a href="#">Furry hooded parka</a></h6>
-                  <hr>
-                  <div class="product__price">$ 59.0</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <div class="product__item">
-                <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/shop/shop-2.jpg">
-                </div>
-
-                <div class="product__item__text">
-                  <h6><a href="#">Flowy striped skirt</a></h6>
-                  <hr>
-                  <div class="product__price">$ 49.0</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <div class="product__item">
-                <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/shop/shop-3.jpg">
-                </div>
-
-                <div class="product__item__text">
-                  <h6><a href="#">Croc-effect bag</a></h6>
-                  <hr>
-                  <div class="product__price">$ 59.0</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <div class="product__item">
-                <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/shop/shop-4.jpg">
-                </div>
-
-                <div class="product__item__text">
-                  <h6><a href="#">Dark wash Xavi jeans</a></h6>
-                  <hr>
-                  <div class="product__price">$ 59.0</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <div class="product__item sale">
-                <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/shop/shop-5.jpg">
-                  <div class="label">Sale</div>
-                </div>
-
-                <div class="product__item__text">
-                  <h6><a href="#">Ankle-cuff sandals</a></h6>
-                  <hr>
-                  <div class="product__price">$ 49.0 <span>$ 59.0</span></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <div class="product__item">
-                <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/shop/shop-6.jpg">
-                </div>
-
-                <div class="product__item__text">
-                  <h6><a href="#">Contrasting sunglasses</a></h6>
-                  <hr>
-                  <div class="product__price">$ 59.0</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <div class="product__item">
-                <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/shop/shop-7.jpg">
-                </div>
-                <div class="product__item__text">
-                  <h6><a href="#">Circular pendant earrings</a></h6>
-                  <hr>
-                  <div class="product__price">$ 59.0</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <div class="product__item">
-                <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/shop/shop-8.jpg">
-                  <div class="label stockout stockblue">Out Of Stock</div>
-                </div>
-
-                <div class="product__item__text">
-                  <h6><a href="#">Cotton T-Shirt</a></h6>
-                  <hr>
-                  <div class="product__price">$ 59.0</div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-4 col-md-6">
-              <div class="product__item sale">
-                <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/shop/shop-9.jpg">
-                  <div class="label">Sale</div>
-                </div>
-
-                <div class="product__item__text">
-                  <h6><a href="#">Water resistant zips backpack</a></h6>
-                  <hr>
-                  <div class="product__price">$ 49.0 <span>$ 59.0</span></div>
-                </div>
-              </div>
-            </div>
-
-            <div class="col-lg-12 text-center">
-              <div class="pagination__option">
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                <a href="#"><i class="fa fa-angle-right"></i></a>
               </div>
             </div>
           </div>
         </div>
       </div>
+
+      <div class="col-lg-9 col-md-9">
+        <div class="row">
+
+          <?php foreach ($productos_tienda as $key => $value): ?>
+            <?php if ($value['estado'] != 0): ?>
+              <div class="col-lg-4 col-md-6">
+                <?php if ($value['oferta'] != 0): ?>
+                <div class="product__item sale">
+                <?php else: ?>
+                <div class="product__item">
+                <?php endif ?>
+                  <div class="product__item__pic set-bg" data-setbg="<?=$backend.$value['portada']?>">
+                    <?php if ($value['oferta'] != 0): ?>
+                      <div class="label sale">En Oferta</div>
+                    <?php endif ?>
+                    <?php if ($value['stock'] == 0): ?>
+                      <div class="label stockout stockblue">Sin Stock</div>
+                    <?php endif ?>
+                  </div>
+
+                  <div class="product__item__text">
+                    <h6><a href="<?=$frontend.$value['ruta']?>"><?=$value['titulo']?></a></h6>
+                    <hr>
+                    <?php if ($value['precio'] == 0): ?>
+                      <div class="product__price">GRATIS</div>
+                    <?php else: ?>
+                      <?php if ($value['oferta'] != 0): ?>
+                        <div class="product__price">$ <?=$value['precioOferta']?> USD <span>$ <?=$value['precio']?></span></div>
+                      <?php else: ?>
+                        <div class="product__price">$ <?=$value['precio']?> USD</div>
+                      <?php endif ?>
+                    <?php endif ?>
+                  </div>
+                </div>
+              </div>
+            <?php endif ?>
+          <?php endforeach ?>
+
+          <div class="col-lg-12 text-center">
+            <div class="pagination__option">
+              <a href="#">1</a>
+              <a href="#">2</a>
+              <a href="#">3</a>
+              <a href="#"><i class="fa fa-angle-right"></i></a>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-  </section>
-  <!-- Shop Section End -->
+  </div>
+</section>
+<!-- Shop Section End -->
