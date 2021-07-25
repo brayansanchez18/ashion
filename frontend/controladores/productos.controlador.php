@@ -62,4 +62,28 @@ class ControladorProductos {
 
   /* ------------------------- End of LISTAR PRODUCTOS ------------------------ */
 
+  /* -------------------------------------------------------------------------- */
+  /*                                  BUSCADOR                                  */
+  /* -------------------------------------------------------------------------- */
+
+  static public function ctrBuscarProductos($busqueda, $ordenar, $modo, $base, $tope){
+    $tabla = 'productos';
+    $respuesta = ModeloProductos::mdlBuscarProductos($tabla, $busqueda, $ordenar, $modo, $base, $tope);
+    return $respuesta;
+  }
+
+  /* ----------------------------- End of BUSCADOR ---------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                          LISTAR PRODUCTOS BUSCADOR                         */
+  /* -------------------------------------------------------------------------- */
+
+  static public function ctrListarProductosBusqueda($busqueda){
+    $tabla = 'productos';
+    $respuesta = ModeloProductos::mdlListarProductosBusqueda($tabla, $busqueda);
+    return $respuesta;
+  }
+
+  /* -------------------- End of LISTAR PRODUCTOS BUSCADOR -------------------- */
+
 }

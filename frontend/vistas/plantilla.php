@@ -101,5 +101,6 @@
   <script src="<?=$frontend?>vistas/js/owl.carousel.min.js"></script>
   <script src="<?=$frontend?>vistas/js/jquery.nicescroll.min.js"></script>
   <script src="<?=$frontend?>vistas/js/main.js"></script>
+  <script src="<?=$frontend?>vistas/js/buscador.js"></script>
 </body>
 </html>

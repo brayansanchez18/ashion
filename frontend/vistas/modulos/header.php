@@ -91,9 +91,17 @@
 <div class="search-model">
   <div class="h-100 d-flex align-items-center justify-content-center">
     <div class="search-close-switch">+</div>
-    <form class="search-model-form">
+    <div class="search-model-form" id="buscador">
       <input type="text" id="search-input" placeholder="Que es lo que buscas?...">
-    </form>
+
+      <span class="input-group-btn">
+        <a href="<?php echo $frontend; ?>buscador/1">
+          <!-- <button class="btn btn-default backColor" type="submit">
+            <i class="fa fa-search"></i>
+          </button> -->
+        </a>
+      </span>
+    </div>
   </div>
 </div>
 <!-- Search End -->
