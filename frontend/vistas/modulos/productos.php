@@ -52,14 +52,15 @@ $modulos = array($recientes, $ventas, $vistas);
             <?php if ($value['estado'] != 0): ?>
               <div class="col-lg-3 col-md-4 col-sm-6 mix">
                 <?php if ($value['oferta'] != 0): ?>
-                <div class="product__item sale">
+                  <div class="product__item sale">
                 <?php else: ?>
-                <div class="product__item">
+                  <div class="product__item">
                 <?php endif ?>
                   <div class="product__item__pic set-bg" data-setbg="<?=$backend.$value['portada']?>">
                     <?php if ($value['oferta'] != 0): ?>
                       <div class="label sale">En Oferta</div>
                     <?php endif ?>
+
                     <?php if ($value['stock'] == 0): ?>
                       <div class="label stockout stockblue">Sin Stock</div>
                     <?php endif ?>

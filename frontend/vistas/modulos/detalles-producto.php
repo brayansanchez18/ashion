@@ -1,12 +1,24 @@
+<?php
+
+$item = 'ruta';
+$valor = $rutas[0];
+$infoproducto = ControladorProductos::ctrMostrarInfoproducto($item, $valor);
+$multimedia = json_decode($infoproducto['multimedia'], true);
+
+$item = 'id';
+$valor = $infoproducto['id_subcategoria'];
+$rutaDestacados = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
+
+?>
+
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
   <div class="container">
     <div class="row">
       <div class="col-lg-12">
         <div class="breadcrumb__links">
-          <a href="./index.html"><i class="fa fa-home"></i> Home</a>
-          <a href="#">Women’s </a>
-          <span>Essential structured blazer</span>
+          <a href="<?=$frontend?>"><i class="fa fa-home"></i> Inicio</a>
+          <span><?=$infoproducto['titulo']?></span>
         </div>
       </div>
     </div>
@@ -20,30 +32,23 @@
     <div class="row">
       <div class="col-lg-6">
         <div class="product__details__pic">
-          <div class="product__details__pic__left product__thumb nice-scroll">
-            <a class="pt active" href="#product-1">
-              <img src="<?=$frontend?>vistas/img/product/details/thumb-1.jpg" alt="">
-            </a>
-
-            <a class="pt" href="#product-2">
-              <img src="<?=$frontend?>vistas/img/product/details/thumb-2.jpg" alt="">
-            </a>
-
-            <a class="pt" href="#product-3">
-              <img src="<?=$frontend?>vistas/img/product/details/thumb-3.jpg" alt="">
-            </a>
-
-            <a class="pt" href="#product-4">
-              <img src="<?=$frontend?>vistas/img/product/details/thumb-4.jpg" alt="">
-            </a>
+          <div class="product__details__pic__left product__thumb nice-scroll" style="height:100%;">
+            <?php if ($multimedia != null): ?>
+              <?php for ($i=0; $i < count($multimedia); $i++): ?>
+                <a class="pt" href="#product-<?=($i+1)?>">
+                  <img src="<?=$backend.$multimedia[$i]['foto']?>" alt="<?=$infoproducto['titulo']?>">
+                </a>
+              <?php endfor ?>
+            <?php endif ?>
           </div>
 
           <div class="product__details__slider__content">
-            <div class="product__details__pic__slider owl-carousel">
-              <img data-hash="product-1" class="product__big__img" src="<?=$frontend?>vistas/img/product/details/product-1.jpg" alt="">
-              <img data-hash="product-2" class="product__big__img" src="<?=$frontend?>vistas/img/product/details/product-3.jpg" alt="">
-              <img data-hash="product-3" class="product__big__img" src="<?=$frontend?>vistas/img/product/details/product-2.jpg" alt="">
-              <img data-hash="product-4" class="product__big__img" src="<?=$frontend?>vistas/img/product/details/product-4.jpg" alt="">
+            <div class="product__details__pic__slider owl-carousel" style="width: 100%; height:100%;">
+              <?php if ($multimedia != null): ?>
+                <?php for ($i=0; $i < count($multimedia); $i++): ?>
+                  <img data-hash="product-<?=($i+1)?>" class="product__big__img" src="<?=$backend.$multimedia[$i]['foto']?>" alt="<?=$infoproducto['titulo']?>">
+                <?php endfor ?>
+              <?php endif ?>
             </div>
           </div>
         </div>
@@ -51,52 +56,139 @@
 
       <div class="col-lg-6">
         <div class="product__details__text">
-          <h3>Essential structured blazer</h3>
-          <div class="product__details__price">$ 75.00 <span>USD $ 83.00</span></div>
-
-          <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret. Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla consequat massa quis enim.</p>
-
-          <div class="product__details__button">
-            <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Añadir al carrito</a>
-
-            <ul>
-              <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-            </ul>
-          </div>
+          <h3><?=$infoproducto['titulo']?></h3>
+          <?php if($infoproducto['precio'] == 0): ?>
+            <div class="product__details__price">GRATIS</div>
+          <?php else: ?>
+            <?php if ($infoproducto['oferta'] == 0): ?>
+              <div class="product__details__price">$ <?=number_format($infoproducto['precio'],2)?> USD</div>
+            <?php else: ?>
+              <div class="product__details__price">$ <?=number_format($infoproducto['precioOferta'],2)?> <span> $ <?=number_format($infoproducto['precio'],2)?> USD</span></div>
+            <?php endif ?>
+          <?php endif ?>
 
           <div class="product__details__widget">
             <ul>
               <li>
-                <span>Unidades:</span> 50
+                <?php if ($infoproducto['stock'] != 0): ?>
+                  <span>Unidades:</span> <?=$infoproducto['stock']?>
+                <?php else: ?>
+                  <span>Unidades:</span> SIN STOCK
+                <?php endif ?>
               </li>
               <hr>
 
-              <li>
-                <span>Colores Disponibles:</span>
+              <?php if ($infoproducto['stock'] != 0): ?>
+                <?php if ($infoproducto['detalles'] != null): ?>
+                  <?php $detalles = json_decode($infoproducto['detalles'], true); ?>
 
-                <div class="form-group row">
-                  <div class="col-md-6 col-xs-12">
-                    <select class="form-control seleccionarDetalle" id="seleccionarColor">
-                    <option value="">Color</option>
-                    </select>
-                  </div>
-                </div>
-              </li>
-              <hr>
+                  <?php if ($detalles['Talla'] != null): ?>
+                    <li>
+                      <span>Tallas Disponibles:</span>
 
-              <li>
-                <span>Tallas Disponibles:</span>
+                      <div class="form-group row">
+                        <div class="col-md-6 col-xs-12">
+                          <select class="form-control seleccionarDetalle" id="seleccionarTalla">
+                          <option value="">Talla</option>
+                          <?php for ($i = 0; $i < count($detalles['Talla']); $i++): ?>
+                            <option value="<?=$detalles['Talla'][$i]?>"><?=$detalles['Talla'][$i]?></option>
+                          <?php endfor ?>
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                  <?php endif ?>
 
-                <div class="form-group row">
-                  <div class="col-md-6 col-xs-12">
-                    <select class="form-control seleccionarDetalle" id="seleccionarTalla">
-                    <option value="">Talla</option>
-                    </select>
-                  </div>
-                </div>
-              </li>
+                  <?php if ($detalles['Color'] != null): ?>
+                    <li>
+                      <span>Colores Disponibles:</span>
+
+                      <div class="form-group row">
+                        <div class="col-md-6 col-xs-12">
+                          <select class="form-control seleccionarDetalle" id="seleccionarColor">
+                            <option value="">Color</option>
+                            <?php for ($i = 0; $i < count($detalles["Color"]); $i++): ?>
+                              <option value="<?=$detalles['Color'][$i]?>"><?=$detalles['Color'][$i]?></option>
+                            <?php endfor ?>
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                  <?php endif ?>
+
+                  <?php if ($detalles['Marca'] != null): ?>
+                    <li>
+                      <span>Marcas Disponibles:</span>
+
+                      <div class="form-group row">
+                        <div class="col-md-6 col-xs-12">
+                          <select class="form-control seleccionarDetalle" id="seleccionarMarca">
+                            <option value="">Marca</option>
+                            <?php for($i = 0; $i < count($detalles["Marca"]); $i++): ?>
+                              <option value="<?=$detalles['Marca'][$i]?>"><?=$detalles['Marca'][$i]?></option>
+                            <?php endfor ?>
+                          </select>
+                        </div>
+                      </div>
+                    </li>
+                  <?php endif ?>
+
+                <?php endif ?>
+              <?php endif ?>
             </ul>
           </div>
+
+          <!-- -------------------------------------------------------------------------- */
+          /*                                   ENTREGA                                  */
+          /* -------------------------------------------------------------------------- -->
+
+          <?php if ($infoproducto['stock'] != 0): ?>
+            <?php if ($infoproducto["precio"] == 0): ?>
+              <h4 class="col-lg-0 col-md-0 col-xs-12">
+                <small>
+                  <i class="fa fa-clock-o" style="margin-right:5px;margin-left:2px;"></i>
+                  <?=$infoproducto["entrega"]?> días hábiles para la entrega  <br>
+
+                  <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+                  <?=$infoproducto["ventasGratis"]?> solicitudes  <br>
+
+                  <i class="fa fa-eye" style="margin:0px 5px"></i>
+                  Visto por <span class="vistas" tipo="<?=$infoproducto["precio"]?>"><?=$infoproducto["vistasGratis"]?> </span> personas
+                </small>
+              </h4>
+            <?php else: ?>
+              <hr>
+                <h4 class="col-lg-0 col-md-0 col-xs-12" style="font-size:20px;">
+                  <small>
+                    <i class="fa fa-clock-o" style="margin-right:5px;margin-left:4px;"></i>
+                    <?=$infoproducto['entrega']?> días hábiles para la entrega <br>
+
+                    <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
+                    <?=$infoproducto['ventas']?> ventas <br>
+
+                    <i class="fa fa-eye" style="margin:0px 5px"></i>
+                    Visto por <span class="vistas" tipo="<?=$infoproducto['precio']?>"><?=$infoproducto['vistas']?></span> personas
+                  </small>
+                </h4>
+              <hr>
+            <?php endif ?>
+          <?php endif ?>
+
+          <!-- ----------------------------- End of ENTREGA ----------------------------- -->
+
+          <?php if ($infoproducto['stock'] != 0): ?>
+            <div class="product__details__button mb-4">
+              <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Añadir al carrito</a>
+
+              <ul>
+                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
+              </ul>
+            </div>
+          <?php else: ?>
+            <div class="product__details__button mb-4">
+              <a href="#" class="cart-btn"><span class="icon_heart_alt"></span> Añadir a lista de deseos</a>
+            </div>
+          <?php endif ?>
         </div>
       </div>
 
@@ -110,17 +202,7 @@
 
             <div class="tab-content">
               <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                <p>Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed
-                  quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt loret.
-                  Neque porro lorem quisquam est, qui dolorem ipsum quia dolor si. Nemo enim ipsam
-                  voluptatem quia voluptas sit aspernatur aut odit aut loret fugit, sed quia ipsu
-                  consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Nulla
-                consequat massa quis enim.</p>
-
-                <p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget
-                  dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes,
-                  nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium
-                quis, sem.</p>
+                <p><?=$infoproducto['descripcion']?></p> <!-- IMPLEMENTAR UN EDITOR DE TEXTO ENRIQUESIDO -->
             </div>
           </div>
         </div>
@@ -130,63 +212,63 @@
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="related__title">
-          <h5><a href="#" style="color: #a91b08;">PRODUCTOS RELACIONADOS</a></h5>
+          <h5><a href="<?=$frontend.$rutaDestacados[0]['ruta']?>" style="color: #a91b08;">PRODUCTOS RELACIONADOS</a></h5>
         </div>
       </div>
 
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="product__item">
-          <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/product/related/rp-1.jpg">
-            <div class="label new">New</div>
-          </div>
+      <?php
+        $ordenar = '';
+        $item = 'id_subcategoria';
+        $valor = $infoproducto['id_subcategoria'];
+        $base = 0;
+        $tope = 4;
+        $modo = 'Rand()';
 
-          <div class="product__item__text">
-            <h6><a href="#">Buttons tweed blazer</a></h6>
-            <hr>
-            <div class="product__price">$ 59.0</div>
-          </div>
+        $relacionados = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
+      ?>
+
+      <?php if (!$relacionados): ?>
+        <div class="col-12 text-center">
+          <h1><small>¡Oops!</small></h1>
+          <h2>No hay productos relacionados</h2>
         </div>
-      </div>
+      <?php else: ?>
+        <?php foreach ($relacionados as $key => $value): ?>
+          <?php if ($value['estado'] != 0): ?>
+            <div class="col-lg-3 col-md-4 col-sm-6 mix">
+              <?php if ($value['oferta'] != 0): ?>
+                <div class="product__item sale">
+              <?php else: ?>
+                <div class="product__item">
+              <?php endif ?>
+                <div class="product__item__pic set-bg" data-setbg="<?=$backend.$value['portada']?>">
+                  <?php if ($value['oferta'] != 0): ?>
+                    <div class="label sale">En Oferta</div>
+                  <?php endif ?>
 
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="product__item">
-          <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/product/related/rp-2.jpg">
-          </div>
+                  <?php if ($value['stock'] == 0): ?>
+                    <div class="label stockout stockblue">Sin Stock</div>
+                  <?php endif ?>
+                </div>
 
-          <div class="product__item__text">
-            <h6><a href="#">Flowy striped skirt</a></h6>
-            <hr>
-            <div class="product__price">$ 49.0</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="product__item">
-          <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/product/related/rp-3.jpg">
-            <div class="label stockout">out of stock</div>
-          </div>
-
-          <div class="product__item__text">
-            <h6><a href="#">Cotton T-Shirt</a></h6>
-            <hr>
-            <div class="product__price">$ 59.0</div>
-          </div>
-        </div>
-      </div>
-
-      <div class="col-lg-3 col-md-4 col-sm-6">
-        <div class="product__item">
-          <div class="product__item__pic set-bg" data-setbg="<?=$frontend?>vistas/img/product/related/rp-4.jpg">
-          </div>
-
-          <div class="product__item__text">
-            <h6><a href="#">Slim striped pocket shirt</a></h6>
-            <hr>
-            <div class="product__price">$ 59.0</div>
-          </div>
-        </div>
-      </div>
+                <div class="product__item__text">
+                  <h6><a href="<?=$frontend.$value['ruta']?>"><?=$value['titulo']?></a></h6>
+                  <hr>
+                  <?php if ($value['precio'] == 0): ?>
+                    <div class="product__price">GRATIS</div>
+                  <?php else: ?>
+                    <?php if ($value['oferta'] != 0): ?>
+                      <div class="product__price">$ <?=$value['precioOferta']?> USD <span>$ <?=$value['precio']?></span></div>
+                    <?php else: ?>
+                      <div class="product__price">$ <?=$value['precio']?> USD</div>
+                    <?php endif ?>
+                  <?php endif ?>
+                </div>
+              </div>
+            </div>
+          <?php endif ?>
+        <?php endforeach ?>
+      <?php endif ?>
     </div>
   </div>
 </section>

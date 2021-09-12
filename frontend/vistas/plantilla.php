@@ -90,6 +90,8 @@
     include_once 'modulos/footer.php';
   ?>
 
+  <input type="hidden" value="<?=$frontend?>" id="rutaOculta">
+
   <!-- Js Plugins -->
   <script src="<?=$frontend?>vistas/js/jquery-3.3.1.min.js"></script>
   <script src="<?=$frontend?>vistas/js/bootstrap.min.js"></script>
@@ -102,5 +104,6 @@
   <script src="<?=$frontend?>vistas/js/jquery.nicescroll.min.js"></script>
   <script src="<?=$frontend?>vistas/js/main.js"></script>
   <script src="<?=$frontend?>vistas/js/buscador.js"></script>
+  <script src="<?=$frontend?>vistas/js/infoproducto.js"></script>
 </body>
 </html>
