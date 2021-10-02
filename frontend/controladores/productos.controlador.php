@@ -98,4 +98,16 @@ class ControladorProductos {
 
   /* -------------------- End of ACTUALIZAR VISTA PRODUCTO -------------------- */
 
+  /* -------------------------------------------------------------------------- */
+  /*                        ACTUALIZAR STOCK DE PRODUCTOS                       */
+  /* -------------------------------------------------------------------------- */
+
+  static public function ctrActualizarStock($item3, $valor3, $item4, $valor4, $item5, $valor5) {
+		$tabla = 'productos';
+		$respuesta = ModeloProductos::mdlActualizarStock($tabla, $item3, $valor3, $item4, $valor4, $item5, $valor5);
+		return $respuesta;
+	}
+
+  /* ------------------ End of ACTUALIZAR STOCK DE PRODUCTOS ------------------ */
+
 }

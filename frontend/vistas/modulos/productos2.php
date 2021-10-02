@@ -223,6 +223,10 @@ $listaProductos = ControladorProductos::ctrListarProductos($ordenar, $item2, $va
                   <div class="product__item">
                   <?php endif ?>
                     <div class="product__item__pic set-bg" data-setbg="<?=$backend.$value['portada']?>">
+                      <ul class="product__hover">
+                        <li><a href="<?=$backend.$value['portada']?>" class="image-popup"><span class="arrow_expand"></span></a></li>
+                        <li><a><span class="icon_heart_alt deseos" idProducto="<?=$value['id']?>"></span></a></li>
+                      </ul>
                       <?php if ($value['oferta'] != 0): ?>
                         <div class="label sale">En Oferta</div>
                       <?php endif ?>

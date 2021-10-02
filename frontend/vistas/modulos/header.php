@@ -1,3 +1,25 @@
+<?php
+
+/* -------------------------------------------------------------------------- */
+/*                          INICIO DE SESION USUARIO                          */
+/* -------------------------------------------------------------------------- */
+
+if (isset($_SESSION['validarSesion'])) {
+
+  if ($_SESSION['validarSesion'] == 'ok') {
+
+    echo '<script>
+        localStorage.setItem("usuario","'.$_SESSION["id"].'");
+      </script>';
+
+  }
+
+}
+
+/* --------------------- End of INICIO DE SESION USUARIO -------------------- */
+
+?>
+
 <!-- Offcanvas Menu Begin -->
 <div class="offcanvas-menu-overlay"></div>
 <div class="offcanvas-menu-wrapper">
@@ -6,30 +28,51 @@
   <ul class="offcanvas__widget">
     <li><span class="icon_search search-switch"></span></li>
 
-    <!-- <li>
-      <a href="#">
-        <span class="icon_heart_alt"></span>
-        <div class="tip">2</div>
+    <li>
+      <a href="<?=$frontend?>carrito-de-compras">
+        <span class="icon_bag_alt"></span>
+        <div class="tip cantidadCesta"></div>
       </a>
     </li>
 
-    <li>
-      <a href="#">
-        <span class="icon_bag_alt"></span>
-        <div class="tip">2</div>
-      </a>
-    </li> -->
+    <?php if (isset($_SESSION['validarSesion'])): ?>
+      <?php if ($_SESSION['validarSesion'] == 'ok'): ?>
+        <?php if ($_SESSION['modo'] == 'directo'): ?>
+          <li>
+            <a href="<?=$frontend?>lista-deseos">
+              <span class="icon_heart_alt"></span>
+            </a>
+          </li>
+
+          <?php if ($_SESSION['foto'] != ''): ?>
+            <li>
+              <a style="width:50px;height:50px;" href="<?=$frontend?>perfil">
+                <img class="rounded-circle" src="<?=$frontend.$_SESSION['foto']?>" width="100%">
+              </a>
+            </li>
+          <?php else: ?>
+            <li>
+              <a style="width:50px;height:50px;" href="<?=$frontend?>perfil">
+                <img class="rounded-circle" src="<?=$backend?>vistas/img/usuarios/default/anonymous.png" width="100%">
+              </a>
+            </li>
+          <?php endif ?>
+        <?php endif ?>
+      <?php endif ?>
+    <?php endif ?>
   </ul>
 
   <div class="offcanvas__logo">
-    <a href="./index.html"><img src="<?=$frontend?>vistas/img/logo.png" class="logo" alt=""></a>
+    <a href="<?=$frontend?>"><img src="<?=$frontend?>vistas/img/logo.png" class="logo" alt=""></a>
   </div>
 
   <div id="mobile-menu-wrap"></div>
 
   <div class="offcanvas__auth">
-    <a href="#">INGRESAR</a>
-    <a href="#">REGISTRARSE</a>
+    <?php if(!isset($_SESSION['validarSesion'])): ?>
+      <a class="btnIngreso" href="<?=$frontend?>login">INGRESAR</a>
+      <a href="<?=$frontend?>register">REGISTRARSE</a>
+    <?php endif ?>
   </div>
 </div>
 <!-- Offcanvas Menu End -->
@@ -57,25 +100,48 @@
       <div class="col-lg-3">
         <div class="header__right">
           <div class="header__right__auth">
-            <a href="#">INGRESAR</a>
-            <a href="#">REGISTRARSE</a>
+            <?php if(!isset($_SESSION['validarSesion'])): ?>
+              <a class="btnIngreso" href="<?=$frontend?>login">INGRESAR</a>
+              <a href="<?=$frontend?>register">REGISTRARSE</a>
+            <?php endif ?>
           </div>
 
           <ul class="header__right__widget">
             <li><span class="icon_search search-switch"></span></li>
-            <!-- <li>
-              <a href="#">
-                <span class="icon_heart_alt"></span>
-                <div class="tip">2</div>
+
+            <li>
+              <a href="<?=$frontend?>carrito-de-compras">
+                <span class="icon_bag_alt"></span>
+                <div class="tip cantidadCesta"></div>
               </a>
             </li>
 
-            <li>
-              <a href="#">
-                <span class="icon_bag_alt"></span>
-                <div class="tip">2</div>
-              </a>
-            </li> -->
+            <?php if (isset($_SESSION['validarSesion'])): ?>
+              <?php if ($_SESSION['validarSesion'] == 'ok'): ?>
+                <?php if ($_SESSION['modo'] == 'directo'): ?>
+                  <li>
+                    <a href="<?=$frontend?>lista-deseos">
+                      <span class="icon_heart_alt"></span>
+                    </a>
+                  </li>
+
+                  <?php if ($_SESSION['foto'] != ''): ?>
+                    <li>
+                      <a style="width:50px;height:50px;" href="<?=$frontend?>perfil">
+                        <img class="rounded-circle" src="<?=$frontend.$_SESSION['foto']?>" width="100%">
+                      </a>
+                    </li>
+                  <?php else: ?>
+                    <li>
+                      <a style="width:50px;height:50px;" href="<?=$frontend?>perfil">
+                        <img class="rounded-circle" src="<?=$backend?>vistas/img/usuarios/default/anonymous.png" width="100%">
+                      </a>
+                    </li>
+                  <?php endif ?>
+
+                <?php endif ?>
+              <?php endif ?>
+            <?php endif ?>
           </ul>
         </div>
       </div>
@@ -92,7 +158,7 @@
   <div class="h-100 d-flex align-items-center justify-content-center">
     <div class="search-close-switch">+</div>
     <div class="search-model-form" id="buscador">
-      <input type="text" id="search-input" placeholder="Que es lo que buscas?...">
+      <input id="search-input" placeholder="Que es lo que buscas?...">
 
       <span class="input-group-btn">
         <a href="<?php echo $frontend; ?>buscador/1">

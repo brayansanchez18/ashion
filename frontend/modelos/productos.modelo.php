@@ -178,4 +178,27 @@ class ModeloProductos {
 
   /* -------------------- End of ACTUALIZAR VISTA PRODUCTO -------------------- */
 
+	/* -------------------------------------------------------------------------- */
+	/*                        ACTUALIZAR STOCK DE PRODUCTOS                       */
+	/* -------------------------------------------------------------------------- */
+
+	static public function mdlActualizarStock($tabla, $item3, $valor3, $item4, $valor4, $item5, $valor5) {
+		$stmt = Conexion::conectar()->prepare("UPDATE $tabla SET $item3 = $item3 - :$valor3 WHERE $item4 = :$item4");
+		//$stmt -> bindParam(":".$item3, $valor3, PDO::PARAM_STR);
+		$stmt -> bindParam(":".$valor3, $valor3, PDO::PARAM_STR);
+		$stmt -> bindParam(":".$item4, $valor4, PDO::PARAM_STR);
+		// $stmt -> bindParam(":".$item5, $valor5, PDO::PARAM_STR);
+
+		if($stmt -> execute()){
+			return "ok";
+		}else{
+			return "error";
+		}
+
+		$stmt -> close();
+		$stmt = null;
+	}
+
+	/* ------------------ End of ACTUALIZAR STOCK DE PRODUCTOS ------------------ */
+
 }

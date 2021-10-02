@@ -69,7 +69,7 @@ $rutaDestacados = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
 
           <div class="product__details__widget">
             <ul>
-              <li>
+              <li style="margin-top:-20px;">
                 <?php if ($infoproducto['stock'] != 0): ?>
                   <span>Unidades:</span> <?=$infoproducto['stock']?>
                 <?php else: ?>
@@ -77,62 +77,50 @@ $rutaDestacados = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
                 <?php endif ?>
               </li>
               <hr>
-
+              <br>
               <?php if ($infoproducto['stock'] != 0): ?>
                 <?php if ($infoproducto['detalles'] != null): ?>
                   <?php $detalles = json_decode($infoproducto['detalles'], true); ?>
-
+                  <li class="d-flex">
                   <?php if ($detalles['Talla'] != null): ?>
-                    <li>
-                      <span>Tallas Disponibles:</span>
-
-                      <div class="form-group row">
-                        <div class="col-md-6 col-xs-12">
-                          <select class="form-control seleccionarDetalle" id="seleccionarTalla">
-                          <option value="">Talla</option>
-                          <?php for ($i = 0; $i < count($detalles['Talla']); $i++): ?>
-                            <option value="<?=$detalles['Talla'][$i]?>"><?=$detalles['Talla'][$i]?></option>
-                          <?php endfor ?>
-                          </select>
-                        </div>
+                    <div class="form-group ">
+                      <div class="col-12">
+                        <select class="form-control seleccionarDetalle" id="seleccionarTalla">
+                        <option value="">Talla</option>
+                        <?php for ($i = 0; $i < count($detalles['Talla']); $i++): ?>
+                          <option value="<?=$detalles['Talla'][$i]?>"><?=$detalles['Talla'][$i]?></option>
+                        <?php endfor ?>
+                        </select>
                       </div>
-                    </li>
+                    </div>
                   <?php endif ?>
 
                   <?php if ($detalles['Color'] != null): ?>
-                    <li>
-                      <span>Colores Disponibles:</span>
-
-                      <div class="form-group row">
-                        <div class="col-md-6 col-xs-12">
-                          <select class="form-control seleccionarDetalle" id="seleccionarColor">
-                            <option value="">Color</option>
-                            <?php for ($i = 0; $i < count($detalles["Color"]); $i++): ?>
-                              <option value="<?=$detalles['Color'][$i]?>"><?=$detalles['Color'][$i]?></option>
-                            <?php endfor ?>
-                          </select>
-                        </div>
+                    <div class="form-group ">
+                      <div class="col-12">
+                        <select class="form-control seleccionarDetalle" id="seleccionarColor">
+                          <option value="">Color</option>
+                          <?php for ($i = 0; $i < count($detalles["Color"]); $i++): ?>
+                            <option value="<?=$detalles['Color'][$i]?>"><?=$detalles['Color'][$i]?></option>
+                          <?php endfor ?>
+                        </select>
                       </div>
-                    </li>
+                    </div>
                   <?php endif ?>
 
                   <?php if ($detalles['Marca'] != null): ?>
-                    <li>
-                      <span>Marcas Disponibles:</span>
-
-                      <div class="form-group row">
-                        <div class="col-md-6 col-xs-12">
-                          <select class="form-control seleccionarDetalle" id="seleccionarMarca">
-                            <option value="">Marca</option>
-                            <?php for($i = 0; $i < count($detalles["Marca"]); $i++): ?>
-                              <option value="<?=$detalles['Marca'][$i]?>"><?=$detalles['Marca'][$i]?></option>
-                            <?php endfor ?>
-                          </select>
-                        </div>
+                    <div class="form-group row">
+                      <div class="col-md-6 col-xs-12">
+                        <select class="form-control seleccionarDetalle" id="seleccionarMarca">
+                          <option value="">Marca</option>
+                          <?php for($i = 0; $i < count($detalles["Marca"]); $i++): ?>
+                            <option value="<?=$detalles['Marca'][$i]?>"><?=$detalles['Marca'][$i]?></option>
+                          <?php endfor ?>
+                        </select>
                       </div>
-                    </li>
+                    </div>
                   <?php endif ?>
-
+                  </li>
                 <?php endif ?>
               <?php endif ?>
             </ul>
@@ -177,41 +165,42 @@ $rutaDestacados = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
           <!-- ----------------------------- End of ENTREGA ----------------------------- -->
 
           <?php if ($infoproducto['stock'] != 0): ?>
-            <div class="product__details__button mb-4">
-              <a href="#" class="cart-btn"><span class="icon_bag_alt"></span> Añadir al carrito</a>
+            <?php if ($infoproducto['oferta'] != 0): ?>
+              <div class="product__details__button mb-4">
+                <a style="color:#fff;" class="cart-btn agregarCarrito" idProducto="<?=$infoproducto['id']?>" imagen="<?=$backend.$infoproducto['portada']?>" titulo="<?=$infoproducto['titulo']?>" precio="<?=$infoproducto['precioOferta']?>" peso="<?=$infoproducto['peso']?>"><span class="icon_bag_alt"></span> Añadir al carrito</a>
 
-              <ul>
-                <li><a href="#"><span class="icon_heart_alt"></span></a></li>
-              </ul>
-            </div>
+                <ul>
+                  <li><a><span class="icon_heart_alt deseos" idProducto="<?=$infoproducto['id']?>"></span></a></li>
+                </ul>
+              </div>
+            <?php else: ?>
+              <div class="product__details__button mb-4">
+                <a style="color:#fff;" class="cart-btn agregarCarrito" idProducto="<?=$infoproducto['id']?>" imagen="<?=$backend.$infoproducto['portada']?>" titulo="<?=$infoproducto['titulo']?>" precio="<?=$infoproducto['precio']?>" peso="<?=$infoproducto['peso']?>"><span class="icon_bag_alt"></span> Añadir al carrito</a>
+
+                <ul>
+                  <li><a><span class="icon_heart_alt deseos" idProducto="<?=$infoproducto['id']?>"></span></a></li>
+                </ul>
+              </div>
+            <?php endif ?>
           <?php else: ?>
             <div class="product__details__button mb-4">
-              <a href="#" class="cart-btn"><span class="icon_heart_alt"></span> Añadir a lista de deseos</a>
+              <a style="color:#fff;" class="cart-btn deseos" idProducto="<?=$infoproducto['id']?>"><span class="icon_heart_alt"></span> Añadir a lista de deseos</a>
             </div>
           <?php endif ?>
         </div>
       </div>
 
-      <div class="col-lg-12">
-        <div class="product__details__tab">
-            <ul class="nav nav-tabs" role="tablist">
-              <li class="nav-item">
-                <a class="nav-link active" data-toggle="tab" href="#tabs-1" role="tab">Descripcion de Producto</a>
-              </li>
-            </ul>
-
-            <div class="tab-content">
-              <div class="tab-pane active" id="tabs-1" role="tabpanel">
-                <p><?=$infoproducto['descripcion']?></p> <!-- IMPLEMENTAR UN EDITOR DE TEXTO ENRIQUESIDO -->
-            </div>
-          </div>
-        </div>
+      <div class="col-lg-12 text-center">
+        <h4 style="color: #a91b08;">Descripcion del Producto</h2>
+        <hr>
+        <p><?=$infoproducto['descripcion']?></p>
       </div>
     </div>
 
     <div class="row">
       <div class="col-lg-12 text-center">
         <div class="related__title">
+          <hr>
           <h5><a href="<?=$frontend.$rutaDestacados[0]['ruta']?>" style="color: #a91b08;">PRODUCTOS RELACIONADOS</a></h5>
         </div>
       </div>
@@ -242,6 +231,10 @@ $rutaDestacados = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
                 <div class="product__item">
               <?php endif ?>
                 <div class="product__item__pic set-bg" data-setbg="<?=$backend.$value['portada']?>">
+                  <ul class="product__hover">
+                    <li><a href="<?=$backend.$value['portada']?>" class="image-popup"><span class="arrow_expand"></span></a></li>
+                    <li><a><span class="icon_heart_alt deseos" idProducto="<?=$value['id']?>"></span></a></li>
+                  </ul>
                   <?php if ($value['oferta'] != 0): ?>
                     <div class="label sale">En Oferta</div>
                   <?php endif ?>

@@ -1,4 +1,4 @@
-<?php $frontend = Ruta::ctrRuta(); $backend = Ruta::ctrRutaServidor();?>
+<?php $frontend = Ruta::ctrRuta(); $backend = Ruta::ctrRutaServidor(); session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -26,6 +26,13 @@
   <link rel="stylesheet" href="<?=$frontend?>vistas/css/owl.carousel.min.css" type="text/css">
   <link rel="stylesheet" href="<?=$frontend?>vistas/css/slicknav.min.css" type="text/css">
   <link rel="stylesheet" href="<?=$frontend?>vistas/css/style.css" type="text/css">
+  <link rel="stylesheet" href="<?=$frontend?>vistas/css/estilos.css" type="text/css">
+
+  <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+  <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+  <!------ Include the above in your HEAD tag ---------->
 </head>
 <body>
   <!-- Page Preloder -->
@@ -71,7 +78,7 @@
       else if ($infoProductos != null) {
         include_once 'modulos/detalles-producto.php';
       }
-      else if ($rutas[0] == 'buscador' || $rutas[0] == 'verificar' || $rutas[0] == 'salir' || $rutas[0] == 'perfil' || $rutas[0] == 'carrito-de-compras' || $rutas[0] == 'error' || $rutas[0] == 'finalizar-compra' || $rutas[0] == 'ofertas' || $rutas[0] == 'cancelado' || $rutas[0] == 'tienda') {
+      else if ($rutas[0] == 'buscador' || $rutas[0] == 'verificar' || $rutas[0] == 'salir' || $rutas[0] == 'perfil' || $rutas[0] == 'carrito-de-compras' || $rutas[0] == 'error' || $rutas[0] == 'finalizar-compra' || $rutas[0] == 'ofertas' || $rutas[0] == 'cancelado' || $rutas[0] == 'tienda' || $rutas[0] == 'login' || $rutas[0] == 'register' || $rutas[0] == 'olvidopassword' || $rutas[0] == 'lista-deseos') {
         include 'modulos/'.$rutas[0].'.php';
       }
       else if ($rutas[0] == 'inicio') {
@@ -105,5 +112,8 @@
   <script src="<?=$frontend?>vistas/js/main.js"></script>
   <script src="<?=$frontend?>vistas/js/buscador.js"></script>
   <script src="<?=$frontend?>vistas/js/infoproducto.js"></script>
+  <script src="<?=$frontend?>vistas/js/usuarios.js"></script>
+  <script src="<?=$frontend?>vistas/js/sweetalert2.all.min.js"></script>
+  <script src="<?=$frontend?>vistas/js/carrito-de-compras.js"></script>
 </body>
 </html>
