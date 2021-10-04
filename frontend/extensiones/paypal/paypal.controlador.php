@@ -35,12 +35,12 @@ class Paypal {
 
 			$item[$i] = new Item();
 			$item[$i]->setName($tituloArray[$i])
-			    ->setCurrency($datos['divisa'])
-			    ->setQuantity($cantidadArray[$i])
-			    //->setSku("123123") // Similar to `item_number` in Classic API
-			    ->setPrice($valorItemArray[$i]/$cantidadArray[$i]);
+				->setCurrency($datos['divisa'])
+				->setQuantity($cantidadArray[$i])
+				//->setSku("123123") // Similar to `item_number` in Classic API
+				->setPrice($valorItemArray[$i]/$cantidadArray[$i]);
 
-			    array_push($variosItems, $item[$i]);
+				array_push($variosItems, $item[$i]);
 
 		}
 
@@ -51,14 +51,14 @@ class Paypal {
 		# AGREGAMOS LOS DETALLES DEL PAGO (IMPUESTO ENVIO ETC)
 		$details = new Details();
 		$details->setShipping($datos['envio'])
-				->setTax($datos['impuesto'])
-				->setSubtotal($datos['subtotal']);
+					->setTax($datos['impuesto'])
+					->setSubtotal($datos['subtotal']);
 
 		# DEFINIMOS EL PAGO TOTAL CON SUS DETALLES
 		$amount = new Amount();
 		$amount->setCurrency($datos['divisa'])
-				->setTotal($datos['total'])
-				->setDetails($details);
+					->setTotal($datos['total'])
+					->setDetails($details);
 
 		# AGREGAMOS LAS CARACTERISTICAS DE LA TRANSACCION
 		$transaction = new Transaction();
@@ -67,7 +67,7 @@ class Paypal {
 					->setDescription("Descripción de Pago")
 					->setInvoiceNumber(uniqid());
 
-		/* AGREGAR LAS URL'S DESPUES DE REALIZAR EL PAGO O CUANDO EL PAGO ES CANCELADO 
+		/* AGREGAR LAS URL'S DESPUES DE REALIZAR EL PAGO O CUANDO EL PAGO ES CANCELADO
 		   IMPORTANTE AGREGAR LA URL PRINCIPAL EN LA API DEVELOPERS DE PAYPAL */
 		$redirectUrls = new RedirectUrls();
 		$redirectUrls->setReturnUrl("https://localhost/ashion/frontend/index.php?ruta=finalizar-compra&paypal=true&productos=".$idProductos."&cantidad=".$cantidadProductos."&pago=".$pagoProductos)
@@ -83,12 +83,12 @@ class Paypal {
 		# TRATAR DE EJECUTAR UN PROCESO Y SI FALLA EJECUTAR UNA RUTINA DE ERROR
 		try {
 		    // traemos las credenciales $apiContext
-		    $payment->create($apiContext);   
+				$payment->create($apiContext);
 		   	//var_dump($payment);
 		}catch(PayPal\Exception\PayPalConnectionException $ex){
 
 			echo $ex->getCode(); // Prints the Error Code
-			echo $ex->getData(); // Prints the detailed error message 
+			echo $ex->getData(); // Prints the detailed error message
 			die($ex);
 			return "https://localhost/ashion/frontend/error";
 
@@ -97,11 +97,8 @@ class Paypal {
 		# utilizamos un foreach para iterar sobre $payment, utilizamos el método llamado getLinks() para obtener todos los enlaces que aparecen en el array $payment y caso de que $Link->getRel() coincida con 'approval_url' extraemos dicho enlace, finalmente enviamos al usuario a esa dirección que guardamos en la variable $redirectUrl on el método getHref();
 
 		foreach($payment->getLinks() as $link){
-			
 			if($link->getRel() == "approval_url"){
-
 				$redirectUrl = $link->getHref();
-
 			}
 		}
 
