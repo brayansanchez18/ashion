@@ -65,7 +65,7 @@
           </ul>
           <?php if (isset($_SESSION["validarSesion"])): ?>
             <?php if ($_SESSION["validarSesion"] == "ok"): ?>
-              <a id="btnCheckout" href="#modalCheckout" data-toggle="modal" idUsuario="<?=$_SESSION["id"]?>" class="primary-btn" style="color:#fff;">Checkout</a>
+              <a id="btnCheckout" href="#modalCheckout" data-toggle="modal" idUsuario="<?=$_SESSION["id"]?>" class="primary-btn" style="color:#fff;">PAGAR <i class="fa fa-paypal"></i></a>
             <?php endif ?>
           <?php else: ?>
             <a id="btnCheckoutIngreso" href="<?=$frontend?>login" class="primary-btn" style="color:#fff;">Checkout</a>
@@ -99,30 +99,6 @@
         <input type="hidden" id="tasaMinimaNal" value="<?=$respuesta['tasaMinimaNal']?>">
         <input type="hidden" id="tasaMinimaInt" value="<?=$respuesta["tasaMinimaInt"]?>">
         <input type="hidden" id="pais" value="<?=$respuesta['pais']?>">
-
-        <div class="formaPago row">
-					<h4 class="text-center m-auto text-muted text-uppercase">Elige la forma de pago</h4>
-          <div class="col-12 d-flex">
-						<figure class="col-6">
-							<center><input id="checkPaypal" type="radio" name="pago" value="paypal" checked></center>
-							<img src="<?=$frontend?>vistas/img/plantilla/paypal.jpg" class="img-thumbnail">
-						</figure>
-
-						<figure class="col-6">
-							<center><input id="checkPayu" type="radio" name="pago" value="tratovendedor"></center>
-							<img src="<?=$frontend?>vistas/img/plantilla/trato.jpg" class="img-thumbnail">
-						</figure>
-          </div>
-        </div>
-
-        <div class="fromeTrato row" style="display: none;">
-          <h4 class="text-center m-auto text-muted text-uppercase">Trato directo con el vendedor</h4>
-          <br>
-          <p class="m-auto">De esta manera el vendedor se pondra en contacto contigo atraves de tu correo electrónico, para fijar la forma de pago y envio del o los productos</p>
-          <br>
-          <input type="email" placeholder="Correo Electronico" class="m-auto form-control" id="mailtrato" required></input>
-          <br>
-        </div>
 
         <div class="formEnvio row" id="datosenvio">
           <h4 class="text-center m-auto text-muted text-uppercase">Información de envío</h4>
@@ -181,8 +157,7 @@
         </div>
       </div>
       <div class="modal-footer">
-        <button class="btn primary-btn btn-lg btnPagar">PAGAR CON <i class="fa fa-cc-paypal"></i></button>
-        <button class="btn primary-btn btn-lg btnTrato" style="display:none">CONTACTAR AL VENDEDOR</button>
+        <button class="btn primary-btn btn-lg btnPagar">PAGAR</button>
       </div>
     </div>
   </div>

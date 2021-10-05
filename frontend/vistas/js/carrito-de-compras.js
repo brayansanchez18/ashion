@@ -594,33 +594,6 @@ function sumaTotalCompra() {
 /* --------------------- End of SUMA TOTAL DE LA COMPRA --------------------- */
 
 /* -------------------------------------------------------------------------- */
-/*                               METODO DE PAGO                               */
-/* -------------------------------------------------------------------------- */
-
-var metodoPago = "paypal";
-
-$("input[type='radio']").change(function () {
-  var metodoPago = $(this).val();
-
-  if (metodoPago === "tratovendedor") {
-    $("#datosenvio").hide();
-    $("#datosenvio").addClass("dn");
-    $(".fromeTrato").show();
-    $(".btnPagar").hide();
-    $(".btnTrato").show();
-    $(".listaProductos table.tablaTasas tbody").hide();
-  } else {
-    $("#datosenvio").show();
-    $(".fromeTrato").hide();
-    $(".btnPagar").show();
-    $(".btnTrato").hide();
-    $(".listaProductos table.tablaTasas tbody").show();
-  }
-});
-
-/* -------------------------- End of METODO DE PAGO ------------------------- */
-
-/* -------------------------------------------------------------------------- */
 /*                             BOTON PAGAR PAYPAL                             */
 /* -------------------------------------------------------------------------- */
 
@@ -685,53 +658,3 @@ $(".btnPagar").click(function () {
 });
 
 /* ------------------------ End of BOTON PAGAR PAYPAL ----------------------- */
-
-/* -------------------------------------------------------------------------- */
-/*                            BOTON TRATO VENDEDOR                            */
-/* -------------------------------------------------------------------------- */
-
-// $(".btnTrato").click(function () {
-//   var emailtrato = $("#mailtrato").val();
-//   var subtotal = $(".valorSubtotal").html();
-//   var titulo = $(".valorTitulo");
-//   var cantidad = $(".valorCantidad");
-//   var valorItem = $(".valorItem");
-//   var idProducto = $(".cuerpoCarrito button, .comprarAhora button");
-
-//   var tituloArray = [];
-//   var cantidadArray = [];
-//   var valorItemArray = [];
-//   var idProductoArray = [];
-
-//   for (var i = 0; i < titulo.length; i++) {
-//     tituloArray[i] = $(titulo[i]).html();
-//     cantidadArray[i] = $(cantidad[i]).html();
-//     valorItemArray[i] = $(valorItem[i]).html();
-//     idProductoArray[i] = $(idProducto[i]).attr("idProducto");
-//   }
-
-//   if (emailtrato == "") {
-//     $(".btnTrato").after(
-//       '<div class="alert alert-warning">Debes proporcionar tu correo electronico</div>'
-//     );
-
-//     return;
-//   } else {
-//     emailtrato = $("#mailtrato").val();
-
-//     window.location =
-//       rutaOculta +
-//       "index.php?ruta=finalizar-compra&emailtrato=" +
-//       emailtrato +
-//       "&tituloArray=" +
-//       tituloArray +
-//       "&cantidadArray=" +
-//       cantidadArray +
-//       "&valorItemArray=" +
-//       valorItemArray +
-//       "&idproductostrato=" +
-//       idProductoArray;
-//   }
-// });
-
-/* ----------------------- End of BOTON TRATO VENDEDOR ---------------------- */
