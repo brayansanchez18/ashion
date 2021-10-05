@@ -16,7 +16,7 @@ class AjaxCarrito {
 
   public $divisa;
 	public $total;
-	// public $totalEncriptado;
+	public $totalEncriptado;
 	public $impuesto;
 	public $envio;
 	public $subtotal;
@@ -27,21 +27,25 @@ class AjaxCarrito {
 
   public function ajaxEnviarPaypal() {
 
-    $datos = array(
-      "divisa"=>$this->divisa,
-      "total"=>$this->total,
-      "impuesto"=>$this->impuesto,
-      "envio"=>$this->envio,
-      "subtotal"=>$this->subtotal,
-      "tituloArray"=>$this->tituloArray,
-      "cantidadArray"=>$this->cantidadArray,
-      "valorItemArray"=>$this->valorItemArray,
-      "idProductoArray"=>$this->idProductoArray,
-    );
+    if (md5($this->total) == $this->totalEncriptado) {
 
-    $respuesta = Paypal::mdlPagoPaypal($datos);
+      $datos = array(
+        "divisa"=>$this->divisa,
+        "total"=>$this->total,
+        "impuesto"=>$this->impuesto,
+        "envio"=>$this->envio,
+        "subtotal"=>$this->subtotal,
+        "tituloArray"=>$this->tituloArray,
+        "cantidadArray"=>$this->cantidadArray,
+        "valorItemArray"=>$this->valorItemArray,
+        "idProductoArray"=>$this->idProductoArray,
+      );
 
-    echo $respuesta;
+      $respuesta = Paypal::mdlPagoPaypal($datos);
+
+      echo $respuesta;
+
+    }
 
   }
 
@@ -58,7 +62,7 @@ if (isset($_POST['divisa'])) {
   $paypal = new AjaxCarrito();
 	$paypal -> divisa = $_POST['divisa'];
 	$paypal -> total = $_POST['total'];
-	// $paypal -> totalEncriptado = $_POST["totalEncriptado"];
+	$paypal -> totalEncriptado = $_POST["totalEncriptado"];
 	$paypal -> impuesto = $_POST['impuesto'];
 	$paypal -> envio = $_POST['envio'];
 	$paypal -> subtotal = $_POST['subtotal'];

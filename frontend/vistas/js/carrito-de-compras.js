@@ -20,48 +20,93 @@ if (localStorage.getItem("listaProductos") != null) {
   listaCarrito.forEach(funcionForEach);
 
   function funcionForEach(item, index) {
-    $(".cuerpoCarrito").append(
-      "<tr>" +
-        '<td class="cart__product__item">' +
-        '<img src="' +
-        item.imagen +
-        '" alt="' +
-        item.titulo +
-        '" style="width:70px;">' +
-        '<div class="cart__product__item__title">' +
-        '<h6 class="tituloCarritoCompra">' +
-        item.titulo +
-        "</h6>" +
-        "</div>" +
-        "</td>" +
-        '<td class="cart__price">$ <span>' +
-        item.precio +
-        "</span></td>" +
-        '<td class="cart__quantity">' +
-        '<div class="pro-qty d-flex">' +
-        '<input class="cantidadItem" type="number" min="1" value="' +
-        item.cantidad +
-        '" precio="' +
-        item.precio +
-        '" idProducto="' +
-        item.idProducto +
-        '" item="' +
-        index +
-        '">' +
-        "</div>" +
-        "</td>" +
-        '<td class="cart__total subtotal' +
-        item.idProducto +
-        ' subTotales">$ <span>' +
-        item.precio +
-        "</span></td>" +
-        '<td class="cart__close"><span class="icon_close quitarItemCarrito" idProducto="' +
-        item.idProducto +
-        '" peso="' +
-        item.peso +
-        '"></span></td>' +
-        "</tr>"
-    );
+    var datosProducto = new FormData();
+    var precio = 0;
+    datosProducto.append("id", item.idProducto);
+
+    $.ajax({
+      url: rutaOculta + "ajax/producto.ajax.php",
+      method: "POST",
+      data: datosProducto,
+      cache: false,
+      contentType: false,
+      processData: false,
+      dataType: "json",
+      success: function (respuesta) {
+        if (respuesta["precioOferta"] == 0) {
+          precio = respuesta["precio"];
+        } else {
+          precio = respuesta["precioOferta"];
+        }
+
+        $(".cuerpoCarrito").append(
+          "<tr>" +
+            '<td class="cart__product__item">' +
+            '<img src="' +
+            item.imagen +
+            '" alt="' +
+            item.titulo +
+            '" style="width:70px;">' +
+            '<div class="cart__product__item__title">' +
+            '<h6 class="tituloCarritoCompra">' +
+            item.titulo +
+            "</h6>" +
+            "</div>" +
+            "</td>" +
+            '<td class="cart__price">$ <span>' +
+            precio +
+            "</span></td>" +
+            '<td class="cart__quantity">' +
+            '<div class="pro-qty d-flex">' +
+            '<input class="cantidadItem" type="number" min="1" value="' +
+            item.cantidad +
+            '" precio="' +
+            precio +
+            '" idProducto="' +
+            item.idProducto +
+            '" item="' +
+            index +
+            '">' +
+            "</div>" +
+            "</td>" +
+            '<td class="cart__total subtotal' +
+            item.idProducto +
+            ' subTotales">$ <span>' +
+            precio +
+            "</span></td>" +
+            '<td class="cart__close"><span class="icon_close quitarItemCarrito" idProducto="' +
+            item.idProducto +
+            '" peso="' +
+            item.peso +
+            '"></span></td>' +
+            "</tr>"
+        );
+
+        /* -------------------------------------------------------------------------- */
+        /*                             ACTUALIZAR SUBTOTAL                            */
+        /* -------------------------------------------------------------------------- */
+
+        var precioCarritoCompra = $(".cuerpoCarrito .cart__price span");
+        var cantidadItem = $(".cuerpoCarrito .cantidadItem");
+
+        for (var i = 0; i < precioCarritoCompra.length; i++) {
+          var precioCarritoCompraArray = $(precioCarritoCompra[i]).html();
+          var cantidadItemArray = $(cantidadItem[i]).val();
+          var idProductoArray = $(cantidadItem[i]).attr("idProducto");
+
+          $(".subtotal" + idProductoArray).html(
+            "$ <span>" +
+              precioCarritoCompraArray * cantidadItemArray +
+              "</span>"
+          );
+
+          sumaSubTotales();
+          cestaCarrito(precioCarritoCompra.length);
+        }
+
+        /* ----------------------- End of ACTUALIZAR SUBTOTAL ----------------------- */
+      },
+    });
   }
 } else {
   $(".cuerpoCarrito").html(
@@ -315,28 +360,6 @@ $(document).on("change", ".cantidadItem", function () {
 /* ----------- End of GENERAR SUBTOTAL DESPUES DE CAMBIAR CANTIDAD ---------- */
 
 /* -------------------------------------------------------------------------- */
-/*                             ACTUALIZAR SUBTOTAL                            */
-/* -------------------------------------------------------------------------- */
-
-var precioCarritoCompra = $(".cuerpoCarrito .cart__price span");
-var cantidadItem = $(".cuerpoCarrito .cantidadItem");
-
-for (var i = 0; i < precioCarritoCompra.length; i++) {
-  var precioCarritoCompraArray = $(precioCarritoCompra[i]).html();
-  var cantidadItemArray = $(cantidadItem[i]).val();
-  var idProductoArray = $(cantidadItem[i]).attr("idProducto");
-
-  $(".subtotal" + idProductoArray).html(
-    "$ <span>" + precioCarritoCompraArray * cantidadItemArray + "</span>"
-  );
-
-  sumaSubTotales();
-  cestaCarrito(precioCarritoCompra.length);
-}
-
-/* ----------------------- End of ACTUALIZAR SUBTOTAL ----------------------- */
-
-/* -------------------------------------------------------------------------- */
 /*                        SUMA DE TODOS LOS SUBTOTALES                        */
 /* -------------------------------------------------------------------------- */
 
@@ -563,7 +586,7 @@ function sumaTotalCompra() {
   $(".valorTotalCompra").html(sumaTotalTasas.toFixed(2));
   $(".valorTotalCompra").attr("valor", sumaTotalTasas.toFixed(2));
 
-  // localStorage.setItem("total", hex_md5($(".valorTotalCompra").html()));
+  localStorage.setItem("total", hex_md5($(".valorTotalCompra").html()));
 }
 
 /* --------------------- End of SUMA TOTAL DE LA COMPRA --------------------- */
@@ -610,7 +633,7 @@ $(".btnPagar").click(function () {
 
   var divisa = "USD";
   var total = $(".valorTotalCompra").html();
-  // var totalEncriptado = localStorage.getItem("total");
+  var totalEncriptado = localStorage.getItem("total");
   var impuesto = $(".valorTotalImpuesto").html();
   var envio = $(".valorTotalEnvio").html();
   var subtotal = $(".valorSubtotal").html();
@@ -635,7 +658,7 @@ $(".btnPagar").click(function () {
 
   datos.append("divisa", divisa);
   datos.append("total", total);
-  // datos.append("totalEncriptado", totalEncriptado);
+  datos.append("totalEncriptado", totalEncriptado);
   datos.append("impuesto", impuesto);
   datos.append("envio", envio);
   datos.append("subtotal", subtotal);
