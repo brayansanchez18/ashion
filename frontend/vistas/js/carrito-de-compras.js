@@ -650,9 +650,9 @@ $(".btnPagar").click(function () {
     contentType: false,
     processData: false,
     success: function (respuesta) {
-      // console.log("respuesta", respuesta);
+      console.log("respuesta", respuesta);
 
-      window.location = respuesta;
+      // window.location = respuesta;
     },
   });
 });

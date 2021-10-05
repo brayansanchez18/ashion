@@ -59,6 +59,32 @@ class AjaxCarrito {
 
 if (isset($_POST['divisa'])) {
 
+  $idProductos = explode(',' , $_POST['idProductoArray']);
+  $cantidadProductos = explode(',' , $_POST['cantidadArray']);
+  $precioProductos = explode(',' , $_POST['valorItemArray']);
+
+  $item = "id";
+
+  for ($i = 0; $i < count($idProductos); $i ++) {
+
+    $valor = $idProductos[$i];
+    $verificarProductos = ControladorProductos::ctrMostrarInfoproducto($item, $valor);
+
+    if ($verificarProductos["precioOferta"] == 0) {
+      $precio = number_format($verificarProductos['precio'], 2);
+    } else {
+      $precio = number_format($verificarProductos['precioOferta'], 2);
+    }
+
+    $verificarSubTotal = $cantidadProductos[$i]*$precio;
+
+    if ($verificarSubTotal != $precioProductos[$i]) {
+      echo "carrito-de-compras";
+      return;
+    }
+
+	}
+
   $paypal = new AjaxCarrito();
 	$paypal -> divisa = $_POST['divisa'];
 	$paypal -> total = $_POST['total'];
