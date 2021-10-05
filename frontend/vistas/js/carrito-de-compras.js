@@ -379,7 +379,9 @@ function sumaSubTotales() {
   var sumaTotal = arraySumaSubtotales.reduce(sumaArraySubtotales);
 
   $(".sumaSubTotal").html(
-    'Total <span>USD $<span class="spanprecio">' + sumaTotal + "</span></span>"
+    'Total <span>USD $<span class="spanprecio">' +
+      sumaTotal.toFixed(2) +
+      "</span></span>"
   );
 }
 
