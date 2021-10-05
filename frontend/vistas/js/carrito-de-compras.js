@@ -70,9 +70,9 @@ if (localStorage.getItem("listaProductos") != null) {
             "</div>" +
             "</td>" +
             '<td class="cart__total subtotal' +
-            item.idProducto +
+            index +
             ' subTotales">$ <span>' +
-            precio +
+            Number(item.cantidad) * Number(precio) +
             "</span></td>" +
             '<td class="cart__close"><span class="icon_close quitarItemCarrito" idProducto="' +
             item.idProducto +
@@ -87,22 +87,8 @@ if (localStorage.getItem("listaProductos") != null) {
         /* -------------------------------------------------------------------------- */
 
         var precioCarritoCompra = $(".cuerpoCarrito .cart__price span");
-        var cantidadItem = $(".cuerpoCarrito .cantidadItem");
-
-        for (var i = 0; i < precioCarritoCompra.length; i++) {
-          var precioCarritoCompraArray = $(precioCarritoCompra[i]).html();
-          var cantidadItemArray = $(cantidadItem[i]).val();
-          var idProductoArray = $(cantidadItem[i]).attr("idProducto");
-
-          $(".subtotal" + idProductoArray).html(
-            "$ <span>" +
-              precioCarritoCompraArray * cantidadItemArray +
-              "</span>"
-          );
-
-          sumaSubTotales();
-          cestaCarrito(precioCarritoCompra.length);
-        }
+        cestaCarrito(precioCarritoCompra.length);
+        sumaSubTotales();
 
         /* ----------------------- End of ACTUALIZAR SUBTOTAL ----------------------- */
       },
@@ -317,8 +303,9 @@ $(document).on("change", ".cantidadItem", function () {
   var cantidad = $(this).val();
   var precio = $(this).attr("precio");
   var idProducto = $(this).attr("idProducto");
+  var item = $(this).attr("item");
 
-  $(".subtotal" + idProducto).html("$ <span>" + cantidad * precio + "</span>");
+  $(".subtotal" + item).html("$ <span>" + cantidad * precio + "</span>");
 
   /* -------------------------------------------------------------------------- */
   /*                  ACTUALIZAR LA CANTIDAD EN EL LOCALSTORAGE                 */
@@ -650,9 +637,9 @@ $(".btnPagar").click(function () {
     contentType: false,
     processData: false,
     success: function (respuesta) {
-      console.log("respuesta", respuesta);
+      // console.log("respuesta", respuesta);
 
-      // window.location = respuesta;
+      window.location = respuesta;
     },
   });
 });
