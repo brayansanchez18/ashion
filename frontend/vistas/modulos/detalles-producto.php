@@ -138,7 +138,7 @@ $rutaDestacados = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
                   <?=$infoproducto["entrega"]?> días hábiles para la entrega  <br>
 
                   <i class="fa fa-shopping-cart" style="margin:0px 5px"></i>
-                  <?=$infoproducto["ventasGratis"]?> solicitudes  <br>
+                  <?=$infoproducto["ventas"]?> solicitudes  <br>
 
                   <i class="fa fa-eye" style="margin:0px 5px"></i>
                   Visto por <span class="vistas" tipo="<?=$infoproducto["precio"]?>"><?=$infoproducto["vistasGratis"]?> </span> personas
@@ -164,28 +164,64 @@ $rutaDestacados = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
 
           <!-- ----------------------------- End of ENTREGA ----------------------------- -->
 
-          <?php if ($infoproducto['stock'] != 0): ?>
-            <?php if ($infoproducto['oferta'] != 0): ?>
+          <?php if ($infoproducto["precio"]==0): ?>
+            <?php if (isset($_SESSION['validarSesion']) && $_SESSION['validarSesion'] == 'ok'): ?>
+              <?php if ($infoproducto['stock'] != 0): ?>
+                <div class="product__details__button mb-4">
+                  <a style="color:#fff;cursor:pointer;" class="cart-btn agregarCarrito agregarFisicosGratis" idProducto="<?=$infoproducto['id']?>" imagen="<?=$backend.$infoproducto['portada']?>" titulo="<?=$infoproducto['titulo']?>" precio="<?=$infoproducto['precioOferta']?>" peso="<?=$infoproducto['peso']?>" idUsuario="<?=$_SESSION['id']?>"><span class="icon_bag_alt"></span> SOLICITAR PRODUCTO</a>
+
+                  <ul>
+                    <li class="deseos" style="cursor:pointer;"><a><span class="icon_heart_alt" idProducto="<?=$infoproducto['id']?>"></span></a></li>
+                  </ul>
+                </div>
+
+                <div class="card border-dark mb-3" style="">
+                  <div class="card-body text-dark">
+                    <h5 class="card-title">¡Atención!</h5>
+                    <p class="card-text">El producto a solicitar es totalmente gratuito y se enviará a la dirección solicitada, sólo se cobrará los cargos de envío. Solo es permitido y sera enviado un producto por cliente</p>
+                  </div>
+                </div>
+              <?php endif ?>
+            <?php else: ?>
               <div class="product__details__button mb-4">
-                <a style="color:#fff;" class="cart-btn agregarCarrito" idProducto="<?=$infoproducto['id']?>" imagen="<?=$backend.$infoproducto['portada']?>" titulo="<?=$infoproducto['titulo']?>" precio="<?=$infoproducto['precioOferta']?>" peso="<?=$infoproducto['peso']?>"><span class="icon_bag_alt"></span> Añadir al carrito</a>
+                <a href="<?=$frontend?>login" style="color:#fff;" class="cart-btn"><span class="icon_bag_alt"></span> SOLICITAR PRODUCTO</a>
 
                 <ul>
                   <li><a><span class="icon_heart_alt deseos" idProducto="<?=$infoproducto['id']?>"></span></a></li>
                 </ul>
               </div>
-            <?php else: ?>
-              <div class="product__details__button mb-4">
-                <a style="color:#fff;" class="cart-btn agregarCarrito" idProducto="<?=$infoproducto['id']?>" imagen="<?=$backend.$infoproducto['portada']?>" titulo="<?=$infoproducto['titulo']?>" precio="<?=$infoproducto['precio']?>" peso="<?=$infoproducto['peso']?>"><span class="icon_bag_alt"></span> Añadir al carrito</a>
 
-                <ul>
-                  <li><a><span class="icon_heart_alt deseos" idProducto="<?=$infoproducto['id']?>"></span></a></li>
-                </ul>
+              <div class="card border-dark mb-3" style="">
+                <div class="card-body text-dark">
+                  <h5 class="card-title">¡Atención!</h5>
+                  <p class="card-text">El producto a solicitar es totalmente gratuito y se enviará a la dirección solicitada, sólo se cobrará los cargos de envío. Solo es permitido y sera enviado un producto por cliente</p>
+                </div>
               </div>
             <?php endif ?>
           <?php else: ?>
-            <div class="product__details__button mb-4">
-              <a style="color:#fff;" class="cart-btn deseos" idProducto="<?=$infoproducto['id']?>"><span class="icon_heart_alt"></span> Añadir a lista de deseos</a>
-            </div>
+            <?php if ($infoproducto['stock'] != 0): ?>
+              <?php if ($infoproducto['oferta'] != 0): ?>
+                <div class="product__details__button mb-4">
+                  <a style="color:#fff;cursor:pointer;" class="cart-btn agregarCarrito" idProducto="<?=$infoproducto['id']?>" imagen="<?=$backend.$infoproducto['portada']?>" titulo="<?=$infoproducto['titulo']?>" precio="<?=$infoproducto['precioOferta']?>" peso="<?=$infoproducto['peso']?>"><span class="icon_bag_alt"></span> Añadir al carrito</a>
+
+                  <ul>
+                    <li class="deseos" style="cursor:pointer;"><a><span class="icon_heart_alt" idProducto="<?=$infoproducto['id']?>"></span></a></li>
+                  </ul>
+                </div>
+              <?php else: ?>
+                <div class="product__details__button mb-4">
+                  <a style="color:#fff;cursor:pointer;" class="cart-btn agregarCarrito" idProducto="<?=$infoproducto['id']?>" imagen="<?=$backend.$infoproducto['portada']?>" titulo="<?=$infoproducto['titulo']?>" precio="<?=$infoproducto['precio']?>" peso="<?=$infoproducto['peso']?>"><span class="icon_bag_alt"></span> Añadir al carrito</a>
+
+                  <ul>
+                    <li class="deseos" style="cursor:pointer;"><a><span class="icon_heart_alt" idProducto="<?=$infoproducto['id']?>"></span></a></li>
+                  </ul>
+                </div>
+              <?php endif ?>
+            <?php else: ?>
+              <div class="product__details__button mb-4">
+                <a style="color:#fff;cursor:pointer;" class="cart-btn deseos" idProducto="<?=$infoproducto['id']?>"><span class="icon_heart_alt"></span> Añadir a lista de deseos</a>
+              </div>
+            <?php endif ?>
           <?php endif ?>
         </div>
       </div>
@@ -233,7 +269,7 @@ $rutaDestacados = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
                 <div class="product__item__pic set-bg" data-setbg="<?=$backend.$value['portada']?>">
                   <ul class="product__hover">
                     <li><a href="<?=$backend.$value['portada']?>" class="image-popup"><span class="arrow_expand"></span></a></li>
-                    <li><a><span class="icon_heart_alt deseos" idProducto="<?=$value['id']?>"></span></a></li>
+                    <li class="deseos" style="cursor:pointer;"><a><span class="icon_heart_alt" idProducto="<?=$value['id']?>"></span></a></li>
                   </ul>
                   <?php if ($value['oferta'] != 0): ?>
                     <div class="label sale">En Oferta</div>

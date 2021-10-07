@@ -27,4 +27,16 @@ class ControladorCarrito {
 
   /* -------------------------- End of NUEVAS COMPRAS ------------------------- */
 
+  /* -------------------------------------------------------------------------- */
+  /*                        VERIFICAR PRODUCTO ADQUIRIDO                        */
+  /* -------------------------------------------------------------------------- */
+
+  static public function ctrVerificarProducto($datos) {
+		$tabla = 'compras';
+		$respuesta = ModeloCarrito::mdlVerificarProducto($tabla, $datos);
+		return $respuesta;
+	}
+
+  /* ------------------- End of VERIFICAR PRODUCTO ADQUIRIDO ------------------ */
+
 }

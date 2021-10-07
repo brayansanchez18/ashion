@@ -4,7 +4,15 @@
 
 var rutaActual = location.href;
 
-$(".btnIngreso, .btnCheckoutIngreso").click(function () {
+$(".btnIngreso").click(function () {
+  localStorage.setItem("rutaActual", rutaActual);
+});
+
+$("#btnCheckoutIngreso").click(function () {
+  localStorage.setItem("rutaActual", rutaActual);
+});
+
+$(".agregarGratis").click(function () {
   localStorage.setItem("rutaActual", rutaActual);
 });
 

@@ -65,10 +65,10 @@
           </ul>
           <?php if (isset($_SESSION["validarSesion"])): ?>
             <?php if ($_SESSION["validarSesion"] == "ok"): ?>
-              <a id="btnCheckout" href="#modalCheckout" data-toggle="modal" idUsuario="<?=$_SESSION["id"]?>" class="primary-btn" style="color:#fff;">PAGAR <i class="fa fa-paypal"></i></a>
+              <a id="btnCheckout" href="#modalCheckout" data-toggle="modal" idUsuario="<?=$_SESSION["id"]?>" class="primary-btn" style="color:#fff; cursor:pointer;">PAGAR <i class="fa fa-paypal"></i></a>
             <?php endif ?>
           <?php else: ?>
-            <a id="btnCheckoutIngreso" href="<?=$frontend?>login" class="primary-btn" style="color:#fff;">Checkout</a>
+            <a id="btnCheckoutIngreso" href="<?=$frontend?>login" class="primary-btn" style="color:#fff;">PAGAR <i class="fa fa-paypal"></i></a>
           <?php endif ?>
         </div>
       </div>

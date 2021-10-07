@@ -51,6 +51,24 @@ class AjaxCarrito {
 
   /* -------------------------- End of METODO PAYAPL -------------------------- */
 
+  /* -------------------------------------------------------------------------- */
+  /*                VERIFICAR QUE NO TENGA EL PRODUCTO ADQUIRIDO                */
+  /* -------------------------------------------------------------------------- */
+
+  public $idUsuario;
+	public $idProducto;
+
+	public function ajaxVerificarProducto() {
+
+		$datos = array('idUsuario'=>$this->idUsuario,
+                    'idProducto'=>$this->idProducto);
+		$respuesta = ControladorCarrito::ctrVerificarProducto($datos);
+		echo json_encode($respuesta);
+
+	}
+
+  /* ----------- End of VERIFICAR QUE NO TENGA EL PRODUCTO ADQUIRIDO ---------- */
+
 }
 
 /* -------------------------------------------------------------------------- */
@@ -102,3 +120,16 @@ if (isset($_POST['divisa'])) {
 }
 
 /* -------------------------- End of METODO PAYPAL -------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                VERIFICAR QUE NO TENGA EL PRODUCTO ADQUIRIDO                */
+/* -------------------------------------------------------------------------- */
+
+if (isset($_POST['idUsuario'])) {
+	$deseo = new AjaxCarrito();
+	$deseo -> idUsuario = $_POST['idUsuario'];
+	$deseo -> idProducto = $_POST['idProducto'];
+	$deseo ->ajaxVerificarProducto();
+}
+
+/* ----------- End of VERIFICAR QUE NO TENGA EL PRODUCTO ADQUIRIDO ---------- */

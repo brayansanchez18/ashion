@@ -82,6 +82,8 @@ if (localStorage.getItem("listaProductos") != null) {
             "</tr>"
         );
 
+        $(".cantidadItem[precio=0]").attr("readonly", "true");
+
         /* -------------------------------------------------------------------------- */
         /*                             ACTUALIZAR SUBTOTAL                            */
         /* -------------------------------------------------------------------------- */
@@ -645,3 +647,41 @@ $(".btnPagar").click(function () {
 });
 
 /* ------------------------ End of BOTON PAGAR PAYPAL ----------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                VERIFICAR QUE NO TENGA EL PRODUCTO ADQUIRIDO                */
+/* -------------------------------------------------------------------------- */
+
+$(".agregarFisicosGratis").click(function () {
+  var idProducto = $(this).attr("idProducto");
+  var idUsuario = $(this).attr("idUsuario");
+
+  var datos = new FormData();
+
+  datos.append("idUsuario", idUsuario);
+  datos.append("idProducto", idProducto);
+
+  $.ajax({
+    url: rutaOculta + "ajax/carrito.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function (respuesta) {
+      if (respuesta != "false") {
+        Swal.fire({
+          title: "¡Usted ya adquirió este producto!",
+          text: "",
+          icon: "warning",
+          showCancelButton: false,
+          confirmButtonColor: "#DD6B55",
+          confirmButtonText: "Volver",
+          closeOnConfirm: false,
+        });
+      }
+    },
+  });
+});
+
+/* ----------- End of VERIFICAR QUE NO TENGA EL PRODUCTO ADQUIRIDO ---------- */

@@ -48,4 +48,20 @@ class ModeloCarrito {
 
 	/* -------------------------- End of NUEVAS COMPRAS ------------------------- */
 
+	/* -------------------------------------------------------------------------- */
+	/*                        VERIFICAR PRODUCTO ADQUIRIDO                        */
+	/* -------------------------------------------------------------------------- */
+
+	static public function mdlVerificarProducto($tabla, $datos) {
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla WHERE id_usuario = :id_usuario AND id_producto = :id_producto");
+		$stmt->bindParam(":id_usuario", $datos["idUsuario"], PDO::PARAM_INT);
+		$stmt->bindParam(":id_producto", $datos["idProducto"], PDO::PARAM_INT);
+		$stmt -> execute();
+		return $stmt -> fetch();
+		$stmt -> close();
+		$tmt =null;
+	}
+
+	/* ------------------- End of VERIFICAR PRODUCTO ADQUIRIDO ------------------ */
+
 }
