@@ -35,4 +35,16 @@ class ControladorPlantilla {
 	}
 
   /* -------------------------- TRAEMOS LAS CABECERAS ------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                     MOSTRAMOS INFORMACION PARA CONTACTO                    */
+  /* -------------------------------------------------------------------------- */
+
+  public function ctrMostrarContacto() {
+		$tabla = 'footer';
+		$respuesta = ModeloPlantilla::mdlMostrarContacto($tabla);
+		return $respuesta;
+	}
+
+  /* --------------- End of MOSTRAMOS INFORMACION PARA CONTACTO --------------- */
 }

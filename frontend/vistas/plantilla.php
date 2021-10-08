@@ -143,7 +143,7 @@
       else if ($infoProductos != null) {
         include_once 'modulos/detalles-producto.php';
       }
-      else if ($rutas[0] == 'buscador' || $rutas[0] == 'verificar' || $rutas[0] == 'salir' || $rutas[0] == 'perfil' || $rutas[0] == 'carrito-de-compras' || $rutas[0] == 'error' || $rutas[0] == 'finalizar-compra' || $rutas[0] == 'ofertas' || $rutas[0] == 'cancelado' || $rutas[0] == 'tienda' || $rutas[0] == 'login' || $rutas[0] == 'register' || $rutas[0] == 'olvidopassword' || $rutas[0] == 'lista-deseos') {
+      else if ($rutas[0] == 'buscador' || $rutas[0] == 'verificar' || $rutas[0] == 'salir' || $rutas[0] == 'perfil' || $rutas[0] == 'carrito-de-compras' || $rutas[0] == 'error' || $rutas[0] == 'finalizar-compra' || $rutas[0] == 'contacto' || $rutas[0] == 'cancelado' || $rutas[0] == 'tienda' || $rutas[0] == 'login' || $rutas[0] == 'register' || $rutas[0] == 'olvidopassword' || $rutas[0] == 'lista-deseos') {
         include 'modulos/'.$rutas[0].'.php';
       }
       else if ($rutas[0] == 'inicio') {

@@ -39,10 +39,10 @@ class ControladorUsuario {
           $mail = new PHPMailer(true);
           $mail->CharSet = 'UTF-8';
           $mail -> isMail();
-          $mail -> setFrom('brayan.sanchez.contacto@gmail.com', '');
-          $mail -> addReplyTo('brayan.sanchez.contacto@gmail.com', '');
+          $mail -> setFrom($_POST['regEmail'], '');
+          $mail -> addReplyTo($_POST['regEmail'], '');
           $mail->Subject = 'Por favor verifique su direccion de correo electrónico';
-          $mail -> addAddress($_POST['regEmail']);
+          $mail -> addAddress('brayan.sanchez.contacto@gmail.com');
           $mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
             <center>
               <img style="padding:20px; width:10%" src="http://tutorialesatualcance.com/tienda/logo.png">
@@ -316,10 +316,10 @@ class ControladorUsuario {
             $mail = new PHPMailer(true);
             $mail->CharSet = 'UTF-8';
             $mail->isMail();
-            $mail -> setFrom('brayan.sanchez.contacto@gmail.com', '');
-            $mail -> addReplyTo('brayan.sanchez.contacto@gmail.com', '');
+            $mail -> setFrom($_POST["passEmail"], '');
+            $mail -> addReplyTo($_POST["passEmail"], '');
             $mail->Subject = "Solicitud de nueva contraseña";
-            $mail->addAddress($_POST["passEmail"]);
+            $mail->addAddress('brayan.sanchez.contacto@gmail.com');
             $mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
                 <center>
                   <img style="padding:20px; width:10%" src="http://tutorialesatualcance.com/tienda/logo.png">
@@ -669,5 +669,97 @@ class ControladorUsuario {
   }
 
   /* ------------------------- End of ELIMINAR USUARIO ------------------------ */
+
+  /* -------------------------------------------------------------------------- */
+  /*                           FORMULARIO CONTACTENOS                           */
+  /* -------------------------------------------------------------------------- */
+
+  static public function ctrFormularioContactenos() {
+
+    if (isset($_POST['mensajeContactenos'])) {
+
+      if (preg_match('/^[a-zA-ZñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["nombreContactenos"]) &&
+			preg_match('/^[,\\.\\a-zA-Z0-9ñÑáéíóúÁÉÍÓÚ ]+$/', $_POST["mensajeContactenos"]) &&
+			preg_match('/^[^0-9][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[@][a-zA-Z0-9_]+([.][a-zA-Z0-9_]+)*[.][a-zA-Z]{2,4}$/', $_POST["emailContactenos"])) {
+
+        /* -------------------------------------------------------------------------- */
+        /*                          ENVÍO CORREO ELECTRÓNICO                          */
+        /* -------------------------------------------------------------------------- */
+
+        $url = Ruta::ctrRuta();
+        $mail = new PHPMailer(true);
+        $mail->CharSet = 'UTF-8';
+        $mail->isMail();
+        $mail -> setFrom($_POST["emailContactenos"], '');
+        $mail -> addReplyTo($_POST["emailContactenos"], '');
+        $mail->Subject = "Solicitud de nueva contraseña";
+        $mail->addAddress('brayan.sanchez.contacto@gmail.com');
+        $mail->msgHTML('
+						<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
+						<center><img style="padding:20px; width:10%" src="http://www.tutorialesatualcance.com/tienda/logo.png"></center>
+						<div style="position:relative; margin:auto; width:600px; background:white; padding-bottom:20px">
+							<center>
+							<img style="padding-top:20px; width:15%" src="http://www.tutorialesatualcance.com/tienda/icon-email.png">
+							<h3 style="font-weight:100; color:#999;">HA RECIBIDO UNA CONSULTA</h3>
+							<hr style="width:80%; border:1px solid #ccc">
+							<h4 style="font-weight:100; color:#999; padding:0px 20px; text-transform:uppercase">'.$_POST["nombreContactenos"].'</h4>
+							<h4 style="font-weight:100; color:#999; padding:0px 20px;">De: '.$_POST["emailContactenos"].'</h4>
+							<h4 style="font-weight:100; color:#999; padding:0px 20px">'.$_POST["mensajeContactenos"].'</h4>
+							<hr style="width:80%; border:1px solid #ccc">
+							</center>
+						</div>
+					</div>');
+
+				$envio = $mail->Send();
+
+				if (!$envio) {
+
+					echo '<script>
+
+            Swal.fire({
+              title: "¡ERROR!",
+              text: "Ha ocurrido un problema enviando el mensaje",
+              icon: "error",
+              confirmButtonText: "Cerrar",
+              closeOnConfirm: false
+            })
+            .then((isConfirm) => {
+              if (isConfirm) {
+                history.back();
+              }
+            });
+
+						</script>';
+
+				} else {
+
+					echo '<script>
+
+            Swal.fire({
+              title: "¡OK!",
+              text: "Su mensaje ha sido enviado, muy pronto le responderemos",
+              icon: "success",
+              confirmButtonText: "Cerrar",
+              closeOnConfirm: false
+            })
+            .then((isConfirm) => {
+              if (isConfirm) {
+                history.back();
+              }
+            });
+
+						</script>';
+
+				}
+
+        /* --------------------- End of ENVÍO CORREO ELECTRÓNICO -------------------- */
+
+      }
+
+    }
+
+  }
+
+  /* ---------------------- End of FORMULARIO CONTACTENOS --------------------- */
 
 }
