@@ -1,3 +1,4 @@
+<?php $frontend = Ruta::ctrRuta(); $backend = Ruta::ctrRutaServidor(); session_start();?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -16,11 +17,39 @@
 
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body class="hold-transition login-page sidebar-mini">
+
+<?php if (isset($_SESSION['validarSesionBackend']) && $_SESSION['validarSesionBackend'] === 'ok'): ?>
+  <body class="hold-transition layout-fixed sidebar-mini sidebar-collapse">
+<?php else: ?>
+  <body class="hold-transition login-page sidebar-mini">
+<?php endif ?>
 
 <?php
 
-  include_once 'modulos/login.php';
+  if (isset($_SESSION['validarSesionBackend']) && $_SESSION['validarSesionBackend'] === 'ok') {
+
+    echo '<div class="wrapper">';
+      include 'modulos/header.php';
+      include 'modulos/lateral.php';
+
+      if (isset($_GET['ruta'])) {
+
+        if ($_GET['ruta']== 'inicio' || $_GET['ruta'] == 'salir') {
+
+          include 'modulos/'.$_GET['ruta'].'.php';
+
+        }
+
+      } else {
+        include 'modulos/inicio.php';
+      }
+
+      include 'modulos/footer.php';
+    echo '</div>';
+
+  } else {
+    include_once 'modulos/login.php';
+  }
 
 ?>
 

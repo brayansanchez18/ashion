@@ -1,5 +1,6 @@
 <?php
 
+require_once 'controladores/rutas.php';
 require_once 'controladores/plantilla.controlador.php';
 require_once 'controladores/administradores.controlador.php';
 
