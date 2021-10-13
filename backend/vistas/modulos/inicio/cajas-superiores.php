@@ -1,6 +1,6 @@
 <div class="col-lg-4 col-12">
   <!-- small box -->
-  <div class="small-box bg-info">
+  <div class="small-box bg-success">
     <div class="inner">
       <h3>$12,403,000,000.00</h3>
       <p>Ventas</p>
@@ -28,7 +28,7 @@
 <!-- ./col -->
 <div class="col-lg-4 col-6">
   <!-- small box -->
-  <div class="small-box bg-success">
+  <div class="small-box bg-danger">
     <div class="inner">
       <h3>53</h3>
       <p>Productos</p>

@@ -13,10 +13,10 @@
         <img src="vistas/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
       </div>
       <div class="info">
-        <a href="<?=$backend?>perfiles" class="d-block">Alexander Pierce</a>
+        <a class="d-block">Alexander Pierce</a>
         <br>
         <div>
-          <a href="<?=$backend?>perfiles"><button type="button" class="btn btn-primary">Editar</button></a>
+          <a href="<?=$backend?>perfil"><button type="button" class="btn btn-primary">Editar</button></a>
           <a href="<?=$backend?>salir"><button type="button" class="btn btn-danger">Salir</button></a>
         </div>
       </div>
@@ -85,16 +85,16 @@
         </li>
 
         <li class="nav-item">
-          <a href="<?=$backend?>vistas" class="nav-link">
-            <i class="nav-icon far fa-eye"></i>
-            <p>Gestor Visitas</p>
+          <a href="<?=$backend?>usuarios" class="nav-link">
+            <i class="nav-icon fas fa-users"></i>
+            <p>Gestor Usuarios</p>
           </a>
         </li>
 
         <li class="nav-item">
-          <a href="<?=$backend?>usuarios" class="nav-link">
-            <i class="nav-icon fas fa-users"></i>
-            <p>Gestor Usuarios</p>
+          <a href="<?=$backend?>mensajes" class="nav-link">
+            <i class="nav-icon fas fa-envelope"></i>
+            <p>Gestor Mensajes</p>
           </a>
         </li>
 

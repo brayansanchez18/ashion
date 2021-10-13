@@ -35,7 +35,7 @@
 </head>
 
 <?php if (isset($_SESSION['validarSesionBackend']) && $_SESSION['validarSesionBackend'] === 'ok'): ?>
-  <body class="hold-transition layout-fixed sidebar-mini sidebar-collapse">
+  <body class="hold-transition layout-fixed sidebar-mini sidebar-collapse layout-navbar-fixed layout-footer-fixed">
 <?php else: ?>
   <body class="hold-transition login-page sidebar-mini">
 <?php endif ?>
@@ -50,7 +50,18 @@
 
       if (isset($_GET['ruta'])) {
 
-        if ($_GET['ruta']== 'inicio' || $_GET['ruta'] == 'salir') {
+        if ($_GET['ruta']== 'inicio' ||
+            $_GET['ruta'] == 'salir' ||
+            $_GET['ruta'] == 'banner' ||
+            $_GET['ruta'] == 'categorias' ||
+            $_GET['ruta'] == 'comercio' ||
+            $_GET['ruta'] == 'mensajes' ||
+            $_GET['ruta'] == 'perfil' ||
+            $_GET['ruta'] == 'perfiles' ||
+            $_GET['ruta'] == 'productos' ||
+            $_GET['ruta'] == 'subcategorias' ||
+            $_GET['ruta'] == 'usuarios' ||
+            $_GET['ruta'] == 'ventas') {
 
           include 'modulos/'.$_GET['ruta'].'.php';
 

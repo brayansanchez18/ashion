@@ -28,19 +28,30 @@
       <!-- Main row -->
       <div class="row">
         <!-- Left col -->
-        <section class="col-lg-6">
+        <!-- <section class="col-lg-6"> -->
+        <section class="col-12">
           <?php include_once 'inicio/grafico-ventas.php'; ?>
-          <?php include_once 'inicio/ultimos-usuarios.php'; ?>
         </section>
         <!-- /.Left col -->
         <!-- right col (We are only adding the ID to make the widgets sortable)-->
-        <section class="col-lg-6">
-          <?php include_once 'inicio/mas-vendidos.php'; ?>
-          <?php include_once 'inicio/productos-recientes.php'; ?>
-        </section>
         <!-- right col -->
       </div>
       <!-- /.row (main row) -->
+      <div class="row">
+        <section class="col-lg-6">
+          <?php include_once 'inicio/ultimos-usuarios.php'; ?>
+        </section>
+
+        <section class="col-lg-6">
+          <?php include_once 'inicio/mas-vendidos.php'; ?>
+        </section>
+      </div>
+
+      <div class="row">
+        <section class="col-12">
+          <?php include_once 'inicio/productos-recientes.php'; ?>
+        </section>
+      </div>
     </div><!-- /.container-fluid -->
   </section>
   <!-- /.content -->
