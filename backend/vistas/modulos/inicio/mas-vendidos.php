@@ -1,3 +1,9 @@
+<?php
+$productos = ControladorProductos::ctrMostrarTotalProductos('ventas');
+$colores = array('danger','success','warning','info','primary', 'secondary');
+$coloreshtml = array('#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de');
+?>
+
 <div class="card">
   <div class="card-header">
     <h3 class="card-title">Productos más vendidos</h3>
@@ -20,12 +26,9 @@
       <!-- /.col -->
       <div class="col-md-4">
         <ul class="chart-legend clearfix">
-          <li><i class="far fa-circle text-danger"></i> Chrome</li>
-          <li><i class="far fa-circle text-success"></i> IE</li>
-          <li><i class="far fa-circle text-warning"></i> FireFox</li>
-          <li><i class="far fa-circle text-info"></i> Safari</li>
-          <li><i class="far fa-circle text-primary"></i> Opera</li>
-          <li><i class="far fa-circle text-secondary"></i> Navigator</li>
+        <?php for ($i=0; $i<6; $i++): ?>
+          <li><i class="far fa-circle text-<?=$colores[$i]?>"></i> <?=$productos[$i]['titulo']?></li>
+        <?php endfor ?>
         </ul>
       </div>
       <!-- /.col -->
@@ -40,17 +43,22 @@
   var pieChartCanvas = $('#pieChart').get(0).getContext('2d')
   var pieData = {
     labels: [
-      'Chrome',
-      'IE',
-      'FireFox',
-      'Safari',
-      'Opera',
-      'Navigator'
+    <?php for ($i=0; $i<6; $i++): ?>
+      '<?=$productos[$i]['titulo']?>',
+    <?php endfor ?>
     ],
     datasets: [
       {
-        data: [700, 500, 400, 600, 300, 100],
-        backgroundColor: ['#f56954', '#00a65a', '#f39c12', '#00c0ef', '#3c8dbc', '#d2d6de']
+        data: [
+          <?php for ($i=0; $i<6; $i++): ?>
+            <?=$productos[$i]['ventas']?>,
+          <?php endfor ?>
+        ],
+        backgroundColor: [
+          <?php for ($i=0; $i<6; $i++): ?>
+            '<?=$coloreshtml[$i]?>',
+          <?php endfor ?>
+          ]
       }
     ]
   }

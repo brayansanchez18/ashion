@@ -44,11 +44,6 @@
 
         <section class="col-lg-6">
           <?php include_once 'inicio/mas-vendidos.php'; ?>
-        </section>
-      </div>
-
-      <div class="row">
-        <section class="col-12">
           <?php include_once 'inicio/productos-recientes.php'; ?>
         </section>
       </div>

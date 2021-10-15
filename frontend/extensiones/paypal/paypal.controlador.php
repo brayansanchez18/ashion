@@ -21,8 +21,8 @@ class Paypal {
 		$cantidadArray = explode(',', $datos['cantidadArray']);
 		$valorItemArray = explode(',', $datos['valorItemArray']);
 		$idProductos = str_replace(',','-', $datos['idProductoArray']);
-		$cantidadProductos = str_replace(",","-", $datos["cantidadArray"]);
-		$pagoProductos = str_replace(",","-", $datos["valorItemArray"]);
+		$cantidadProductos = str_replace(',','-', $datos['cantidadArray']);
+		$pagoProductos = str_replace(',','-', $datos['valorItemArray']);
 
 		#SELECCIONAMOS EL METODO DE PAGO
 		$payer = new Payer();

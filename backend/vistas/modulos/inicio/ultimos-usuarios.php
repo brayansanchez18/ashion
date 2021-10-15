@@ -1,3 +1,4 @@
+<?php $usuarios = ControladorUsuarios::ctrMostrarTotalUsuarios('fecha'); ?>
 <div class="card">
   <div class="card-header">
     <h3 class="card-title">Últimos usuarios registrados</h3>
@@ -11,46 +12,29 @@
   <!-- /.card-header -->
   <div class="card-body p-0">
     <ul class="users-list clearfix">
-      <li>
-        <img src="vistas/dist/img/user1-128x128.jpg" alt="User Image">
-        <a class="users-list-name" href="#">Alexander Pierce</a>
-        <span class="users-list-date">Today</span>
-      </li>
-      <li>
-        <img src="vistas/dist/img/user8-128x128.jpg" alt="User Image">
-        <a class="users-list-name" href="#">Norman</a>
-        <span class="users-list-date">Yesterday</span>
-      </li>
-      <li>
-        <img src="vistas/dist/img/user7-128x128.jpg" alt="User Image">
-        <a class="users-list-name" href="#">Jane</a>
-        <span class="users-list-date">12 Jan</span>
-      </li>
-      <li>
-        <img src="vistas/dist/img/user6-128x128.jpg" alt="User Image">
-        <a class="users-list-name" href="#">John</a>
-        <span class="users-list-date">12 Jan</span>
-      </li>
-      <li>
-        <img src="vistas/dist/img/user2-160x160.jpg" alt="User Image">
-        <a class="users-list-name" href="#">Alexander</a>
-        <span class="users-list-date">13 Jan</span>
-      </li>
-      <li>
-        <img src="vistas/dist/img/user5-128x128.jpg" alt="User Image">
-        <a class="users-list-name" href="#">Sarah</a>
-        <span class="users-list-date">14 Jan</span>
-      </li>
-      <li>
-        <img src="vistas/dist/img/user4-128x128.jpg" alt="User Image">
-        <a class="users-list-name" href="#">Nora</a>
-        <span class="users-list-date">15 Jan</span>
-      </li>
-      <li>
-        <img src="vistas/dist/img/user3-128x128.jpg" alt="User Image">
-        <a class="users-list-name" href="#">Nadia</a>
-        <span class="users-list-date">15 Jan</span>
-      </li>
+      <?php if (count($usuarios) > 8): ?>
+        <?php $totalUsuarios = 8; ?>
+      <?php else: ?>
+        <?php $totalUsuarios = count($usuarios); ?>
+      <?php endif ?>
+
+      <?php for ($i = 0; $i < $totalUsuarios; $i ++): ?>
+        <?php if ($usuarios[$i]['modo'] == 'directo'): ?>
+          <?php if ($usuarios[$i]['foto'] != ''): ?>
+            <li>
+              <img src="<?=$frontend.$usuarios[$i]['foto']?>" alt="<?=$usuarios[$i]['nombre']?>">
+              <a class="users-list-name"><?=$usuarios[$i]['nombre']?></a>
+              <span class="users-list-date"><?=$usuarios[$i]['fecha']?></span>
+            </li>
+          <?php else: ?>
+            <li>
+              <img src="vistas/img/usuarios/default/anonymous.png" alt="<?=$usuarios[$i]['nombre']?>">
+              <a class="users-list-name"><?=$usuarios[$i]['nombre']?></a>
+              <span class="users-list-date"><?=$usuarios[$i]['fecha']?></span>
+            </li>
+          <?php endif ?>
+        <?php endif ?>
+      <?php endfor ?>
     </ul>
     <!-- /.users-list -->
   </div>

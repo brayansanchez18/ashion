@@ -1,3 +1,32 @@
+<?php
+error_reporting(0);
+$ventas = ControladorVentas::ctrMostrarVentas();
+$arrayFechas = array();
+$arrayFechaPago = array();
+
+foreach ($ventas as $key => $value) {
+  if ($value['pago'] != 0) {
+    #Capturamos sólo el año y el mes
+    $fecha = substr($value['fecha'],0,7);
+
+    #Capturamos las fechas en un array
+    array_push($arrayFechas, $fecha);
+
+    #Capturamos las fechas y los pagos en un mismo array
+    $arrayFechaPago = array($fecha => $value['pago']);
+
+    // print_r($arrayFechaPago);
+
+    #Sumamos los pagos que ocurrieron el mismo mes
+    foreach ($arrayFechaPago as $key => $value) {
+      $sumaPagosMes[$key] += $value;
+    }
+  }
+}
+
+#Evitamos repetir fecha
+$noRepetirFechas = array_unique($arrayFechas);
+?>
 <!-- solid sales graph -->
 <div class="card bg-gradient-info">
   <div class="card-header border-0">
@@ -23,10 +52,14 @@
   // $('#revenue-chart').get(0).getContext('2d');
 
   var salesGraphChartData = {
-    labels: ['2011', '2012', '2013'],
+    labels: [
+      <?php foreach ($noRepetirFechas as $value): ?>
+        '<?=$value?>',
+      <?php endforeach ?>
+      ],
     datasets: [
       {
-        label: 'Digital Goods',
+        label: 'Ventas $',
         fill: false,
         borderWidth: 2,
         lineTension: 0,
@@ -36,7 +69,11 @@
         pointHoverRadius: 7,
         pointColor: '#efefef',
         pointBackgroundColor: '#efefef',
-        data: [2666, 2778, 4912, 3767, 6810, 5670, 4820, 15073, 10687, 8432]
+        data: [
+          <?php foreach ($noRepetirFechas as $value): ?>
+            '<?=$sumaPagosMes[$value]?>',
+          <?php endforeach ?>
+          ]
       }
     ]
   }
@@ -60,7 +97,7 @@
       }],
       yAxes: [{
         ticks: {
-          stepSize: 5000,
+          stepSize: 500,
           fontColor: '#efefef'
         },
         gridLines: {
