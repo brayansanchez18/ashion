@@ -1,4 +1,4 @@
-<?php $contactenos = ControladorPlantilla::ctrMostrarContacto(); ?>
+<?php $contactenos = ControladorPlantilla::ctrMostrarContacto(); $correo = $contactenos['correo'] ?>
 <?php $plantilla = ControladorPlantilla::ctrEstiloPlantilla();?>
 
 <!-- Breadcrumb Begin -->
@@ -68,7 +68,7 @@
         </div>
       </div>
 
-      <?php $contactenos = new ControladorUsuario(); $contactenos -> ctrFormularioContactenos(); ?>
+      <?php $contactenos = new ControladorUsuario(); $contactenos -> ctrFormularioContactenos($correo); ?>
 
       <div class="col-lg-6 col-md-6">
         <div class="contact__map">

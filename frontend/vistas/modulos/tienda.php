@@ -109,9 +109,9 @@ $productos_tienda = ControladorProductos::ctrMostrarProductos($ordenar, $item, $
                       <div class="product__price">GRATIS</div>
                     <?php else: ?>
                       <?php if ($value['oferta'] != 0): ?>
-                        <div class="product__price">$ <?=$value['precioOferta']?> USD <span>$ <?=$value['precio']?></span></div>
+                        <div class="product__price">$ <?=$value['precioOferta']?> <?=$divisa?> <span>$ <?=$value['precio']?></span></div>
                       <?php else: ?>
-                        <div class="product__price">$ <?=$value['precio']?> USD</div>
+                        <div class="product__price">$ <?=$value['precio']?> <?=$divisa?></div>
                       <?php endif ?>
                     <?php endif ?>
                   </div>

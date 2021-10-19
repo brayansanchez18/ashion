@@ -63,7 +63,7 @@ if (isset($_SESSION['validarSesion'])) {
   </ul>
 
   <div class="offcanvas__logo">
-    <a href="<?=$frontend?>"><img src="<?=$frontend?>vistas/img/logo.png" class="logo" alt=""></a>
+    <a href="<?=$frontend?>"><img src="<?=$frontend.$plantilla['logo']?>" class="logo" alt="logo"></a>
   </div>
 
   <div id="mobile-menu-wrap"></div>
@@ -83,7 +83,7 @@ if (isset($_SESSION['validarSesion'])) {
     <div class="row">
       <div class="col-xl-3 col-lg-2">
         <div class="header__logo">
-          <a href="<?=$frontend?>"><img src="<?=$frontend?>vistas/img/logo.png" class="logo" alt=""></a>
+          <a href="<?=$frontend?>"><img src="<?=$backend.$plantilla['logo']?>" class="logo" alt="logo"></a>
         </div>
       </div>
 
@@ -161,11 +161,7 @@ if (isset($_SESSION['validarSesion'])) {
       <input id="search-input" placeholder="Que es lo que buscas?...">
 
       <span class="input-group-btn">
-        <a href="<?php echo $frontend; ?>buscador/1">
-          <!-- <button class="btn btn-default backColor" type="submit">
-            <i class="fa fa-search"></i>
-          </button> -->
-        </a>
+        <a href="<?php echo $frontend; ?>buscador/1"></a>
       </span>
     </div>
   </div>

@@ -61,9 +61,9 @@ $rutaDestacados = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
             <div class="product__details__price">GRATIS</div>
           <?php else: ?>
             <?php if ($infoproducto['oferta'] == 0): ?>
-              <div class="product__details__price">$ <?=number_format($infoproducto['precio'],2)?> USD</div>
+              <div class="product__details__price">$ <?=number_format($infoproducto['precio'],2)?> <?=$divisa?></div>
             <?php else: ?>
-              <div class="product__details__price">$ <?=number_format($infoproducto['precioOferta'],2)?> <span> $ <?=number_format($infoproducto['precio'],2)?> USD</span></div>
+              <div class="product__details__price">$ <?=number_format($infoproducto['precioOferta'],2)?> <span> $ <?=number_format($infoproducto['precio'],2)?> <?=$divisa?></span></div>
             <?php endif ?>
           <?php endif ?>
 
@@ -287,9 +287,9 @@ $rutaDestacados = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
                     <div class="product__price">GRATIS</div>
                   <?php else: ?>
                     <?php if ($value['oferta'] != 0): ?>
-                      <div class="product__price">$ <?=$value['precioOferta']?> USD <span>$ <?=$value['precio']?></span></div>
+                      <div class="product__price">$ <?=$value['precioOferta']?> <?=$divisa?> <span>$ <?=$value['precio']?></span></div>
                     <?php else: ?>
-                      <div class="product__price">$ <?=$value['precio']?> USD</div>
+                      <div class="product__price">$ <?=$value['precio']?> <?=$divisa?></div>
                     <?php endif ?>
                   <?php endif ?>
                 </div>

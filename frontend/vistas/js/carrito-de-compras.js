@@ -368,7 +368,9 @@ function sumaSubTotales() {
   var sumaTotal = arraySumaSubtotales.reduce(sumaArraySubtotales);
 
   $(".sumaSubTotal").html(
-    'Total <span>USD $<span class="spanprecio">' +
+    "Total <span>" +
+      $("#divisa").val() +
+      ' $<span class="spanprecio">' +
       sumaTotal.toFixed(2) +
       "</span></span>"
   );
@@ -595,7 +597,7 @@ $(".btnPagar").click(function () {
     return;
   }
 
-  var divisa = "USD";
+  var divisa = $("#divisa").val();
   var total = $(".valorTotalCompra").html();
   var totalEncriptado = localStorage.getItem("total");
   var impuesto = $(".valorTotalImpuesto").html();

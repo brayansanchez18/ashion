@@ -9,7 +9,7 @@ class ControladorUsuario {
   /*                             REGISTRO DE USUARIO                            */
   /* -------------------------------------------------------------------------- */
 
-  static public function ctrRegistroUsuario() {
+  static public function ctrRegistroUsuario($correo) {
 
     if (isset($_POST['regUsuario'])) {
 
@@ -42,7 +42,7 @@ class ControladorUsuario {
           $mail -> setFrom($_POST['regEmail'], '');
           $mail -> addReplyTo($_POST['regEmail'], '');
           $mail->Subject = 'Por favor verifique su direccion de correo electrónico';
-          $mail -> addAddress('brayan.sanchez.contacto@gmail.com');
+          $mail -> addAddress($correo);
           $mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
             <center>
               <img style="padding:20px; width:10%" src="http://tutorialesatualcance.com/tienda/logo.png">
@@ -266,7 +266,7 @@ class ControladorUsuario {
   /*                            OLVIDO DE CONTRASEÑA                            */
   /* -------------------------------------------------------------------------- */
 
-  static public function ctrOlvidoPassword() {
+  static public function ctrOlvidoPassword($correo) {
 
     if (isset($_POST['passEmail'])) {
 
@@ -319,7 +319,7 @@ class ControladorUsuario {
             $mail -> setFrom($_POST["passEmail"], '');
             $mail -> addReplyTo($_POST["passEmail"], '');
             $mail->Subject = "Solicitud de nueva contraseña";
-            $mail->addAddress('brayan.sanchez.contacto@gmail.com');
+            $mail->addAddress($correo);
             $mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
                 <center>
                   <img style="padding:20px; width:10%" src="http://tutorialesatualcance.com/tienda/logo.png">
@@ -674,7 +674,7 @@ class ControladorUsuario {
   /*                           FORMULARIO CONTACTENOS                           */
   /* -------------------------------------------------------------------------- */
 
-  static public function ctrFormularioContactenos() {
+  static public function ctrFormularioContactenos($correo) {
 
     if (isset($_POST['mensajeContactenos'])) {
 
@@ -693,7 +693,7 @@ class ControladorUsuario {
         $mail -> setFrom($_POST["emailContactenos"], '');
         $mail -> addReplyTo($_POST["emailContactenos"], '');
         $mail->Subject = "Solicitud de nueva contraseña";
-        $mail->addAddress('brayan.sanchez.contacto@gmail.com');
+        $mail->addAddress($correo);
         $mail->msgHTML('
 						<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
 						<center><img style="padding:20px; width:10%" src="http://www.tutorialesatualcance.com/tienda/logo.png"></center>

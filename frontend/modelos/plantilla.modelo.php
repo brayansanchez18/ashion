@@ -47,4 +47,18 @@ class ModeloPlantilla {
 
   /* --------------- End of MOSTRAMOS INFORMACION PARA CONTACTO --------------- */
 
+	/* -------------------------------------------------------------------------- */
+	/*                       TRAER DIVISA DE MANERA DINAMICA                      */
+	/* -------------------------------------------------------------------------- */
+
+	static public function mdlMostrarDivisa($tabla) {
+		$stmt = Conexion::conectar()->prepare("SELECT * FROM $tabla");
+		$stmt -> execute();
+		return $stmt -> fetch();
+		$stmt -> close();
+		$stmt =  null;
+	}
+
+	/* ----------------- End of TRAER DIVISA DE MANERA DINAMICA ----------------- */
+
 }

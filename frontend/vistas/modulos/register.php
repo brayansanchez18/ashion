@@ -1,3 +1,4 @@
+<?php $contactenos = ControladorPlantilla::ctrMostrarContacto(); $correo = $contactenos['correo'];?>
 <div class="wrapper fadeInDown">
   <div id="formContent">
     <!-- Tabs Titles -->
@@ -27,7 +28,7 @@
 
       <?php
       $registro = new ControladorUsuario();
-      $registro -> ctrRegistroUsuario();
+      $registro -> ctrRegistroUsuario($correo);
       ?>
 
       <input type="submit" class="fadeIn fourth" value="Registrarse">

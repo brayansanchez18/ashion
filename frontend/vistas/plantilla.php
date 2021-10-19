@@ -1,4 +1,6 @@
 <?php $frontend = Ruta::ctrRuta(); $backend = Ruta::ctrRutaServidor(); session_start();?>
+<?php $plantilla = ControladorPlantilla::ctrEstiloPlantilla(); ?>
+<?php $comercio = ControladorPlantilla::ctrMostrarDivisa(); $divisa = $comercio['divisa']; ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -9,7 +11,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
 
-  <link rel="shortcut icon" href="<?=$frontend?>/vistas/img/icono.png" />
+  <link rel="shortcut icon" href="<?=$backend.$plantilla['icono']?>" />
 
   <?php
 

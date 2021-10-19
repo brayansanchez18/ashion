@@ -47,4 +47,16 @@ class ControladorPlantilla {
 	}
 
   /* --------------- End of MOSTRAMOS INFORMACION PARA CONTACTO --------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                       TRAER DIVISA DE MANERA DINAMICA                      */
+  /* -------------------------------------------------------------------------- */
+
+	public function ctrMostrarDivisa() {
+		$tabla = 'comercio';
+		$respuesta = ModeloPlantilla::mdlMostrarDivisa($tabla);
+		return $respuesta;
+	}
+
+	/* ----------------- End of TRAER DIVISA DE MANERA DINAMICA ----------------- */
 }

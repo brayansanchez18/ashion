@@ -46,9 +46,9 @@
                     <div class="product__price">GRATIS</div>
                   <?php else: ?>
                     <?php if ($value2['oferta'] != 0): ?>
-                      <div class="product__price">$ <?=$value2['precioOferta']?> USD <span>$ <?=$value2['precio']?></span></div>
+                      <div class="product__price">$ <?=$value2['precioOferta']?> <?=$divisa?> <span>$ <?=$value2['precio']?></span></div>
                     <?php else: ?>
-                      <div class="product__price">$ <?=$value2['precio']?> USD</div>
+                      <div class="product__price">$ <?=$value2['precio']?> <?=$divisa?></div>
                     <?php endif ?>
                   <?php endif ?>
                 </div>

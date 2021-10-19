@@ -1,3 +1,5 @@
+<?php $respuesta = ControladorCarrito::ctrMostrarTarifas(); ?>
+<input type="hidden" id="divisa" value="<?=$respuesta['divisa']?>">
 <!-- Breadcrumb Begin -->
 <div class="breadcrumb-option">
   <div class="container">
@@ -91,8 +93,6 @@
         </button>
       </div>
       <div class="modal-body contenidoCheckout">
-
-        <?php $respuesta = ControladorCarrito::ctrMostrarTarifas(); ?>
         <input type="hidden" id="tasaImpuesto" value="<?=$respuesta['impuesto']?>">
         <input type="hidden" id="envioNacional" value="<?=$respuesta['envioNacional']?>">
         <input type="hidden" id="envioInternacional" value="<?=$respuesta["envioInternacional"]?>">
@@ -130,22 +130,22 @@
               <tbody>
                 <tr>
                   <td>Subtotal</td>
-                  <td><span class="cambioDivisa">USD</span> $<span class="valorSubtotal" valor="0">0</span></td>
+                  <td><span class="cambioDivisa"><?=$divisa?></span> $<span class="valorSubtotal" valor="0">0</span></td>
                 </tr>
 
                 <tr>
                   <td>Envío</td>
-                  <td><span class="cambioDivisa">USD</span> $<span class="valorTotalEnvio" valor="0">0</span></td>
+                  <td><span class="cambioDivisa"><?=$divisa?></span> $<span class="valorTotalEnvio" valor="0">0</span></td>
                 </tr>
 
                 <tr>
                   <td>Impuesto</td>
-                  <td><span class="cambioDivisa">USD</span> $<span class="valorTotalImpuesto" valor="0">0</span></td>
+                  <td><span class="cambioDivisa"><?=$divisa?></span> $<span class="valorTotalImpuesto" valor="0">0</span></td>
                 </tr>
 
                 <tr>
                   <td><strong>Total</strong></td>
-                  <td><strong><span class="cambioDivisa">USD</span> $<span class="valorTotalCompra" valor="0">0</span></strong></td>
+                  <td><strong><span class="cambioDivisa"><?=$divisa?></span> $<span class="valorTotalCompra" valor="0">0</span></strong></td>
                 </tr>
 
               </tbody>
