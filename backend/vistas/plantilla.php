@@ -22,9 +22,16 @@
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="vistas/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
 
+  <link rel="stylesheet" href="vistas/plugins/icheck/skins/square/_all.css">
+  <script src="vistas/plugins/icheck/jquery.min.js"></script>
+  <script src="vistas/plugins/icheck/icheck.min.js"></script>
+
+
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
   <!-- jQuery -->
   <script src="vistas/plugins/jquery/jquery.min.js"></script>
+  <script src="vistas/plugins/jquery-ui/jquery-ui.min.js"></script>
   <!-- Bootstrap 4 -->
   <script src="vistas/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
   <!-- AdminLTE App -->

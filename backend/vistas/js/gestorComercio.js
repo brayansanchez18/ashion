@@ -211,3 +211,102 @@ $("#subirIcono").change(function() {
 })
 
 /* --------------------------- End of SUBIR ICONO --------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                         CAMBIAR URL REDES SOCIALES                         */
+/* -------------------------------------------------------------------------- */
+
+var checkBox = $(".seleccionarRed");
+
+$(".cambiarUrlRed").change(function() {
+	var cambiarUrlRed = $(".cambiarUrlRed");
+
+	for (var i = 0; i < cambiarUrlRed.length; i++) {
+		$(checkBox[i]).attr("ruta", $(cambiarUrlRed[i]).val());
+	}
+
+	crearDatosJsonRedes();
+
+})
+
+/* -------------------- End of CAMBIAR URL REDES SOCIALES ------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                              QUITAR RED SOCIAL                             */
+/* -------------------------------------------------------------------------- */
+
+$(".seleccionarRed").on("ifUnchecked",function() {
+	// $(this).attr("validarRed","");
+	// crearDatosJsonRedes();
+  console.log('esta deseleccionado')
+})
+
+/* ------------------------ End of QUITAR RED SOCIAL ------------------------ */
+
+/* -------------------------------------------------------------------------- */
+/*                             AGREGAR RED SOCIAL                             */
+/* -------------------------------------------------------------------------- */
+
+$(".seleccionarRed").on("ifChecked",function() {
+	// $(this).attr("validarRed", $(this).attr("red"));
+	// crearDatosJsonRedes();
+  console.log('esta seleccionado')
+})
+
+/* ------------------------ End of AGREGAR RED SOCIAL ----------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                    CREAR DATOS JSON PARA ALMACENAR EN BD                   */
+/* -------------------------------------------------------------------------- */
+
+function crearDatosJsonRedes() {
+
+  var redesSociales = [];
+
+  for (var i = 0; i < checkBox.length; i++) {
+
+    if ($(checkBox[i]).attr("validarRed") != "") {
+
+      redesSociales.push({"red": $(checkBox[i]).attr("red"),
+                          "url": $(checkBox[i]).attr("ruta"),
+                          "activo": 1})
+
+
+    }
+
+    $("#valorRedesSociales").val(JSON.stringify(redesSociales));
+
+  }
+
+}
+
+/* -------------- End of CREAR DATOS JSON PARA ALMACENAR EN BD -------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                           GUARDAR REDES SOCIALES                           */
+/* -------------------------------------------------------------------------- */
+
+$("#guardarRedesSociales").click(function(){
+
+  var valorRedesSociales = $("#valorRedesSociales").val();
+
+  var datos = new FormData();
+  datos.append("redesSociales", valorRedesSociales);
+
+  $.ajax({
+
+    url:"ajax/comercio.ajax.php",
+    method: "POST",
+    data: datos,
+    cache: false,
+    contentType: false,
+    processData: false,
+    success: function(respuesta){
+      console.log('%cMyProject%cline:307%crespuesta', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(178, 190, 126);padding:3px;border-radius:2px', respuesta)
+    }
+
+  })
+
+})
+
+/* ---------------------- End of GUARDAR REDES SOCIALES --------------------- */

@@ -35,6 +35,21 @@ class AjaxComercio {
 
   /* -------------------------- End of CAMBIAR ICONO -------------------------- */
 
+	/* -------------------------------------------------------------------------- */
+	/*                           CAMBIAR REDES SOCIALES                           */
+	/* -------------------------------------------------------------------------- */
+
+	public $redesSociales;
+
+	public function ajaxCambiarRedes() {
+		$item = 'redesSociales';
+		$valor = $this->redesSociales;
+		$respuesta = ControladorComercio::ctrActualizarLogoIcono($item, $valor);
+		echo $respuesta;
+	}
+
+	/* ---------------------- End of CAMBIAR REDES SOCIALES --------------------- */
+
 }
 
 /* -------------------------------------------------------------------------- */
@@ -60,3 +75,15 @@ if (isset($_FILES['imagenIcono'])) {
 }
 
 /* -------------------------- End of CAMBIAR ICONO -------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                           CAMBIAR REDES SOCIALES                           */
+/* -------------------------------------------------------------------------- */
+
+if (isset($_POST["redesSociales"])) {
+	$redesSociales = new AjaxComercio();
+	$redesSociales -> redesSociales = $_POST["redesSociales"];
+	$redesSociales -> ajaxCambiarRedes();
+}
+
+/* ---------------------- End of CAMBIAR REDES SOCIALES --------------------- */
