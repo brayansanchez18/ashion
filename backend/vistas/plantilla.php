@@ -80,6 +80,6 @@
   }
 
 ?>
-
+  <script src="vistas/js/gestorComercio.js"></script>
 </body>
 </html>

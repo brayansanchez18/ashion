@@ -1,4 +1,5 @@
 
+<?php $plantilla = ControladorComercio::ctrSeleccionarPlantilla(); ?>
 <div class="card">
   <div class="card-header">
     <h3 class="card-title">LOGOTIPO</h3>
@@ -8,7 +9,7 @@
     <div class="form-group">
       <label>Cambiar logotipo</label>
       <p class="float-right">
-        <img src="vistas/img/plantilla/logo.png" class="img-thumbnail previsualizarLogo" width="200px">
+        <img src="<?=$plantilla['logo']?>" class="img-thumbnail previsualizarLogo" width="200px">
       </p>
 
       <input type="file" id="subirLogo">
@@ -30,7 +31,7 @@
       <label>Cambiar icono</label>
       <br>
       <p class="float-right">
-        <img src="vistas/img/plantilla/icono.png" class="img-thumbnail previsualizarIcono" width="100px">
+        <img src="<?=$plantilla['icono']?>" class="img-thumbnail previsualizarIcono" width="100px">
       </p>
 
       <input type="file" id="subirIcono">
