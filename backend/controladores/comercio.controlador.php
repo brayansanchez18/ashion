@@ -120,4 +120,70 @@ class ControladorComercio {
 
   /* --------------------- End of ACTUALIZAR LOGO O ICONO --------------------- */
 
+	/* -------------------------------------------------------------------------- */
+	/*                              ACTUALIZAR SCRIPT                             */
+	/* -------------------------------------------------------------------------- */
+
+	static public function ctrActualizarScript($datos) {
+
+
+		$tabla = 'plantilla';
+		$id = 1;
+		$respuesta = ModeloComercio::mdlActualizarScript($tabla, $id, $datos);
+		return $respuesta;
+
+	}
+
+	/* ------------------------ End of ACTUALIZAR SCRIPT ------------------------ */
+
+	/* -------------------------------------------------------------------------- */
+	/*                            SELECCIONAR COMERCIO                            */
+	/* -------------------------------------------------------------------------- */
+
+	static public function ctrSeleccionarComercio() {
+		$tabla = 'comercio';
+		$respuesta = ModeloComercio::mdlSeleccionarComercio($tabla);
+		return $respuesta;
+	}
+
+	/* ----------------------- End of SELECCIONAR COMERCIO ---------------------- */
+
+	/* -------------------------------------------------------------------------- */
+	/*                           ACTUALIZAR INFORMACION                           */
+	/* -------------------------------------------------------------------------- */
+
+	static public function ctrActualizarInformacion($datos) {
+		$tabla = 'comercio';
+		$id = 1;
+		$respuesta = ModeloComercio::mdlActualizarInformacion($tabla, $id, $datos);
+		return $respuesta;
+	}
+
+
+	/* ---------------------- End of ACTUALIZAR INFORMACION --------------------- */
+
+	/* -------------------------------------------------------------------------- */
+	/*                      TRAER LA INFORMACION DE CONTACTO                      */
+	/* -------------------------------------------------------------------------- */
+
+	public function ctrMostrarInfoContacto() {
+		$tabla = 'footer';
+		$respuesta = ModeloComercio::mdlMostrarInfoContacto($tabla);
+		return $respuesta;
+	}
+
+	/* ----------------- End of TRAER LA INFORMACION DE CONTACTO ---------------- */
+
+	/* -------------------------------------------------------------------------- */
+	/*                    ACTUALIZAR LA INFORMACION DE CONTACTO                   */
+	/* -------------------------------------------------------------------------- */
+
+	static public function ctrActalizarInfoContacto($datos) {
+		$tabla = 'footer';
+		$respuesta = ModeloComercio::mdlActalizarInfoContacto($tabla, $datos);
+		return $respuesta;
+	}
+
+	/* -------------- End of ACTUALIZAR LA INFORMACION DE CONTACTO -------------- */
+
 }

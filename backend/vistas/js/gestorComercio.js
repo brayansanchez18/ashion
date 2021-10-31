@@ -236,9 +236,8 @@ $(".cambiarUrlRed").change(function() {
 /* -------------------------------------------------------------------------- */
 
 $(".seleccionarRed").on("ifUnchecked",function() {
-	// $(this).attr("validarRed","");
-	// crearDatosJsonRedes();
-  console.log('esta deseleccionado')
+	$(this).attr("validarRed","");
+	crearDatosJsonRedes();
 })
 
 /* ------------------------ End of QUITAR RED SOCIAL ------------------------ */
@@ -248,9 +247,8 @@ $(".seleccionarRed").on("ifUnchecked",function() {
 /* -------------------------------------------------------------------------- */
 
 $(".seleccionarRed").on("ifChecked",function() {
-	// $(this).attr("validarRed", $(this).attr("red"));
-	// crearDatosJsonRedes();
-  console.log('esta seleccionado')
+	$(this).attr("validarRed", $(this).attr("red"));
+	crearDatosJsonRedes();
 })
 
 /* ------------------------ End of AGREGAR RED SOCIAL ----------------------- */
@@ -271,6 +269,12 @@ function crearDatosJsonRedes() {
                           "url": $(checkBox[i]).attr("ruta"),
                           "activo": 1})
 
+
+    } else {
+
+      redesSociales.push({"red": $(checkBox[i]).attr("red"),
+                          "url": $(checkBox[i]).attr("ruta"),
+                          "activo": 0})
 
     }
 
@@ -302,7 +306,19 @@ $("#guardarRedesSociales").click(function(){
     contentType: false,
     processData: false,
     success: function(respuesta){
-      console.log('%cMyProject%cline:307%crespuesta', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(178, 190, 126);padding:3px;border-radius:2px', respuesta)
+      if (respuesta == "ok") {
+          Swal.fire({
+            title: "¡Cambios guardados!",
+            text: "La plantilla ha sido actualizada correctamente",
+            icon: "success",
+            confirmButtonText: "Cerrar",
+            closeOnConfirm: false,
+          }).then((isConfirm) => {
+            if (isConfirm) {
+              window.location = 'comercio';
+            }
+          });
+        }
     }
 
   })
@@ -310,3 +326,276 @@ $("#guardarRedesSociales").click(function(){
 })
 
 /* ---------------------- End of GUARDAR REDES SOCIALES --------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                               CAMBIAR CÓDIGOS                              */
+/* -------------------------------------------------------------------------- */
+
+$(".cambioScript").change(function() {
+
+  var apiFacebook = $("#apiFacebook").val();
+  var frameMaps = $("#frameMaps").val();
+
+  $("#guardarScript").click(function() {
+
+    var datos = new FormData();
+    datos.append("apiFacebook", apiFacebook);
+    datos.append("frameMaps", frameMaps);
+
+    $.ajax({
+
+      url:"ajax/comercio.ajax.php",
+      method: "POST",
+      data: datos,
+      cache: false,
+      contentType: false,
+      processData: false,
+      success: function(respuesta) {
+
+        if (respuesta == "ok") {
+          Swal.fire({
+            title: "¡Cambios guardados!",
+            text: "La plantilla ha sido actualizada correctamente",
+            icon: "success",
+            confirmButtonText: "Cerrar",
+            closeOnConfirm: false,
+          }).then((isConfirm) => {
+            if (isConfirm) {
+              window.location = 'comercio';
+            }
+          });
+        }
+
+      }
+
+    })
+
+  })
+
+})
+
+/* ------------------------- End of CAMBIAR CÓDIGOS ------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                             SELECCIONAR DIVISA                             */
+/* -------------------------------------------------------------------------- */
+
+$.ajax({
+	url:"vistas/js/divisas.json",
+	type: "GET",
+	cache: false,
+	contentType: false,
+	processData:false,
+	dataType:"json",
+	success: function(respuesta) {
+
+		respuesta.forEach(seleccionarDivisa);
+
+		function seleccionarDivisa(item, index) {
+
+			var divisa = item.name;
+			var coddivisa = item.code;
+
+			if ($("#coddivisa").val() == coddivisa) {
+
+				$("#divisaSeleccionada").attr("value",coddivisa);
+				$("#divisaSeleccionada").html(divisa);
+
+			}
+
+			$("#seleccionarDivisa").append('<option value="'+coddivisa+'">'+divisa+'</option>');
+
+		}
+
+	}
+
+})
+
+/* ------------------------ End of SELECCIONAR DIVISA ----------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                              SELECCIONAR PAIS                              */
+/* -------------------------------------------------------------------------- */
+
+$.ajax({
+	url:"vistas/js/countries.json",
+	type: "GET",
+	cache: false,
+	contentType: false,
+	processData:false,
+	dataType:"json",
+	success: function(respuesta) {
+
+		respuesta.forEach(seleccionarPais);
+
+		function seleccionarPais(item, index) {
+
+			var pais = item.name;
+			var codPais = item.code;
+
+			if ($("#codigoPais").val() == codPais) {
+
+				$("#paisSeleccionado").attr("value",codPais);
+				$("#paisSeleccionado").html(pais);
+
+			}
+
+			$("#seleccionarPais").append('<option value="'+codPais+'">'+pais+'</option>');
+
+		}
+
+	}
+
+})
+
+/* ------------------------- End of SELECCIONAR PAIS ------------------------ */
+
+/* -------------------------------------------------------------------------- */
+/*                             CAMBIAR INFORMACIÓN                            */
+/* -------------------------------------------------------------------------- */
+
+var divisa = $("#coddivisa").val();
+var impuesto = $("#impuesto").val();
+var envioNacional = $("#envioNacional").val();
+var envioInternacional = $("#envioInternacional").val();
+var tasaMinimaNal = $("#tasaMinimaNal").val();
+var tasaMinimaInt = $("#tasaMinimaInt").val();
+var seleccionarPais = $("#codigoPais").val();
+var clienteIdPaypal = $("#clienteIdPaypal").val();
+var llaveSecretaPaypal = $("#llaveSecretaPaypal").val();
+
+/* ----------------------- End of CAMBIAR INFORMACIÓN ----------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                             CAMBIAR MODO PAYPAL                            */
+/* -------------------------------------------------------------------------- */
+
+$("input[name='modoPaypal']").on("ifChecked",function() {
+
+	var modoPaypal = $(this).val();
+
+	$("#guardarInformacion").click(function() {
+		cambiarInformacion(modoPaypal);
+	});
+
+})
+
+/* ----------------------- End of CAMBIAR MODO PAYPAL ----------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                           GUARDAR LA INFORMACION                           */
+/* -------------------------------------------------------------------------- */
+
+$(".cambioInformacion").change(function() {
+	divisa = $("#seleccionarDivisa").val();
+	impuesto = $("#impuesto").val();
+	envioNacional = $("#envioNacional").val();
+	envioInternacional = $("#envioInternacional").val();
+	tasaMinimaNal = $("#tasaMinimaNal").val();
+	tasaMinimaInt = $("#tasaMinimaInt").val();
+	seleccionarPais = $("#seleccionarPais").val();
+	modoPaypal = $("input[name='modoPaypal']:checked").val();
+	clienteIdPaypal = $("#clienteIdPaypal").val();
+	llaveSecretaPaypal = $("#llaveSecretaPaypal").val();
+
+	$("#guardarInformacion").click(function() {
+		cambiarInformacion(modoPaypal);
+	})
+})
+
+/* ---------------------- End of GUARDAR LA INFORMACION --------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                     FUNCIÓN PARA CAMBIAR LA INFORMACIÓN                    */
+/* -------------------------------------------------------------------------- */
+
+function cambiarInformacion(modoPaypal) {
+
+	var datos = new FormData();
+	datos.append("divisa", divisa);
+	datos.append("impuesto", impuesto);
+	datos.append("envioNacional", envioNacional);
+	datos.append("envioInternacional", envioInternacional);
+	datos.append("tasaMinimaNal", tasaMinimaNal);
+	datos.append("tasaMinimaInt", tasaMinimaInt);
+	datos.append("seleccionarPais", seleccionarPais);
+	datos.append("modoPaypal", modoPaypal);
+	datos.append("clienteIdPaypal", clienteIdPaypal);
+	datos.append("llaveSecretaPaypal", llaveSecretaPaypal);
+
+	$.ajax({
+
+		url:"ajax/comercio.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(respuesta) {
+
+      if (respuesta == "ok") {
+        Swal.fire({
+          title: "¡Cambios guardados!",
+          text: "La plantilla ha sido actualizada correctamente",
+          icon: "success",
+          confirmButtonText: "Cerrar",
+          closeOnConfirm: false,
+        }).then((isConfirm) => {
+          if (isConfirm) {
+            window.location = 'comercio';
+          }
+        });
+      }
+
+		}
+
+	})
+
+}
+
+/* --------------- End of FUNCIÓN PARA CAMBIAR LA INFORMACIÓN --------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                        CAMBIAR INFORMACIÓN CONTACTO                        */
+/* -------------------------------------------------------------------------- */
+
+$("#guardarInformacionFooter").click(function(){
+
+var numerow = $("#numerow").val();
+var correo = $("#correo").val();
+var direccion = $("#direccion").val();
+var datos = new FormData();
+datos.append("numerow", numerow);
+datos.append("correo", correo);
+datos.append("direccion", direccion);
+
+$.ajax({
+
+		url:"ajax/comercio.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(respuesta){
+      if (respuesta == "ok") {
+        Swal.fire({
+          title: "¡Cambios guardados!",
+          text: "La plantilla ha sido actualizada correctamente",
+          icon: "success",
+          confirmButtonText: "Cerrar",
+          closeOnConfirm: false,
+        }).then((isConfirm) => {
+          if (isConfirm) {
+            window.location = 'comercio';
+          }
+        });
+      }
+
+		}
+
+	})
+
+})
+
+/* ------------------- End of CAMBIAR INFORMACIÓN CONTACTO ------------------ */

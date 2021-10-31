@@ -15,10 +15,16 @@
       </div>
 
       <div class="col-2">
-        <input type="checkbox" class="seleccionarRed" ruta="<?=$value['url']?>" red="<?=$value['red']?>" validarRed="<?=$value['red']?>" checked>
+        <?php if ($value['activo'] != 0): ?>
+          <input type="checkbox" class="seleccionarRed" ruta="<?=$value['url']?>" red="<?=$value['red']?>" validarRed="<?=$value['red']?>" checked>
+        <?php else: ?>
+          <input type="checkbox" class="seleccionarRed" ruta="<?=$value['url']?>" red="<?=$value['red']?>" validarRed="">
+        <?php endif ?>
       </div>
     </div>
     <?php endforeach ?>
+
+    <input type="hidden" id="valorRedesSociales" value="<?=$plantilla['redesSociales']?>">
   </div>
   <!-- /.card-body -->
 

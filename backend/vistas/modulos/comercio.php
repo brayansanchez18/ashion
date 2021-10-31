@@ -27,6 +27,7 @@
         </section>
 
         <section class="col-lg-6">
+          <?php include_once 'comercio/codigos.php'; ?>
           <?php include_once 'comercio/informacion.php'; ?>
         </section>
       </div>

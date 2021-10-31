@@ -1,3 +1,4 @@
+<?php $comercio = ControladorComercio::ctrSeleccionarComercio(); ?>
 <div class="card">
   <div class="card-header">
     <h3 class="card-title">Información de Comercio</h3>
@@ -9,32 +10,9 @@
       <label for="usr">Divisa:</label>
       <div class="input-group">
         <span class="input-group-addon ml-2 mr-2 mt-auto mb-auto"><i class="fas fa-dollar-sign"></i></span>
-        <input type="hidden" id="codigoPais" value="MXN">
-        <select class="form-control cambioInformacion" id="seleccionesDivisa">
-          <option value="MXN">MXN (Peso mexicano)</option>
-          <option value="USD">USD (Dólar estadounidense)</option>
-          <option value="GBP">GBP (Libra esterlina del Reino Unido)</option>
-          <option value="THB">THB (Bat tailandés)</option>
-          <option value="CHF">CHF (Franco suizo)</option>
-          <option value="SEK">SEK (Corona sueca)</option>
-          <option value="SGD">SGD (Dólar de Singapur)</option>
-          <option value="RUB">RUB (Rublo ruso)</option>
-          <option value="PLN">PLN (Esloti polaco)</option>
-          <option value="PHP">PHP (Peso filipino)</option>
-          <option value="NOK">NOK (Corona noruega)</option>
-          <option value="NZD">NZD (Dólar neozelandés)</option>
-          <option value="TWD">TWD (Nuevo dólar taiwanés)</option>
-          <option value="AUD">AUD (Dólar australiano)</option>
-          <option value="BRL">BRL (Real brasileño)</option>
-          <option value="CAD">CAD (Dólar canadiense)</option>
-          <option value="CZK">CZK (Corona checa)</option>
-          <option value="DKK">DKK (Corona danesa)</option>
-          <option value="EUR">EUR (Euro)</option>
-          <option value="HKD">HKD (Dólar de Hong Kong)</option>
-          <option value="HUF">HUF (Forinto húngaro)</option>
-          <option value="ILS">ILS (Nuevo séquel israelí)</option>
-          <option value="JPY">JPY (Yen japonés)</option>
-          <option value="MYR">MYR (Ringit malayo)</option>
+        <input type="hidden" id="coddivisa" value="<?=$comercio['divisa']?>">
+        <select class="form-control cambioInformacion" id="seleccionarDivisa">
+          <option id="divisaSeleccionada"></option>
         </select>
       </div>
     </div>
@@ -45,7 +23,7 @@
       <label for="usr">Impuesto:</label>
       <div class="input-group">
         <span class="input-group-addon ml-2 mr-2 mt-auto mb-auto"><i class="fas fa-percent"></i></span>
-        <input type="number" min="1" class="form-control cambioInformacion" id="impuesto" value="30">
+        <input type="number" min="1" class="form-control cambioInformacion" id="impuesto" value="<?=$comercio['impuesto']?>">
       </div>
     </div>
     <!-- /IMPUESTO -->
@@ -55,7 +33,7 @@
       <label for="usr">Envío Nacional:</label>
       <div class="input-group">
         <span class="input-group-addon ml-2 mr-2 mt-auto mb-auto"><i class="fas fa-dollar-sign"></i></span>
-        <input type="number" min="1" class="form-control cambioInformacion" id="envioNacional" value="200">
+        <input type="number" min="1" class="form-control cambioInformacion" id="envioNacional" value="<?=$comercio['envioNacional']?>">
       </div>
     </div>
     <!-- /ENVÍO NACIONAL -->
@@ -65,7 +43,7 @@
       <label for="usr">Envío Internacional:</label>
       <div class="input-group">
         <span class="input-group-addon ml-2 mr-2 mt-auto mb-auto"><i class="fas fa-dollar-sign"></i></span>
-        <input type="number" min="1" class="form-control cambioInformacion" id="envioInternacional" value="15">
+        <input type="number" min="1" class="form-control cambioInformacion" id="envioInternacional" value="<?=$comercio['envioInternacional']?>">
       </div>
     </div>
     <!-- /ENVÍO INTERNACIONAL -->
@@ -75,7 +53,7 @@
       <label for="usr">Tasa Mínima Nacional:</label>
       <div class="input-group">
         <span class="input-group-addon ml-2 mr-2 mt-auto mb-auto"><i class="fas fa-dollar-sign"></i></span>
-        <input type="number" min="1" class="form-control cambioInformacion" id="tasaMinimaNal" value="19">
+        <input type="number" min="1" class="form-control cambioInformacion" id="tasaMinimaNal" value="<?=$comercio['tasaMinimaNal']?>">
       </div>
     </div>
     <!-- /TASA MÍNIMA NACIONAL -->
@@ -85,7 +63,7 @@
       <label for="usr">Tasa Mínima Internacional:</label>
       <div class="input-group">
         <span class="input-group-addon ml-2 mr-2 mt-auto mb-auto"><i class="fas fa-dollar-sign"></i></span>
-        <input type="number" min="1" class="form-control cambioInformacion" id="tasaMinimaInt" value="30">
+        <input type="number" min="1" class="form-control cambioInformacion" id="tasaMinimaInt" value="<?=$comercio['tasaMinimaInt']?>">
       </div>
     </div>
     <!-- /TASA MÍNIMA INTERNACIONAL -->
@@ -93,7 +71,7 @@
     <!-- SELECCIONAR PAÍS -->
     <div class="form-group">
       <label for="sel1">Seleccione País:</label>
-      <input type="hidden" id="codigoPais" value="México">
+      <input type="hidden" id="codigoPais" value="<?=$comercio['pais']?>">
       <select class="form-control cambioInformacion" id="seleccionarPais">
         <option id="paisSeleccionado"></option>
       </select>
@@ -111,23 +89,33 @@
           <div class="col-12 col-md-3">
             <label>Modo:</label>
             <br>
-            <label class="checkbox">
-              <input type="radio" class="cambioInfo" name="modoPaypal" value="sandbox" checked> Sandbox
-            </label>
-            <br>
-            <label class="checkbox">
-              <input type="radio" class="cambioInfo" name="modoPaypal" value="live"> Live
-            </label>
+            <?php if ($comercio["modoPaypal"]=="sandbox"): ?>
+              <label class="checkbox">
+                <input type="radio" class="cambioInfo" name="modoPaypal" value="sandbox" checked> Sandbox
+              </label>
+              <br>
+              <label class="checkbox">
+                <input type="radio" class="cambioInfo" name="modoPaypal" value="live"> Live
+              </label>
+            <?php else: ?>
+              <label class="checkbox">
+                <input type="radio" class="cambioInfo" name="modoPaypal" value="sandbox"> Sandbox
+              </label>
+              <br>
+              <label class="checkbox">
+                <input type="radio" class="cambioInfo" name="modoPaypal" value="live" checked> Live
+              </label>
+            <?php endif ?>
           </div>
 
           <div class="col-12 col-md-4">
             <label for="comment">Cliente:</label>
-            <input type="text" class="form-control cambioInformacion" id="clienteIdPaypal" value="Ab5Jul632s-Z4-RTMvcVrbU_WiAb6URApVZTSxDRkkA-3fiA-sI0fl86v3-LYVjeSj21eIA-wf3GwweN">
+            <input type="text" class="form-control cambioInformacion" id="clienteIdPaypal" value="<?=$comercio['clienteIdPaypal']?>">
           </div>
 
           <div class="col-12 col-md-5">
             <label for="comment">Llave Secreta:</label>
-            <input type="text" class="form-control cambioInformacion" id="llaveSecretaPaypal" value="EDpU9-3ijLsXBoZE4QrQaYqRIkCJO_cjcrO66PPRP28aZdYIj05oN2-A8MWxpbQHlq5jU3YRt-l3dsN9">
+            <input type="text" class="form-control cambioInformacion" id="llaveSecretaPaypal" value="<?=$comercio['llaveSecretaPaypal']?>">
           </div>
         </div>
       </div>

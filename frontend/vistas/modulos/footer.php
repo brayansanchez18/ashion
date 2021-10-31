@@ -18,7 +18,9 @@
           <div class="footer__social">
 
             <?php foreach ($jsonRedesSociales as $key => $value): ?>
-              <a href="<?=$value['url']?>" target="_blank"><i class="fa <?=$value['red']?>"></i></a>
+              <?php if ($value['activo'] != 0): ?>
+                <a href="<?=$value['url']?>" target="_blank"><i class="fa <?=$value['red']?>"></i></a>
+              <?php endif ?>
             <?php endforeach ?>
           </div>
         </div>
