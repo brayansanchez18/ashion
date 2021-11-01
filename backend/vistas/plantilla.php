@@ -21,9 +21,14 @@
   <link rel="stylesheet" href="vistas/dist/css/adminlte.min.css">
   <!-- icheck bootstrap -->
   <link rel="stylesheet" href="vistas/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-
   <link rel="stylesheet" href="vistas/plugins/icheck/skins/square/_all.css">
 
+  <!-- DataTables -->
+  <link rel="stylesheet" href="vistas/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="vistas/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="vistas/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+
+  <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
@@ -37,6 +42,20 @@
   <script src="vistas/dist/js/adminlte.min.js"></script>
     <!-- ChartJS -->
   <script src="vistas/plugins/chart.js/Chart.min.js"></script>
+  <!-- DataTables  & Plugins -->
+  <script src="vistas/plugins/datatables/jquery.dataTables.min.js"></script>
+  <script src="vistas/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js"></script>
+  <script src="vistas/plugins/datatables-responsive/js/dataTables.responsive.min.js"></script>
+  <script src="vistas/plugins/datatables-responsive/js/responsive.bootstrap4.min.js"></script>
+  <script src="vistas/plugins/datatables-buttons/js/dataTables.buttons.min.js"></script>
+  <script src="vistas/plugins/datatables-buttons/js/buttons.bootstrap4.min.js"></script>
+  <script src="vistas/plugins/jszip/jszip.min.js"></script>
+  <script src="vistas/plugins/pdfmake/pdfmake.min.js"></script>
+  <script src="vistas/plugins/pdfmake/vfs_fonts.js"></script>
+  <script src="vistas/plugins/datatables-buttons/js/buttons.html5.min.js"></script>
+  <script src="vistas/plugins/datatables-buttons/js/buttons.print.min.js"></script>
+  <script src="vistas/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
+  <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
 </head>
 
 <?php if (isset($_SESSION['validarSesionBackend']) && $_SESSION['validarSesionBackend'] === 'ok'): ?>
@@ -86,5 +105,6 @@
 ?>
   <script src="vistas/js/plantilla.js"></script>
   <script src="vistas/js/gestorComercio.js"></script>
+  <script src="vistas/js/gestorBanner.js"></script>
 </body>
 </html>
