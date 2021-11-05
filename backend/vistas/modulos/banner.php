@@ -100,7 +100,7 @@
         <div class="form-group">
           <label for="textoBanner">Texto del Banner</label>
           <div id="editor">
-            <p>se recomienda usar un maximo de 200 palabras para no degformar el diseño del banner</p>
+            <p>Se recomienda usar un máximo de 200 palabras para no deformar el diseño del bannner</p>
           </div>
           <input type="hidden" id="textoBannerActual" name="textoBannerActual" value="">
           <input type="hidden" id="textonuevo" name="textonuevo" value="">

@@ -1,10 +1,10 @@
 $(".tablaBanner").DataTable({
-	 "deferRender": true,
-	 "retrieve": true,
-	 "processing": true,
-	 "language": {
+	"deferRender": true,
+	"retrieve": true,
+	"processing": true,
+	"language": {
 
-	 	"sProcessing":     "Procesando...",
+		"sProcessing":     "Procesando...",
 		"sLengthMenu":     "Mostrar _MENU_ registros",
 		"sZeroRecords":    "No se encontraron resultados",
 		"sEmptyTable":     "Ningún dato disponible en esta tabla",
@@ -27,8 +27,7 @@ $(".tablaBanner").DataTable({
 				"sSortDescending": ": Activar para ordenar la columna de manera descendente"
 		}
 
-	 }
-
+	}
 
 });
 
@@ -52,12 +51,17 @@ $(".nuevaFotoBanner").change(function() {
 
 		$(".nuevaFotoBanner").val("");
 
-			swal({
-				title: "Error al subir la imagen",
-				text: "¡La imagen debe estar en formato JPG o PNG!",
-				type: "error",
-				confirmButtonText: "¡Cerrar!"
-			});
+		Swal.fire({
+			title: "¡Error al subir la imagen!",
+			text: "La imagen debe estar en formato JPG o PNG",
+			icon: "error",
+			confirmButtonText: "Cerrar",
+			closeOnConfirm: false,
+		}).then((isConfirm) => {
+			if (isConfirm) {
+				//window.location = rutaOculta;
+			}
+		});
 
 	}
 
@@ -71,12 +75,17 @@ $(".nuevaFotoBanner").change(function() {
 
 		$(".nuevaFotoBanner").val("");
 
-			swal({
-				title: "Error al subir la imagen",
-				text: "¡La imagen no debe pesar más de 2MB!",
-				type: "error",
-				confirmButtonText: "¡Cerrar!"
-			});
+		Swal.fire({
+			title: "¡Error al subir la imagen!",
+			text: "La imagen no debe pesar más de 10MB",
+			icon: "error",
+			confirmButtonText: "Cerrar",
+			closeOnConfirm: false,
+		}).then((isConfirm) => {
+			if (isConfirm) {
+				//window.location = rutaOculta;
+			}
+		});
 
 	}
 

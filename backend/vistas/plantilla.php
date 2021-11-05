@@ -30,6 +30,11 @@
 
   <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 
+  <!-- bootstrap tags input -->
+  <link rel="stylesheet" href="vistas/plugins/tags/bootstrap-tagsinput.css">
+  <!--date picker-->
+  <link rel="stylesheet" href="vistas/plugins/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+
   <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
   <!-- jQuery -->
@@ -56,6 +61,13 @@
   <script src="vistas/plugins/datatables-buttons/js/buttons.print.min.js"></script>
   <script src="vistas/plugins/datatables-buttons/js/buttons.colVis.min.js"></script>
   <script src="https://cdn.quilljs.com/1.3.6/quill.js"></script>
+  <!-- bootstrap tags input https://bootstrap-tagsinput.github.io/bootstrap-tagsinput/examples/-->
+  <script src="vistas/plugins/tags/bootstrap-tagsinput.min.js"></script>
+
+  <!-- BOOTSTRAP TAGS INPUT -->
+  <script src="vistas/plugins/tags/bootstrap-tagsinput.min.js"></script>
+  <!--date picker-->
+  <script src="vistas/plugins/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
 </head>
 
 <?php if (isset($_SESSION['validarSesionBackend']) && $_SESSION['validarSesionBackend'] === 'ok'): ?>
@@ -106,5 +118,6 @@
   <script src="vistas/js/plantilla.js"></script>
   <script src="vistas/js/gestorComercio.js"></script>
   <script src="vistas/js/gestorBanner.js"></script>
+  <script src="vistas/js/gestorCategorias.js"></script>
 </body>
 </html>
