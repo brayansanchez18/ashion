@@ -63,7 +63,9 @@ $productos_tienda = ControladorProductos::ctrMostrarProductos($ordenar, $item, $
                         <div class="card-body">
                           <ul>
                             <?php foreach ($subCategorias as $key => $value): ?>
-                              <li><a href="<?=$frontend.$value['ruta']?>"><?=$value['subcategoria']?></a></li>
+                              <?php if($value['estado'] != 0): ?>
+                                <li><a href="<?=$frontend.$value['ruta']?>"><?=$value['subcategoria']?></a></li>
+                              <?php endif ?>
                             <?php endforeach ?>
                           </ul>
                         </div>

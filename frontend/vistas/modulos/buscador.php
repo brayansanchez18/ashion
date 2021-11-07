@@ -97,7 +97,9 @@
                           <div class="card-body">
                             <ul>
                               <?php foreach ($subCategorias as $key => $value): ?>
-                                <li><a href="<?=$frontend.$value['ruta']?>"><?=$value['subcategoria']?></a></li>
+                                <?php if($value['estado'] != 0): ?>
+                                  <li><a href="<?=$frontend.$value['ruta']?>"><?=$value['subcategoria']?></a></li>
+                                <?php endif ?>
                               <?php endforeach ?>
                             </ul>
                           </div>
@@ -156,7 +158,9 @@
                           <div class="card-body">
                             <ul>
                               <?php foreach ($subCategorias as $key => $value): ?>
-                                <li><a href="<?=$frontend.$value['ruta']?>"><?=$value['subcategoria']?></a></li>
+                                <?php if($value['estado'] != 0): ?>
+                                  <li><a href="<?=$frontend.$value['ruta']?>"><?=$value['subcategoria']?></a></li>
+                                <?php endif ?>
                               <?php endforeach ?>
                             </ul>
                           </div>
@@ -210,6 +214,8 @@
                     </div>
                   </div>
                 </div>
+              <?php else: ?>
+                <?php $estado = 0; ?>
               <?php endif ?>
             <?php endforeach ?>
 

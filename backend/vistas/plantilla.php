@@ -119,5 +119,6 @@
   <script src="vistas/js/gestorComercio.js"></script>
   <script src="vistas/js/gestorBanner.js"></script>
   <script src="vistas/js/gestorCategorias.js"></script>
+  <script src="vistas/js/gestorSubcategorias.js"></script>
 </body>
 </html>
