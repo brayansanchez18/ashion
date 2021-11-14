@@ -241,7 +241,7 @@ $(".fotoPortada").change(function() {
 
 	/* ----------------- End of VALIDAMOS EL TAMAÑO DE LA IMAGEN ---------------- */
 
-	else{
+	else {
 
 		var datosImagen = new FileReader;
 		datosImagen.readAsDataURL(imagen);

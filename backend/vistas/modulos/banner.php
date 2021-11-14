@@ -45,10 +45,17 @@
                 <th><?=$value['nombre']?></th>
                 <th><img class="img-thumbnail" style="width:200px;" src="<?=$value['imgFondo']?>"></th>
                 <th><?=$value['titulo']?></th>
-                <th><?=$value['texto']?></th>
+                <?php if (strlen($value['texto']) > 100): ?>
+                  <th><?=substr($value['texto'], 0, 100) . '...'?></th>
+                <?php else: ?>
+                  <th><?=$value['texto']?></th>
+                <?php endif ?>
                 <?php if ($value['boton'] != ''): ?>
                   <th><?=$value['boton']?></th>
                   <th><?=$value['ruta']?></th>
+                <?php else: ?>
+                  <th>Sin Texto para el Boton</th>
+                  <th>Sin ruta para el boton</th>
                 <?php endif ?>
                 <th>
                   <div class="btn-group">
@@ -107,11 +114,11 @@
         </div>
         <div class="form-group">
           <label for="textoBoton">Texto Boton</label>
-          <input type="text" class="form-control" id="textoBoton" name="textoBoton" value="" required>
+          <input type="text" class="form-control" id="textoBoton" name="textoBoton" value="">
         </div>
         <div class="form-group">
           <label for="rutaBoton">URL del Boton</label>
-          <input type="text" class="form-control" id="rutaBoton" name="rutaBoton" value="" required>
+          <input type="text" class="form-control" id="rutaBoton" name="rutaBoton" value="">
         </div>
       </div>
 

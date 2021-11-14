@@ -97,6 +97,18 @@ class TablaSubCategorias {
 
       /* ------------------------ End of CREAR LAS ACCIONES ----------------------- */
 
+      if (is_array($cabeceras)) {
+
+        if (strlen($cabeceras['descripcion']) > 80) {
+          $descripcion = substr($cabeceras['descripcion'], 0, 80) . '...';
+        } else {
+          $descripcion = $cabeceras['descripcion'];
+        }
+
+      } else {
+        $descripcion = 'Sin descripción';
+      }
+
       $datosJson .=  '
       [
         "'.($i+1).'",
@@ -104,7 +116,7 @@ class TablaSubCategorias {
         "'.$subcategorias[$i]['ruta'].'",
         "'.$categoria.'",
         "'.$estado.'",
-        "' . (is_array($cabeceras) ? $cabeceras['descripcion'] : 'Sin descripción') . '",
+        "' . $descripcion . '",
         "' . (is_array($cabeceras) ? $cabeceras['palabrasClaves'] : 'Sin palabras clave') . '",
         "'.$imagenPortada.'",
         "'.$tipoOferta.'",

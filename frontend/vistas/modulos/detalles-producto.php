@@ -107,19 +107,6 @@ $rutaDestacados = ControladorProductos::ctrMostrarSubCategorias($item, $valor);
                       </div>
                     </div>
                   <?php endif ?>
-
-                  <?php if ($detalles['Marca'] != null): ?>
-                    <div class="form-group row">
-                      <div class="col-md-6 col-xs-12">
-                        <select class="form-control seleccionarDetalle" id="seleccionarMarca">
-                          <option value="">Marca</option>
-                          <?php for($i = 0; $i < count($detalles["Marca"]); $i++): ?>
-                            <option value="<?=$detalles['Marca'][$i]?>"><?=$detalles['Marca'][$i]?></option>
-                          <?php endfor ?>
-                        </select>
-                      </div>
-                    </div>
-                  <?php endif ?>
                   </li>
                 <?php endif ?>
               <?php endif ?>

@@ -13,7 +13,7 @@
               <?php endif ?>
 
               <?php if ($value['boton'] != ''): ?>
-                <a href="<?=$value['ruta']?>"><?=$value['boton']?></a>
+                <p><a href="<?=$value['ruta']?>"><?=$value['boton']?></a></p>
               <?php endif ?>
             </div>
           </div>

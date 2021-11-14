@@ -89,12 +89,24 @@ class TablaCategorias {
 
         $acciones = "<div class='btn-group'><button class='btn btn-warning btnEditarCategoria' idCategoria='".$categorias[$i]['id']."' data-toggle='modal' data-target='#modalEditarCategoria'><i class='fa fa-edit'></i></button><button class='btn btn-danger btnEliminarCategoria' idCategoria='".$categorias[$i]['id']."' imgPortada='".(is_array($cabeceras) ? $cabeceras['portada'] : 'vistas/img/cabeceras/default/default.jpg')."'  rutaCabecera='".$categorias[$i]['ruta']."'><i class='fa fa-times'></i></button></div>";
 
+        if (is_array($cabeceras)) {
+
+          if (strlen($cabeceras['descripcion']) > 80) {
+            $descripcion = substr($cabeceras['descripcion'], 0, 80) . '...';
+          } else {
+            $descripcion = $cabeceras['descripcion'];
+          }
+
+        } else {
+          $descripcion = 'Sin descripción';
+        }
+
         $datosJson	 .= '[
           "'.($i+1).'",
           "'.$categorias[$i]['categoria'].'",
           "'.$categorias[$i]['ruta'].'",
           "'. $estado.'",
-          "' . (is_array($cabeceras) ? $cabeceras['descripcion'] : 'Sin descripción') . '",
+          "' . $descripcion . '",
           "' . (is_array($cabeceras) ? $cabeceras['palabrasClaves'] : 'Sin palabras clave') . '",
           "'.$imgPortada.'",
           "'.$tipoOferta.'",

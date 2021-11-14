@@ -110,6 +110,11 @@ $(".nuevaFotoBanner").change(function() {
 	/* -------------------- End of PREVISUALIZAMOS LA IMAGEN -------------------- */
 })
 
+quill.on('text-change', function() {
+	var contenido = $('#editor .ql-editor').html();
+	$("#modalEditarBanner #textonuevo").val(contenido);
+});
+
 /* --------------------- End of SUBIENDO FOTO DEL BANNER -------------------- */
 
 /* -------------------------------------------------------------------------- */
@@ -143,10 +148,6 @@ $(".tablaBanner tbody").on("click", ".btnEditarBanner", function() {
 			$("#modalEditarBanner #textoBoton").val(respuesta["boton"]);
 			$("#modalEditarBanner #rutaBoton").val(respuesta["ruta"]);
 			$("#modalEditarBanner #textoBannerActual").val(respuesta["texto"]);
-			quill.on('text-change', function() {
-				var contenido = $('#editor .ql-editor').html();
-				$("#modalEditarBanner #textonuevo").val(contenido);
-			});
 
 
 		}
