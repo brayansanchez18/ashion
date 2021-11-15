@@ -12,7 +12,7 @@
 // })
 
 $(".tablaProductos").DataTable({
-	// "ajax": "ajax/tablaProductos.ajax.php",
+	"ajax": "ajax/tablaProductos.ajax.php",
 	"deferRender": true,
 	"retrieve": true,
 	"processing": true,
@@ -46,3 +46,57 @@ $(".tablaProductos").DataTable({
 });
 
 /* -------------- End of CARGAR LA TABLA DINÁMICA DE PRODUCTOS -------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                              ACTIVAR PRODUCTO                              */
+/* -------------------------------------------------------------------------- */
+
+$('.tablaProductos tbody').on("click", ".btnActivar", function() {
+
+	var idProducto = $(this).attr("idProducto");
+	var estadoProducto = $(this).attr("estadoProducto");
+
+	var datos = new FormData();
+	datos.append("activarId", idProducto);
+	datos.append("activarProducto", estadoProducto);
+
+	$.ajax({
+		url:"ajax/productos.ajax.php",
+		method: "POST",
+		data: datos,
+		cache: false,
+		contentType: false,
+		processData: false,
+		success: function(respuesta){}
+	})
+
+	if (estadoProducto == 0) {
+		$(this).removeClass('btn-success');
+		$(this).addClass('btn-danger');
+		$(this).html('Desactivado');
+		$(this).attr('estadoProducto',1);
+	} else {
+		$(this).addClass('btn-success');
+		$(this).removeClass('btn-danger');
+		$(this).html('Activado');
+		$(this).attr('estadoProducto',0);
+	}
+
+})
+
+/* ------------------------- End of ACTIVAR PRODUCTO ------------------------ */
+
+/* -------------------------------------------------------------------------- */
+/*                         EDITOR DE TEXTO ENRIQUZIDO                         */
+/* -------------------------------------------------------------------------- */
+
+var quill = new Quill('#descripcionProducto', {
+	theme: 'snow'
+});
+
+quill.on('text-change', function() {
+	var contenido = $('#descripcionProducto .ql-editor').html();
+	$("#modalAgregarProducto #descripcionProducto").val(contenido);
+});
+
+/* -------------------- End of EDITOR DE TEXTO ENRIQUZIDO ------------------- */

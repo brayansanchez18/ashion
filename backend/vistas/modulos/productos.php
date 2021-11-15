@@ -68,7 +68,7 @@
 /*                         MODAL PARA AGREGAR PRODUCTOS                         */
 /* -------------------------------------------------------------------------- -->
 
-<!-- <div class="modal fade" id="modalAgregarProducto" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalAgregarProducto" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -254,7 +254,7 @@
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <!-- ------------------- End of MODAL PARA AGREGAR PRODUCTOS ------------------ -->
 

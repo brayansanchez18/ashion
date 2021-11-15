@@ -82,10 +82,7 @@ $(".tablaCategorias tbody").on("click", ".btnActivar", function(){
 			cache: false,
 			contentType: false,
 			processData: false,
-			success: function(respuesta){
-				// console.log('%cMyProject%cline:71%crespuesta', 'color:#fff;background:#ee6f57;padding:3px;border-radius:2px', 'color:#fff;background:#1f3c88;padding:3px;border-radius:2px', 'color:#fff;background:rgb(227, 160, 93);padding:3px;border-radius:2px', respuesta)
-			}
-
+			success: function(respuesta) {}
 		});
 
 		if (estadoCategoria == 0) {
