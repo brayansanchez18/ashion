@@ -79,7 +79,7 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="tituloProducto">Nombre del Producto*</label>
+          <label for="tituloProducto">Nombre del Producto</label>
           <input type="text" class="form-control input-lg validarProducto tituloProducto" placeholder="Ingresar Nombre Producto" required>
         </div>
 
@@ -89,7 +89,7 @@
         </div>
 
         <div class="form-group agregarMultimedia">
-          <label for="multimediaProducto">Multimedia del Producto*</label>
+          <label for="multimediaProducto">Multimedia del Producto</label>
           <div class="multimediaFisica needsclick dz-clickable">
             <div class="dz-message needsclick">
               Arrastrar o dar click para subir imagenes.
@@ -99,7 +99,7 @@
 
         <div class="form-group">
           <div class="detallesFisicos">
-            <label for="detallesProducto">Detalles del Producto*</label>
+            <label for="detallesProducto">Detalles del Producto</label>
 
             <div class="form-group row">
               <div class="col-3">
@@ -124,7 +124,7 @@
         </div>
 
         <div class="form-group">
-          <label for="seleccionarCategoria">Categoria del Producto*</label>
+          <label for="seleccionarCategoria">Categoria del Producto</label>
           <select class="form-control input-lg seleccionarCategoria">
             <option value="">Selecionar categoría</option>
             <?php $item = null; $valor = null; $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor); ?>
@@ -136,18 +136,18 @@
         </div>
 
         <div class="form-group  entradaSubcategoria" style="display:none">
-          <label for="seleccionarCategoria">Subcategoria del Producto*</label>
+          <label for="seleccionarCategoria">Subcategoria del Producto</label>
           <select class="form-control input-lg seleccionarSubCategoria"></select>
         </div>
 
         <div class="form-group">
-          <label for="descripcionProducto">Descripcion del Producto*</label>
+          <label for="descripcionProducto">Descripcion del Producto</label>
           <div id="descripcionProducto"></div>
           <input type="hidden" id="descripcionProducto" value="">
         </div>
 
         <div class="form-group">
-          <label for="pClavesProducto">Palabras clave del Producto*</label>
+          <label for="pClavesProducto">Palabras clave del Producto</label>
           <input type="text" class="form-control input-lg tagsInput pClavesProducto" data-role="tagsinput"  placeholder="Ingresar palabras claves">
         </div>
 
@@ -159,7 +159,7 @@
         </div>
 
         <div class="form-group">
-          <label for="fotoPortada">Subir imagen principal del producto*</label>
+          <label for="fotoPortada">Subir imagen principal del producto</label>
           <input type="file" class="form-control fotoPrincipal">
           <p class="help-block">Tamaño recomendado 400px * 450px <br> Peso máximo de la foto 4MB</p>
           <img src="vistas/img/productos/default/default.jpg" class="img-thumbnail previsualizarPrincipal" width="200px">
@@ -167,7 +167,7 @@
 
         <div class="form-group row">
           <div class="col-12 col-md-6">
-            <div class="panel">PRECIO*</div>
+            <div class="panel">PRECIO</div>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="ion ion-social-usd"></i></span>
@@ -177,34 +177,34 @@
           </div>
 
           <div class="col-12 col-md-6">
-            <div class="panel">PESO (kg)*</div>
+            <div class="panel">PESO (kg)</div>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-balance-scale"></i></span>
               </div>
-              <input type="number" class="form-control input-lg peso" min="0" step="any" value="0">
+              <input type="number" class="form-control input-lg peso" min="1" step="any" value="0">
             </div>
           </div>
         </div>
 
         <div class="form-group row">
           <div class="col-12 col-md-6">
-            <div class="panel">DÍAS DE ENTREGA*</div>
+            <div class="panel">DÍAS DE ENTREGA</div>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-truck"></i></span>
               </div>
-              <input type="number" class="form-control input-lg entrega" min="0" value="0">
+              <input type="number" class="form-control input-lg entrega" min="1" value="0">
             </div>
           </div>
 
           <div class="col-12 col-md-6">
-            <div class="panel">STOCK*</div>
+            <div class="panel">STOCK</div>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-boxes"></i></span>
               </div>
-              <input type="number" class="form-control input-lg stock" min="0" value="0">
+              <input type="number" class="form-control input-lg stock" min="1" value="0">
             </div>
           </div>
         </div>
