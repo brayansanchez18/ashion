@@ -18,9 +18,9 @@ class ControladorVentas {
   /*                               MOSTRAR VENTAS                               */
   /* -------------------------------------------------------------------------- */
 
-  public function ctrMostrarVentas() {
+  public function ctrMostrarVentas($modo) {
     $tabla = 'compras';
-    $respuesta = ModeloVentas::mdlMostrarVentas($tabla);
+    $respuesta = ModeloVentas::mdlMostrarVentas($tabla, $modo);
     return $respuesta;
   }
 

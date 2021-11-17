@@ -96,11 +96,7 @@
                             Entregado
                           </div>
                         </div>
-
-                        <div class="alert alert-success" role="alert">El Producto a Sido Entregado, Por favor Verifiquelo. De no ser así favor de ponerse en contacto con nosotros atraves del formulario de contacto que se encuentra en las opciones del header</div>
                       <?php endif ?>
-
-                      <h4 class="pull-right"><small>Comprado el <?=substr($value1['fecha'],0,-8)?></small></h4>
                     </div>
                   </div>
                 </div>

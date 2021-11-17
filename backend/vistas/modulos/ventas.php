@@ -23,25 +23,37 @@
     <!-- Default box -->
     <div class="card">
       <div class="card-header">
-        <h3 class="card-title">Title</h3>
-
-        <div class="card-tools">
-          <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-            <i class="fas fa-minus"></i>
-          </button>
-          <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
+        <?php include_once 'inicio/grafico-ventas.php'; ?>
       </div>
       <div class="card-body">
-        Start creating your amazing application!
+        <div class="card-tools">
+          <a href="vistas/modulos/reportes.php?reporte=compras">
+            <button class="btn btn-success">Descargar reporte de Excel</button>
+          </a>
+        </div>
+        <br>
+
+        <table class="table table-bordered table-striped dt-responsive tablaVentas" width="100%">
+          <thead>
+            <tr>
+              <th style="width:10px">#</th>
+              <th>Producto</th>
+              <th>Imagen Producto</th>
+              <th>Detalles</th>
+              <th>Cantidad</th>
+              <th>Cliente</th>
+              <th>Foto Cliente</th>
+              <th>Venta</th>
+              <th>Proceso de envío</th>
+              <th>Correo Electronico</th>
+              <th>Dirección de envio</th>
+              <th>País</th>
+              <th>Fecha</th>
+            </tr>
+          </thead>
+        </table>
       </div>
       <!-- /.card-body -->
-      <div class="card-footer">
-        Footer
-      </div>
-      <!-- /.card-footer-->
     </div>
     <!-- /.card -->
 

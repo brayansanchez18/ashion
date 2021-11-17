@@ -116,5 +116,7 @@
   <script src="vistas/js/gestorCategorias.js"></script>
   <script src="vistas/js/gestorSubcategorias.js"></script>
   <script src="vistas/js/gestorProductos.js"></script>
+  <script src="vistas/js/gestorVentas.js"></script>
+  <script src="vistas/js/gestorUsuarios.js"></script>
 </body>
 </html>

@@ -22,13 +22,13 @@
         <?php if ($usuarios[$i]['modo'] == 'directo'): ?>
           <?php if ($usuarios[$i]['foto'] != ''): ?>
             <li>
-              <img src="<?=$frontend.$usuarios[$i]['foto']?>" alt="<?=$usuarios[$i]['nombre']?>">
+              <img src="<?=$frontend.$usuarios[$i]['foto']?>" alt="<?=$usuarios[$i]['nombre']?>" width="100px">
               <a class="users-list-name"><?=$usuarios[$i]['nombre']?></a>
               <span class="users-list-date"><?=$usuarios[$i]['fecha']?></span>
             </li>
           <?php else: ?>
             <li>
-              <img src="vistas/img/usuarios/default/anonymous.png" alt="<?=$usuarios[$i]['nombre']?>">
+              <img src="vistas/img/usuarios/default/anonymous.png" alt="<?=$usuarios[$i]['nombre']?>" width="100px">
               <a class="users-list-name"><?=$usuarios[$i]['nombre']?></a>
               <span class="users-list-date"><?=$usuarios[$i]['fecha']?></span>
             </li>

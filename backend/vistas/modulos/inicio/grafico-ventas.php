@@ -1,6 +1,7 @@
 <?php
 error_reporting(0);
-$ventas = ControladorVentas::ctrMostrarVentas();
+$modo = 'ASC';
+$ventas = ControladorVentas::ctrMostrarVentas($modo);
 $arrayFechas = array();
 $arrayFechaPago = array();
 

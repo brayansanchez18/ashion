@@ -92,13 +92,6 @@
         </li>
 
         <li class="nav-item">
-          <a href="<?=$backend?>mensajes" class="nav-link">
-            <i class="nav-icon fas fa-envelope"></i>
-            <p>Gestor Mensajes</p>
-          </a>
-        </li>
-
-        <li class="nav-item">
           <a href="<?=$backend?>perfiles" class="nav-link">
             <i class="nav-icon fas fa-user-lock"></i>
             <p>Gestor Perfiles</p>
