@@ -10,14 +10,17 @@
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
       <div class="image">
-        <img src="vistas/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
+        <?php if ($_SESSION['foto'] == ''): ?>
+          <img src="vistas/img/perfiles/default/anonymous.png" class="img-circle elevation-2" alt="User Image">
+        <?php else: ?>
+          <img src="<?=$_SESSION['foto']?>" class="img-circle elevation-2" alt="User Image">
+        <?php endif ?>
       </div>
       <div class="info">
-        <a class="d-block">Alexander Pierce</a>
+        <a class="d-block"><?=$_SESSION['nombre']?> <br> (<?=$_SESSION['perfil']?>)</a>
         <br>
         <div>
-          <a href="<?=$backend?>perfil"><button type="button" class="btn btn-primary">Editar</button></a>
-          <a href="<?=$backend?>salir"><button type="button" class="btn btn-danger">Salir</button></a>
+          <a href="<?=$backend?>salir"><button type="button" class="btn btn-block btn-danger">Salir</button></a>
         </div>
       </div>
     </div>
@@ -32,12 +35,14 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a href="<?=$backend?>comercio" class="nav-link">
-            <i class="nav-icon fas fa-store"></i>
-            <p>Gestor Comercio</p>
-          </a>
-        </li>
+        <?php if ($_SESSION['perfil'] == 'administrador'): ?>
+          <li class="nav-item">
+            <a href="<?=$backend?>comercio" class="nav-link">
+              <i class="nav-icon fas fa-store"></i>
+              <p>Gestor Comercio</p>
+            </a>
+          </li>
+        <?php endif ?>
 
         <li class="nav-item">
           <a href="<?=$backend?>banner" class="nav-link">
@@ -77,26 +82,32 @@
           </a>
         </li>
 
-        <li class="nav-item">
-          <a href="<?=$backend?>ventas" class="nav-link">
-            <i class="nav-icon fas fa-dollar-sign"></i>
-            <p>Gestor Ventas</p>
-          </a>
-        </li>
+        <?php if ($_SESSION['perfil'] == 'administrador'): ?>
+          <li class="nav-item">
+            <a href="<?=$backend?>ventas" class="nav-link">
+              <i class="nav-icon fas fa-dollar-sign"></i>
+              <p>Gestor Ventas</p>
+            </a>
+          </li>
+        <?php endif ?>
 
-        <li class="nav-item">
-          <a href="<?=$backend?>usuarios" class="nav-link">
-            <i class="nav-icon fas fa-users"></i>
-            <p>Gestor Usuarios</p>
-          </a>
-        </li>
+        <?php if ($_SESSION['perfil'] == 'administrador'): ?>
+          <li class="nav-item">
+            <a href="<?=$backend?>usuarios" class="nav-link">
+              <i class="nav-icon fas fa-users"></i>
+              <p>Gestor Usuarios</p>
+            </a>
+          </li>
+        <?php endif ?>
 
-        <li class="nav-item">
-          <a href="<?=$backend?>perfiles" class="nav-link">
-            <i class="nav-icon fas fa-user-lock"></i>
-            <p>Gestor Perfiles</p>
-          </a>
-        </li>
+        <?php if ($_SESSION['perfil'] == 'administrador'): ?>
+          <li class="nav-item">
+            <a href="<?=$backend?>perfiles" class="nav-link">
+              <i class="nav-icon fas fa-user-lock"></i>
+              <p>Gestor Perfiles</p>
+            </a>
+          </li>
+        <?php endif ?>
       </ul>
     </nav>
     <!-- /.sidebar-menu -->

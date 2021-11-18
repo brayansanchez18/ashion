@@ -8,11 +8,5 @@
 
   <!-- Right navbar links -->
   <ul class="navbar-nav ml-auto">
-    <?php include_once 'cabezote/notificaciones.php'; ?>
-    <li class="nav-item">
-      <a class="nav-link" data-widget="fullscreen" style="cursor:pointer;" role="button">
-        <i class="fas fa-expand-arrows-alt"></i>
-      </a>
-    </li>
   </ul>
 </nav>

@@ -118,5 +118,6 @@
   <script src="vistas/js/gestorProductos.js"></script>
   <script src="vistas/js/gestorVentas.js"></script>
   <script src="vistas/js/gestorUsuarios.js"></script>
+  <script src="vistas/js/gestorAdministradores.js"></script>
 </body>
 </html>
