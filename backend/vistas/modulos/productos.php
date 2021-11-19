@@ -262,7 +262,7 @@
 /*                          MODAL PARA EDITAR PRODUCTOS                         */
 /* -------------------------------------------------------------------------- -->
 
-<!-- <div class="modal fade" id="modalEditarProducto" tabindex="-1" role="dialog" aria-hidden="true">
+<div class="modal fade" id="modalEditarProducto" tabindex="-1" role="dialog" aria-hidden="true">
   <div class="modal-dialog modal-dialog-centered" role="document">
     <div class="modal-content">
       <div class="modal-header">
@@ -273,7 +273,7 @@
       </div>
       <div class="modal-body">
         <div class="form-group">
-          <label for="tituloProducto">Nombre del Producto*</label>
+          <label for="tituloProducto">Nombre del Producto</label>
           <input type="text" class="form-control input-lg validarProducto tituloProducto" readonly>
           <input type="hidden" class="idProducto">
           <input type="hidden" class="idCabecera">
@@ -285,7 +285,7 @@
         </div>
 
         <div class="form-group agregarMultimedia">
-          <label for="multimediaProducto">Multimedia del Producto*</label>
+          <label for="multimediaProducto">Multimedia del Producto</label>
           <div class="row previsualizarImgFisico"></div>
           <div class="multimediaFisica needsclick dz-clickable">
             <div class="dz-message needsclick">
@@ -296,7 +296,7 @@
 
         <div class="form-group">
           <div class="detallesFisicos">
-            <label for="detallesProducto">Detalles del Producto*</label>
+            <label for="detallesProducto">Detalles del Producto</label>
 
             <div class="form-group row">
               <div class="col-3">
@@ -317,9 +317,9 @@
         </div>
 
         <div class="form-group">
-          <label for="seleccionarCategoria">Categoria del Producto*</label>
+          <label for="seleccionarCategoria">Categoria del Producto</label>
           <select class="form-control input-lg seleccionarCategoria">
-            <option class="optionEditarCategoria">Selecionar categoría</option>
+            <option value="">Selecionar categoría</option>
             <?php $item = null; $valor = null; $categorias = ControladorCategorias::ctrMostrarCategorias($item, $valor); ?>
 
             <?php foreach ($categorias as $key => $value): ?>
@@ -328,32 +328,32 @@
           </select>
         </div>
 
-        <div class="form-group ntradaSubcategoria">
-          <label for="seleccionarSubCategoria">Subcategoria del Producto*</label>
+        <div class="form-group entradaSubcategoria">
+          <label for="seleccionarCategoria">Subcategoria del Producto</label>
           <select class="form-control input-lg seleccionarSubCategoria">
             <option class="optionEditarSubCategoria"></option>
           </select>
         </div>
 
         <div class="form-group">
-          <label for="edtarDescripcionProducto">Descripcion del Producto*</label>
-          <div id="edtarDescripcionProducto"></div>
-          <input type="hidden" id="edtarDescripcionProducto" value="">
+          <label for="descripcionProducto">Descripcion del Producto</label>
+          <div id="descripcionEditarProducto"></div>
+          <input type="hidden" id="descripcionEditarProductoIput" value="">
           <input type="hidden" id="antiguaDescripcionProducto" value="">
         </div>
 
-        <div class="editarPalabrasClaves"></div>
+        <div class="form-group editarPalabrasClaves"></div>
 
         <div class="form-group">
           <label for="fotoPortada">Subir foto de portada</label>
-          <input type="file" class="form-control fotoPortada">
+          <input type="file" class="form-control fotoPortada" name="fotoPortada">
           <input type="hidden" class="antiguaFotoPortada">
           <p class="help-block">Tamaño recomendado 1280px * 720px <br> Peso máximo de la foto 4MB</p>
           <img src="vistas/img/cabeceras/default/default.jpg" class="img-thumbnail previsualizarPortada" width="100%">
         </div>
 
         <div class="form-group">
-          <label for="fotoPortada">Subir imagen principal del producto*</label>
+          <label for="fotoPortada">Subir imagen principal del producto</label>
           <input type="file" class="form-control fotoPrincipal">
           <input type="hidden" class="antiguaFotoPrincipal">
           <p class="help-block">Tamaño recomendado 400px * 450px <br> Peso máximo de la foto 4MB</p>
@@ -362,7 +362,7 @@
 
         <div class="form-group row">
           <div class="col-12 col-md-6">
-            <div class="panel">PRECIO*</div>
+            <div class="panel">PRECIO</div>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="ion ion-social-usd"></i></span>
@@ -372,34 +372,34 @@
           </div>
 
           <div class="col-12 col-md-6">
-            <div class="panel">PESO (kg)*</div>
+            <div class="panel">PESO (kg)</div>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-balance-scale"></i></span>
               </div>
-              <input type="number" class="form-control input-lg peso" min="0" step="any" value="0">
+              <input type="number" class="form-control input-lg peso" min="1" step="any" value="0">
             </div>
           </div>
         </div>
 
         <div class="form-group row">
           <div class="col-12 col-md-6">
-            <div class="panel">DÍAS DE ENTREGA*</div>
+            <div class="panel">DÍAS DE ENTREGA</div>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fa fa-truck"></i></span>
               </div>
-              <input type="number" class="form-control input-lg entrega" min="0" value="0">
+              <input type="number" class="form-control input-lg entrega" min="1" value="0">
             </div>
           </div>
 
           <div class="col-12 col-md-6">
-            <div class="panel">STOCK*</div>
+            <div class="panel">STOCK</div>
             <div class="input-group">
               <div class="input-group-prepend">
                 <span class="input-group-text" id="basic-addon1"><i class="fas fa-boxes"></i></span>
               </div>
-              <input type="number" class="form-control input-lg stock" min="0" value="0">
+              <input type="number" class="form-control input-lg stock" min="1" value="0">
             </div>
           </div>
         </div>
@@ -445,10 +445,12 @@
 
       <div class="modal-footer">
         <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-        <button type="button" class="btn btn-primary guardarCambiosProducto">Guardar Cambios</button>
+        <button type="button" class="btn btn-primary guardarCambiosProducto">Guardar cambios</button>
       </div>
     </div>
   </div>
-</div> -->
+</div>
 
 <!-- ------------------- End of MODAL PARA EDITAR PRODUCTOS ------------------- -->
+
+<?php $eliminarProducto = new ControladorProductos(); $eliminarProducto -> ctrEliminarProducto(); ?>

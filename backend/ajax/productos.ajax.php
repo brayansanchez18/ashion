@@ -84,6 +84,11 @@ class AjaxProductos {
   public $descuentoOferta;
   public $finOferta;
 
+  public $id;
+	public $antiguaFotoPortada;
+	public $antiguaFotoPrincipal;
+	public $idCabecera;
+
   public function  ajaxCrearProducto() {
 
     $datos = array(
@@ -113,6 +118,59 @@ class AjaxProductos {
   }
 
   /* ---------------- End of GUARDAR PRODUCTO Y EDITAR PRODUCTO --------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                               TRAER PRODUCTOS                              */
+  /* -------------------------------------------------------------------------- */
+
+  public $idProducto;
+
+  public function ajaxTraerProducto() {
+    $item = 'id';
+    $valor = $this->idProducto;
+    $respuesta = ControladorProductos::ctrMostrarProductos($item, $valor);
+    echo json_encode($respuesta);
+  }
+
+  /* ------------------------- End of TRAER PRODUCTOS ------------------------- */
+
+  /* -------------------------------------------------------------------------- */
+  /*                              EDITAR PRODUCTOS                              */
+  /* -------------------------------------------------------------------------- */
+
+  public function  ajaxEditarProducto() {
+
+    $datos = array(
+			'idProducto'=>$this->id,
+			'tituloProducto'=>$this->tituloProducto,
+			'rutaProducto'=>$this->rutaProducto,
+			'detalles'=>$this->detalles,
+			'categoria'=>$this->seleccionarCategoria,
+			'subCategoria'=>$this->seleccionarSubCategoria,
+			'descripcionProducto'=>$this->descripcionProducto,
+			'pClavesProducto'=>$this->pClavesProducto,
+			'precio'=>$this->precio,
+			'stock'=>$this->stock,
+			'peso'=>$this->peso,
+			'entrega'=>$this->entrega,
+			'multimedia'=>$this->multimedia,
+			'fotoPortada'=>$this->fotoPortada,
+			'fotoPrincipal'=>$this->fotoPrincipal,
+			'selActivarOferta'=>$this->selActivarOferta,
+			'precioOferta'=>$this->precioOferta,
+			'descuentoOferta'=>$this->descuentoOferta,
+			'finOferta'=>$this->finOferta,
+			'antiguaFotoPortada'=>$this->antiguaFotoPortada,
+			'antiguaFotoPrincipal'=>$this->antiguaFotoPrincipal,
+			'idCabecera'=>$this->idCabecera
+    );
+
+    $respuesta = ControladorProductos::ctrEditarProducto($datos);
+		echo $respuesta;
+
+  }
+
+  /* ------------------------- End of EDITAR PRODUCTOS ------------------------ */
 
 }
 
@@ -195,3 +253,62 @@ if (isset($_POST['tituloProducto'])) {
 }
 
 /* ---------------- End of GUARDAR PRODUCTO Y EDITAR PRODUCTO --------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                               TRAER PRODUCTO                               */
+/* -------------------------------------------------------------------------- */
+
+if (isset($_POST['idProducto'])) {
+  $traerProducto = new AjaxProductos();
+  $traerProducto -> idProducto = $_POST['idProducto'];
+  $traerProducto -> ajaxTraerProducto();
+}
+
+/* -------------------------- End of TRAER PRODUCTO ------------------------- */
+
+/* -------------------------------------------------------------------------- */
+/*                              EDITAR PRODUCTOS                              */
+/* -------------------------------------------------------------------------- */
+
+if (isset($_POST['id'])) {
+
+	$editarProducto = new AjaxProductos();
+	$editarProducto -> id = $_POST['id'];
+	$editarProducto -> tituloProducto = $_POST['editarProducto'];
+	$editarProducto -> rutaProducto = $_POST['rutaProducto'];
+	$editarProducto -> detalles = $_POST['detalles'];
+	$editarProducto -> seleccionarCategoria = $_POST['seleccionarCategoria'];
+	$editarProducto -> seleccionarSubCategoria = $_POST['seleccionarSubCategoria'];
+	$editarProducto -> descripcionProducto = $_POST['descripcionProducto'];
+	$editarProducto -> pClavesProducto = $_POST['pClavesProducto'];
+	$editarProducto -> precio = $_POST['precio'];
+	$editarProducto -> stock = $_POST['stock'];
+	$editarProducto -> peso = $_POST['peso'];
+	$editarProducto -> entrega = $_POST['entrega'];
+	$editarProducto -> multimedia = $_POST['multimedia'];
+
+	if (isset($_FILES['fotoPortada'])) {
+		$editarProducto -> fotoPortada = $_FILES['fotoPortada'];
+	} else {
+		$editarProducto -> fotoPortada = null;
+	}
+
+	if (isset($_FILES['fotoPrincipal'])) {
+		$editarProducto -> fotoPrincipal = $_FILES['fotoPrincipal'];
+	} else {
+		$editarProducto -> fotoPrincipal = null;
+	}
+
+	$editarProducto -> selActivarOferta = $_POST['selActivarOferta'];
+	$editarProducto -> precioOferta = $_POST['precioOferta'];
+	$editarProducto -> descuentoOferta = $_POST['descuentoOferta'];
+	$editarProducto -> finOferta = $_POST['finOferta'];
+	$editarProducto -> antiguaFotoPortada = $_POST['antiguaFotoPortada'];
+	$editarProducto -> antiguaFotoPrincipal = $_POST['antiguaFotoPrincipal'];
+	$editarProducto -> idCabecera = $_POST['idCabecera'];
+
+	$editarProducto -> ajaxEditarProducto();
+
+}
+
+/* ------------------------- End of EDITAR PRODUCTOS ------------------------ */
