@@ -106,7 +106,7 @@ class TablaProductos {
         $multimedia = json_decode($productos[$i]['multimedia'],true);
         $vistaMultimedia = "<img src='".$multimedia[0]['foto']."' class='img-thumbnail imgTablaMultimedia' width='100px'>";
       } else {
-        $vistaMultimedia = "SIN MULTIMEDIA";
+        $vistaMultimedia = "<img src='vistas/img/multimedia//default/default.jpg' class='img-thumbnail imgTablaMultimedia' width='100px'>";
       }
 
       /* ------------------------- End of TRAER MULTIMEDIA ------------------------ */

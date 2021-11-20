@@ -409,54 +409,76 @@ class ControladorSubCategorias {
 
     if (isset($_GET['idSubCategoria'])) {
 
-      $datos = $_GET['idSubCategoria'];
+      $respuesta = ModeloProductos::mdlMostrarProductos('productos', 'id_subcategoria', $_GET['idSubCategoria']);
 
-      /* -------------------------------------------------------------------------- */
-      /*                              ELIMINAR CABECERA                             */
-      /* -------------------------------------------------------------------------- */
+      if (count($respuesta) == 0) {
 
-      if($_GET['imgPortada'] != '' && $_GET['imgPortada'] != 'vistas/img/cabeceras/default/default.jpg'){
-        unlink($_GET['imgPortada']);
-      }
+        $datos = $_GET['idSubCategoria'];
 
-      ModeloCabeceras::mdlEliminarCabecera('cabeceras', $_GET['rutaCabecera']);
+        /* -------------------------------------------------------------------------- */
+        /*                              ELIMINAR CABECERA                             */
+        /* -------------------------------------------------------------------------- */
 
-      /* ------------------------ End of ELIMINAR CABECERA ------------------------ */
+        if($_GET['imgPortada'] != '' && $_GET['imgPortada'] != 'vistas/img/cabeceras/default/default.jpg'){
+          unlink($_GET['imgPortada']);
+        }
 
-      /* -------------------------------------------------------------------------- */
-      /*                  QUITAR LAS SUBATEGORIAS DE LOS PRODUCTOS                  */
-      /* -------------------------------------------------------------------------- */
+        ModeloCabeceras::mdlEliminarCabecera('cabeceras', $_GET['rutaCabecera']);
 
-      $traerProductos = ModeloProductos::mdlMostrarProductos('productos', 'id_subcategoria', $_GET['idSubCategoria']);
+        /* ------------------------ End of ELIMINAR CABECERA ------------------------ */
 
-      foreach ($traerProductos as $key => $value) {
-        $item1 = 'id_subcategoria';
-        $valor1 = 0;
-        $item2 = 'id';
-        $valor2 = $value['id'];
-        ModeloProductos::mdlActualizarProductos('productos', $item1, $valor1, $item2, $valor2);
-      }
+        /* -------------------------------------------------------------------------- */
+        /*                  QUITAR LAS SUBATEGORIAS DE LOS PRODUCTOS                  */
+        /* -------------------------------------------------------------------------- */
 
-      /* ------------- End of QUITAR LAS SUBATEGORIAS DE LOS PRODUCTOS ------------ */
+        $traerProductos = ModeloProductos::mdlMostrarProductos('productos', 'id_subcategoria', $_GET['idSubCategoria']);
 
-      $respuesta = ModeloSubCategorias::mdlEliminarSubCategoria('subcategorias', $datos);
+        foreach ($traerProductos as $key => $value) {
+          $item1 = 'id_subcategoria';
+          $valor1 = 0;
+          $item2 = 'id';
+          $valor2 = $value['id'];
+          ModeloProductos::mdlActualizarProductos('productos', $item1, $valor1, $item2, $valor2);
+        }
 
-      if ($respuesta == 'ok') {
+        /* ------------- End of QUITAR LAS SUBATEGORIAS DE LOS PRODUCTOS ------------ */
+
+        $respuesta = ModeloSubCategorias::mdlEliminarSubCategoria('subcategorias', $datos);
+
+        if ($respuesta == 'ok') {
+
+          echo'<script>
+
+              Swal.fire({
+                title: "¡OK!",
+                text: "La subcategoría ha sido borrada correctamente",
+                icon: "success",
+                confirmButtonText: "Cerrar",
+                closeOnConfirm: false,
+              }).then((isConfirm) => {
+                if (isConfirm) {
+                  window.location = "subcategorias";
+                }
+              })
+
+          </script>';
+
+        }
+
+      } else {
 
         echo'<script>
-
-            Swal.fire({
-              title: "¡OK!",
-              text: "La subcategoría ha sido borrada correctamente",
-              icon: "success",
-              confirmButtonText: "Cerrar",
-              closeOnConfirm: false,
-            }).then((isConfirm) => {
-              if (isConfirm) {
-                window.location = "subcategorias";
-              }
-            })
-
+          Swal.fire({
+            title: "¡ERROR!",
+            text: "La subcategoría no puede ser eliminada por que contiene productos",
+            icon: "error",
+            confirmButtonText: "Cerrar",
+            closeOnConfirm: false,
+          }).then((isConfirm) => {
+            if (isConfirm) {
+              window.location = "subcategorias";
+            }
+          })
         </script>';
 
       }

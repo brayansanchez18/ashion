@@ -34,15 +34,15 @@ class ControladorUsuario {
           /*                     VERIFICACION DE CORREO ELECTRONICO                     */
           /* -------------------------------------------------------------------------- */
 
-          date_default_timezone_set('America/Mexico_City');
+          date_default_timezone_set("America/Bogota");
           $url = Ruta::ctrRuta();
-          $mail = new PHPMailer(true);
-          $mail->CharSet = 'UTF-8';
-          $mail -> isMail();
-          $mail -> setFrom($_POST['regEmail'], '');
-          $mail -> addReplyTo($_POST['regEmail'], '');
-          $mail->Subject = 'Por favor verifique su direccion de correo electrónico';
-          $mail -> addAddress($correo);
+            $mail = new PHPMailer;
+            $mail->CharSet = 'UTF-8';
+            $mail->isMail();
+            $mail->setFrom($correo, '');
+            $mail->addReplyTo($correo, '');
+            $mail->Subject = "Por favor verifique su dirección de correo electrónico";
+            $mail->addAddress($_POST["regEmail"]);
           $mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
             <center>
               <img style="padding:20px; width:10%" src="http://tutorialesatualcance.com/tienda/logo.png">
@@ -64,7 +64,7 @@ class ControladorUsuario {
             </div>
           </div>');
 
-          $envio = $mail -> send();
+          $envio = $mail->Send();
 
           if (!$envio) {
 
@@ -311,15 +311,14 @@ class ControladorUsuario {
             /* -------------------------------------------------------------------------- */
 
             date_default_timezone_set('America/Mexico_City');
-
             $url = Ruta::ctrRuta();
-            $mail = new PHPMailer(true);
+            $mail = new PHPMailer;
             $mail->CharSet = 'UTF-8';
             $mail->isMail();
-            $mail -> setFrom($_POST["passEmail"], '');
-            $mail -> addReplyTo($_POST["passEmail"], '');
-            $mail->Subject = "Solicitud de nueva contraseña";
-            $mail->addAddress($correo);
+            $mail->setFrom($correo, '');
+            $mail->addReplyTo($correo, '');
+            $mail->Subject = "Por favor verifique su dirección de correo electrónico";
+            $mail->addAddress($_POST["regEmail"]);
             $mail->msgHTML('<div style="width:100%; background:#eee; position:relative; font-family:sans-serif; padding-bottom:40px">
                 <center>
                   <img style="padding:20px; width:10%" src="http://tutorialesatualcance.com/tienda/logo.png">

@@ -417,85 +417,109 @@ class ControladorCategorias {
 
     if (isset($_GET['idCategoria'])) {
 
-      /* -------------------------------------------------------------------------- */
-      /*                              ELIMINAR CABECERA                             */
-      /* -------------------------------------------------------------------------- */
+      $respuesta = ModeloSubCategorias::mdlMostrarSubCategorias('subcategorias', 'id_categoria', $_GET['idCategoria']);
 
-      if ($_GET['imgPortada'] != '' && $_GET['imgPortada'] != 'vistas/img/cabeceras/default/default.jpg') {
-        unlink($_GET['imgPortada']);
-      }
+      if (count($respuesta) == 0) {
 
-      ModeloCabeceras::mdlEliminarCabecera('cabeceras', $_GET['rutaCabecera']);
+        /* -------------------------------------------------------------------------- */
+        /*                              ELIMINAR CABECERA                             */
+        /* -------------------------------------------------------------------------- */
 
-      /* ------------------------ End of ELIMINAR CABECERA ------------------------ */
+        if ($_GET['imgPortada'] != '' && $_GET['imgPortada'] != 'vistas/img/cabeceras/default/default.jpg') {
+          unlink($_GET['imgPortada']);
+        }
 
-      /* -------------------------------------------------------------------------- */
-      /*                 QUITAR LAS CATEGORIAS DE LAS SUBCATEGORIAS                 */
-      /* -------------------------------------------------------------------------- */
+        ModeloCabeceras::mdlEliminarCabecera('cabeceras', $_GET['rutaCabecera']);
 
-      $traerSubCategorias = ModeloSubCategorias::mdlMostrarSubCategorias('subcategorias',  'id_categoria', $_GET['idCategoria']);
+        /* ------------------------ End of ELIMINAR CABECERA ------------------------ */
 
-      if ($traerSubCategorias) {
+        /* -------------------------------------------------------------------------- */
+        /*                 QUITAR LAS CATEGORIAS DE LAS SUBCATEGORIAS                 */
+        /* -------------------------------------------------------------------------- */
 
-        foreach ($traerSubCategorias as $key => $value) {
+        $traerSubCategorias = ModeloSubCategorias::mdlMostrarSubCategorias('subcategorias',  'id_categoria', $_GET['idCategoria']);
 
-          $item1 = 'id_categoria';
-          $valor1 = 0;
-          $item2 = 'id';
-          $valor2 = $value['id'];
+        if ($traerSubCategorias) {
 
-          ModeloSubCategorias::mdlActualizarSubCategorias('subcategorias', $item1, $valor1, $item2, $valor2);
+          foreach ($traerSubCategorias as $key => $value) {
+
+            $item1 = 'id_categoria';
+            $valor1 = 0;
+            $item2 = 'id';
+            $valor2 = $value['id'];
+
+            ModeloSubCategorias::mdlActualizarSubCategorias('subcategorias', $item1, $valor1, $item2, $valor2);
+
+          }
 
         }
 
-      }
+        /* ------------ End of QUITAR LAS CATEGORIAS DE LAS SUBCATEGORIAS ----------- */
 
-      /* ------------ End of QUITAR LAS CATEGORIAS DE LAS SUBCATEGORIAS ----------- */
+        /* -------------------------------------------------------------------------- */
+        /*                   QUITAR LAS CATEGORIAS DE LOS PRODUCTOS                   */
+        /* -------------------------------------------------------------------------- */
 
-      /* -------------------------------------------------------------------------- */
-      /*                   QUITAR LAS CATEGORIAS DE LOS PRODUCTOS                   */
-      /* -------------------------------------------------------------------------- */
+        $traerProductos = ModeloProductos::mdlMostrarProductos('productos', 'id_categoria', $_GET['idCategoria']);
 
-      $traerProductos = ModeloProductos::mdlMostrarProductos('productos', 'id_categoria', $_GET['idCategoria']);
+        if ($traerProductos) {
 
-      if ($traerProductos) {
+          foreach ($traerProductos as $key => $value) {
 
-        foreach ($traerProductos as $key => $value) {
+            $item1 = 'id_categoria';
+            $valor1 = 0;
+            $item2 = 'id';
+            $valor2 = $value['id'];
 
-          $item1 = 'id_categoria';
-          $valor1 = 0;
-          $item2 = 'id';
-          $valor2 = $value['id'];
+            ModeloProductos::mdlActualizarProductos('productos', $item1, $valor1, $item2, $valor2);
 
-          ModeloProductos::mdlActualizarProductos('productos', $item1, $valor1, $item2, $valor2);
+          }
 
         }
 
-      }
+        $respuesta = ModeloCategorias::mdlEliminarCategoria('categorias', $_GET['idCategoria']);
 
-      $respuesta = ModeloCategorias::mdlEliminarCategoria('categorias', $_GET['idCategoria']);
+        if ($respuesta == 'ok') {
 
-      if ($respuesta == 'ok') {
+          echo'<script>
+
+          Swal.fire({
+            title: "¡OK!",
+            text: "La categoría ha sido borrada correctamente",
+            icon: "success",
+            confirmButtonText: "Cerrar",
+            closeOnConfirm: false,
+          }).then((isConfirm) => {
+            if (isConfirm) {
+              window.location = "categorias";
+            }
+          });
+
+          </script>';
+
+        }
+
+        /* -------------- End of QUITAR LAS CATEGORIAS DE LOS PRODUCTOS ------------- */
+
+      } else {
 
         echo'<script>
 
         Swal.fire({
-          title: "¡OK!",
-          text: "La categoría ha sido borrada correctamente",
-          icon: "success",
+          title: "¡ERROR!",
+          text: "La categoría no puede ser eliminada por que aun existen subcategorias",
+          icon: "error",
           confirmButtonText: "Cerrar",
           closeOnConfirm: false,
         }).then((isConfirm) => {
           if (isConfirm) {
             window.location = "categorias";
           }
-        });
+        })
 
         </script>';
 
       }
-
-      /* -------------- End of QUITAR LAS CATEGORIAS DE LOS PRODUCTOS ------------- */
 
 		}
 

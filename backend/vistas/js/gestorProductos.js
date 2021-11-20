@@ -960,7 +960,6 @@ $('.tablaProductos tbody').on("click", ".btnEditarProducto", function() {
 				/* -------------------------------------------------------------------------- */
 
 				if ($("#modalEditarProducto .tituloProducto").val() != "" &&
-				$("#modalEditarProducto .seleccionarTipo").val() != "" &&
 				$("#modalEditarProducto .seleccionarCategoria").val() != "" &&
 				$("#modalEditarProducto .seleccionarSubCategoria").val() != "" &&
 				$("#modalEditarProducto #antiguaDescripcionProducto").val() != "" &&

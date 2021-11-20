@@ -12,7 +12,9 @@ require_once 'modelos/usuarios.modelo.php';
 require_once 'modelos/carrito.modelo.php';
 require_once 'controladores/rutas.php';
 
-require_once 'extensiones/PHPMailer/vendor/autoload.php';
+// require_once 'extensiones/PHPMailer/vendor/autoload.php';
+
+require_once 'extensiones/vendor/autoload.php';
 
 $plantilla = new ControladorPlantilla();
 $plantilla -> plantilla();

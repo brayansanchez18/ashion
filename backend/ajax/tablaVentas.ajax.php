@@ -34,8 +34,13 @@ class TablaVentas {
       $traerProducto = ControladorProductos::ctrMostrarProductos($item, $valor);
 
       if (is_array($traerProducto)) {
-        $producto = $traerProducto[0]['titulo'];
-        $imgProducto = "<img class='img-thumbnail' src='".$traerProducto[0]['portada']."' width='100px'>";
+        if ($traerProducto != null) {
+          $producto = $traerProducto[0]['titulo'];
+          $imgProducto = "<img class='img-thumbnail' src='".$traerProducto[0]['portada']."' width='100px'>";
+        } else {
+          $producto = "PRODUCTO ELIMINADO";
+          $imgProducto = "<img class='img-thumbnail' src='vistas/img/productos/default/default.jpg' width='100px'>";
+        }
       }
 
       /* -------------------------- End of TRAER PRODUCTO ------------------------- */
