@@ -46,9 +46,9 @@
                     <div class="product__price">GRATIS</div>
                   <?php else: ?>
                     <?php if ($value2['oferta'] != 0): ?>
-                      <div class="product__price">$ <?=$value2['precioOferta']?> <?=$divisa?> <span>$ <?=$value2['precio']?></span></div>
+                      <div class="product__price">$ <?=number_format($value2['precioOferta'],2)?> <?=$divisa?> <span>$ <?=number_format($value2['precio'],2)?></span></div>
                     <?php else: ?>
-                      <div class="product__price">$ <?=$value2['precio']?> <?=$divisa?></div>
+                      <div class="product__price">$ <?=number_format($value2['precio'],2)?> <?=$divisa?></div>
                     <?php endif ?>
                   <?php endif ?>
                 </div>

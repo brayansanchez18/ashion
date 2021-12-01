@@ -1,29 +1,29 @@
 <?php
 
-$titulosModulos = array("ARTÍCULOS RECIENTES", "LO MÁS VENDIDO", "LO MÁS VISTO");
-$rutaModulos = array("articulos-recientes","lo-mas-vendido","lo-mas-visto");
+$titulosModulos = array('ARTÍCULOS RECIENTES', 'LO MÁS VENDIDO', 'LO MÁS VISTO');
+$rutaModulos = array('articulos-recientes','lo-mas-vendido','lo-mas-visto');
 
 $base = 0;
 $tope = 8;
 
-if($titulosModulos[0] == "ARTÍCULOS RECIENTES"){
-  $ordenar = "id";
+if($titulosModulos[0] == 'ARTÍCULOS RECIENTES'){
+  $ordenar = 'id';
   $item = 'estado';
   $valor = 1;
   $modo = 'DESC';
   $recientes = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
 }
 
-if($titulosModulos[1] == "LO MÁS VENDIDO") {
-  $ordenar = "ventas";
+if($titulosModulos[1] == 'LO MÁS VENDIDO') {
+  $ordenar = 'ventas';
   $item = 'estado';
   $valor = 1;
   $modo = 'DESC';
   $ventas = ControladorProductos::ctrMostrarProductos($ordenar, $item, $valor, $base, $tope, $modo);
 }
 
-if($titulosModulos[2] == "LO MÁS VISTO") {
-  $ordenar = "vistas";
+if($titulosModulos[2] == 'LO MÁS VISTO') {
+  $ordenar = 'vistas';
   $item = 'estado';
   $valor = 1;
   $modo = 'DESC';
@@ -77,9 +77,9 @@ $modulos = array($recientes, $ventas, $vistas);
                       <div class="product__price">GRATIS</div>
                     <?php else: ?>
                       <?php if ($value['oferta'] != 0): ?>
-                        <div class="product__price">$ <?=$value['precioOferta']?> <?=$divisa?> <span>$ <?=$value['precio']?></span></div>
+                        <div class="product__price">$ <?=number_format($value['precioOferta'],2)?> <?=$divisa?> <span>$ <?=number_format($value['precio'])?></span></div>
                       <?php else: ?>
-                        <div class="product__price">$ <?=$value['precio']?> <?=$divisa?></div>
+                        <div class="product__price">$ <?=number_format($value['precio'],2)?> <?=$divisa?></div>
                       <?php endif ?>
                     <?php endif ?>
                   </div>

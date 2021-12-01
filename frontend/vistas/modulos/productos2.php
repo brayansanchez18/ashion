@@ -242,9 +242,9 @@ $listaProductos = ControladorProductos::ctrListarProductos($ordenar, $item2, $va
                         <div class="product__price">GRATIS</div>
                       <?php else: ?>
                         <?php if ($value['oferta'] != 0): ?>
-                          <div class="product__price">$ <?=$value['precioOferta']?> <?=$divisa?> <span>$ <?=$value['precio']?></span></div>
+                          <div class="product__price">$ <?=number_format($value['precioOferta'],2)?> <?=$divisa?> <span>$ <?=number_format($value['precio'],2)?></span></div>
                         <?php else: ?>
-                          <div class="product__price">$ <?=$value['precio']?> <?=$divisa?></div>
+                          <div class="product__price">$ <?=number_format($value['precio'],2)?> <?=$divisa?></div>
                         <?php endif ?>
                       <?php endif ?>
                     </div>

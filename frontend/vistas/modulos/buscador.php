@@ -2,15 +2,15 @@
 
   if(isset($rutas[1])) {
     if(isset($rutas[2])) {
-      if($rutas[2] == "antiguos") {
-        $modo = "ASC";
-        $_SESSION["ordenar"] = "ASC";
+      if($rutas[2] == 'antiguos') {
+        $modo = 'ASC';
+        $_SESSION['ordenar'] = 'ASC';
       } else {
-        $modo = "DESC";
-        $_SESSION["ordenar"] = "DESC";
+        $modo = 'DESC';
+        $_SESSION['ordenar'] = 'DESC';
       }
     } else {
-      $modo = $_SESSION["ordenar"];
+      $modo = $_SESSION['ordenar'];
     }
 
     $base = ($rutas[1] - 1)*12;
@@ -20,7 +20,7 @@
     $rutas[1] = 1;
     $base = 0;
     $tope = 12;
-    $modo = "DESC";
+    $modo = 'DESC';
   }
 
   /* -------------------------------------------------------------------------- */
@@ -30,7 +30,7 @@
   $productos = null;
   $listaProductos = null;
 
-  $ordenar = "id";
+  $ordenar = 'id';
 
   if(isset($rutas[2])) {
 
@@ -206,9 +206,9 @@
                         <div class="product__price">GRATIS</div>
                       <?php else: ?>
                         <?php if ($value['oferta'] != 0): ?>
-                          <div class="product__price">$ <?=$value['precioOferta']?> <?=$divisa?> <span>$ <?=$value['precio']?></span></div>
+                          <div class="product__price">$ <?=number_format($value['precioOferta'],2)?> <?=$divisa?> <span>$ <?=number_format($value['precio'],2)?></span></div>
                         <?php else: ?>
-                          <div class="product__price">$ <?=$value['precio']?> <?=$divisa?></div>
+                          <div class="product__price">$ <?=number_format($value['precio'],2)?> <?=$divisa?></div>
                         <?php endif ?>
                       <?php endif ?>
                     </div>

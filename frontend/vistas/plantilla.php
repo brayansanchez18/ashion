@@ -44,7 +44,6 @@
 	====================================-->
 
 	<meta name="title" content="<?=$cabeceras['titulo']?>">
-	<meta name="description" content="<?=$cabeceras['descripcion']?>">
 	<meta name="keyword" content="<?=$cabeceras['palabrasClaves']?>">
 
 	<title><?=$cabeceras['titulo']?></title>
@@ -56,11 +55,11 @@
 	=====================================================-->
 
 	<meta property="og:title" content="<?=$cabeceras['titulo']?>">
-	<meta property="og:url" content="<?=$url.$cabeceras['ruta']?>">
-	<meta property="og:description" content="<?=$cabeceras['descripcion']?>">
-	<meta property="og:image" content="<?=$cabeceras['portada']?>">
+	<meta property="og:url" content="<?=$frontend.$cabeceras['ruta']?>">
+  <meta property="og:description" content="<?=$cabeceras['descripcion']?>">
+	<meta property="og:image" content="<?=$backend.$cabeceras['portada']?>">
 	<meta property="og:type" content="website">
-	<meta property="og:site_name" content="Tu logo">
+	<meta property="og:site_name" content="<?=$backend.$plantilla['logo']?>">
 	<meta property="og:locale" content="es_MX">
 
 	<!--====  End of Marcado de Open Graph FACEBOOK  ====-->
@@ -103,7 +102,7 @@
 </head>
 <body>
   <!-- Page Preloder -->
-  <!-- <div id="preloder"><div class="loader"></div></div> -->
+  <div id="preloder"><div class="loader"></div></div>
 
   <?php
     include_once 'modulos/header.php';
@@ -182,5 +181,13 @@
   <script src="<?=$frontend?>vistas/js/usuarios.js"></script>
   <script src="<?=$frontend?>vistas/js/sweetalert2.all.min.js"></script>
   <script src="<?=$frontend?>vistas/js/carrito-de-compras.js"></script>
+
+  <!-- -------------------------------------------------------------------------- */
+	/*                             SCRIPT DE FACEBOOK                             */
+	/* -------------------------------------------------------------------------- -->
+
+	<?=$plantilla['apiFacebook']?>
+
+	<!-- ------------------------ End of SCRIPT DE FACEBOOK ----------------------- -->
 </body>
 </html>
