@@ -166,7 +166,7 @@ class ControladorComercio {
 	/*                      TRAER LA INFORMACION DE CONTACTO                      */
 	/* -------------------------------------------------------------------------- */
 
-	public function ctrMostrarInfoContacto() {
+	static public function ctrMostrarInfoContacto() {
 		$tabla = 'footer';
 		$respuesta = ModeloComercio::mdlMostrarInfoContacto($tabla);
 		return $respuesta;

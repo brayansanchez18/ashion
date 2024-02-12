@@ -25,7 +25,6 @@ class ModeloAdministradores {
 
     }
 
-    $stmt-> close();
     $stmt = null;
 
 	}
@@ -43,7 +42,6 @@ class ModeloAdministradores {
 
     if ($stmt -> execute()) { return "ok"; } else { return "error"; }
 
-    $stmt -> close();
     $stmt = null;
   }
 
@@ -66,7 +64,6 @@ class ModeloAdministradores {
 
     if ($stmt->execute()) { return 'ok'; } else { return 'error'; }
 
-    $stmt->close();
     $stmt = null;
 
   }
@@ -89,7 +86,6 @@ class ModeloAdministradores {
 
     if ($stmt -> execute()) { return 'ok'; } else { return 'error'; }
 
-    $stmt -> close();
     $stmt = null;
 
   }
@@ -107,7 +103,6 @@ class ModeloAdministradores {
 
     if ($stmt -> execute()) { return 'ok'; } else { return 'error';	}
 
-    $stmt -> close();
     $stmt = null;
 
 	}

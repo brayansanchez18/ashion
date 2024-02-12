@@ -6,7 +6,7 @@ class ControladorVentas {
   /*                            MOSTRAR TOTAL VENTAS                            */
   /* -------------------------------------------------------------------------- */
 
-  public function ctrMostrarTotalVentas() {
+  static public function ctrMostrarTotalVentas() {
     $tabla = 'compras';
     $respuesta = ModeloVentas::mdlMostrarTotalVentas($tabla);
     return $respuesta;
@@ -18,7 +18,7 @@ class ControladorVentas {
   /*                               MOSTRAR VENTAS                               */
   /* -------------------------------------------------------------------------- */
 
-  public function ctrMostrarVentas($modo) {
+  static public function ctrMostrarVentas($modo) {
     $tabla = 'compras';
     $respuesta = ModeloVentas::mdlMostrarVentas($tabla, $modo);
     return $respuesta;
