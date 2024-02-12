@@ -40,7 +40,7 @@ class ControladorPlantilla {
   /*                     MOSTRAMOS INFORMACION PARA CONTACTO                    */
   /* -------------------------------------------------------------------------- */
 
-  public function ctrMostrarContacto() {
+  static public function ctrMostrarContacto() {
 		$tabla = 'footer';
 		$respuesta = ModeloPlantilla::mdlMostrarContacto($tabla);
 		return $respuesta;
@@ -52,7 +52,7 @@ class ControladorPlantilla {
   /*                       TRAER DIVISA DE MANERA DINAMICA                      */
   /* -------------------------------------------------------------------------- */
 
-	public function ctrMostrarDivisa() {
+	static public function ctrMostrarDivisa() {
 		$tabla = 'comercio';
 		$respuesta = ModeloPlantilla::mdlMostrarDivisa($tabla);
 		return $respuesta;
